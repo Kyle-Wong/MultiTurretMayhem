@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Spawner
   - Enemy
+  - Manager
+  - UI
   layers:
   - Default
   - TransparentFX
