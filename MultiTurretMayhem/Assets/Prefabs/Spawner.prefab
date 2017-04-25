@@ -51,8 +51,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b20dab2e37c6cc64c979bb52cc1ef350, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objects: []
-  chances: []
-  generalRate: 10
+  objects:
+  - {fileID: 1793194082606136, guid: ec86bbdcb50db4d4bb0e9dee47978e4f, type: 2}
+  chances:
+  - 1
+  generalRate: 40
   deltaGeneralRate: 60
   range: 10
