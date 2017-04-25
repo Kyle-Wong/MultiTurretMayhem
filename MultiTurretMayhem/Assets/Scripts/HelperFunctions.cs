@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HelperFunctions{
 
-    public static int randomIndex(List<float> probabilities)
+    public static int randomIndex(List<float> probabilities) // Pick a random index in a list of floats weighted by the contents in the list
     {
         float selection = Random.Range(0.0f, sumOfList(probabilities));
         for (int i = 0; i < probabilities.Count; ++i)
@@ -16,7 +16,7 @@ public class HelperFunctions{
         return -1;
     }
 
-    public static float sumOfList(List<float> list)
+    public static float sumOfList(List<float> list) // Return the sum of a list of floats
     {
         float result = 0.0f;
         foreach (float f in list)

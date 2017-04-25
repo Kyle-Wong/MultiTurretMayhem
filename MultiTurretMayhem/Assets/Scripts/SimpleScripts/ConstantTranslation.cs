@@ -7,7 +7,10 @@ public class ConstantTranslation : MonoBehaviour {
     public bool playOnStartUp = true;
     public float direction = 0; // in degrees
     public float speed = 0;
+
     private Vector3 velocity;
+    private bool started = false;
+
     void Start()
     {
         velocity = new Vector3(Mathf.Cos((float)(direction * (Mathf.PI / 180))),
@@ -22,20 +25,15 @@ public class ConstantTranslation : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        if (started)
+            transform.Translate(velocity * Time.deltaTime); // Different from "transform += Vector3" because movement is dependent on rotation.
+    }
 
-    }
-    public IEnumerator move()
-    {
-        while (true)
-        {
-            transform.Translate(velocity * Time.deltaTime);
-            yield return null;
-        }
-    }
     public void startMovement()
     {
-        StartCoroutine(move());
+        started = true;
     }
+
     public void setVelocity(float newDirection, float newSpeed)
     {
         direction = newDirection;
