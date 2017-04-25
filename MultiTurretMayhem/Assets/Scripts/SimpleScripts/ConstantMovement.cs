@@ -43,4 +43,9 @@ public class ConstantMovement : MonoBehaviour {
                     Mathf.Sin((float)(direction * (Mathf.PI / 180))));
         velocity = velocity.normalized * speed;
     }
+    public void setVelocity(Vector3 newDirection)
+    {
+        direction = Vector3.Angle(Vector3.zero, newDirection);
+        speed = newDirection.magnitude;
+    }
 }

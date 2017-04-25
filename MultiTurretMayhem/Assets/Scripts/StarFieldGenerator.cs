@@ -54,7 +54,7 @@ public class StarFieldGenerator : MonoBehaviour {
             star.transform.position = new Vector3(rngX, rngY);
             star.transform.parent = parent.transform;
             starList.Add(star.GetComponent<Star>());
-            star.GetComponent<Star>().setBounds(distance);
+            //star.GetComponent<Star>().setBounds(distance);
         }
     }
     public void startAllStars()

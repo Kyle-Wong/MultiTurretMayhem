@@ -5,13 +5,13 @@ using UnityEngine;
 public class Star : MonoBehaviour {
 
     // Use this for initialization
-    private float bounds;
     private bool isMoving;
     public float acceleration;
     public float maxSpeed;
     public float maxLength;
     public float minLength;
     public float growthSpeed;
+    public float bounds;
     private Vector3 velocityVector;
     private Vector3 accelerationVector;
 	void Start () {
@@ -55,10 +55,6 @@ public class Star : MonoBehaviour {
             transform.position = new Vector3(transform.position.x, transform.position.y + 2 * bounds, 0);
         }
 	}
-    public void setBounds(float y)
-    {
-        bounds = y;
-    }
     public void startMoving()
     {
         isMoving = true;
