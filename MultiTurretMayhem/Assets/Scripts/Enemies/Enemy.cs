@@ -18,10 +18,15 @@ public class Enemy : MonoBehaviour {
     {
         Destroy(this.gameObject);
     }
+    public void doDamage()
+    {
+        //ToDo: do damage to player
+    }
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Turret")) //ToDo: check if this is actually the tag for the player
         {
+            doDamage();
             death();
         }
     }
