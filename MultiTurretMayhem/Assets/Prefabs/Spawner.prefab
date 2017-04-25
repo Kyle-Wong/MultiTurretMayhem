@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4101503438200536}
   - component: {fileID: 114643832332277016}
   m_Layer: 0
-  m_Name: LeftSpawner
+  m_Name: Left Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 4574983288862970}
   - component: {fileID: 114705620562369318}
   m_Layer: 0
-  m_Name: RightSpawner
+  m_Name: Right Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,6 +51,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4272775911948962}
+  - component: {fileID: 114431448010120358}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -99,6 +100,18 @@ Transform:
   m_Father: {fileID: 4272775911948962}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114431448010120358
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1794901749313228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac2b7cbbde0b98349bf3a5e31f7dbd8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 4272775911948962}
 --- !u!114 &114643832332277016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -115,8 +128,8 @@ MonoBehaviour:
   - {fileID: 1793194082606136, guid: ec86bbdcb50db4d4bb0e9dee47978e4f, type: 2}
   chances:
   - 1
-  generalRate: 60
-  deltaGeneralRate: 60
+  generalRate: 10
+  deltaGeneralRate: 300
   range: 10
 --- !u!114 &114705620562369318
 MonoBehaviour:

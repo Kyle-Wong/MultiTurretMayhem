@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Spawning : MonoBehaviour {
-    public Transform target;
     public float offset;
     public List<GameObject> objects;
     public List<float> chances;
@@ -11,10 +10,16 @@ public class Spawning : MonoBehaviour {
     public float deltaGeneralRate;
     public float range;
 
+    private Targetting targetter;
     private float spawnTimer = 0.0f;
 
-	// Use this for initialization
-	void Start ()
+    void Awake()
+    {
+        targetter = GetComponentInParent<Targetting>();
+    }
+
+    // Use this for initialization
+    void Start ()
     {
 		
 	}
@@ -31,7 +36,7 @@ public class Spawning : MonoBehaviour {
         if (spawnTimer > 60 / generalRate)
         {
             Vector3 spawnPosition = transform.position + new Vector3(0, Random.Range(-1.0f, 1.0f) * range);
-            Instantiate(pickRandom(), spawnPosition, Quaternion.LookRotation(Vector3.forward, target.position - spawnPosition));
+            Instantiate(pickRandom(), spawnPosition, Quaternion.LookRotation(Vector3.forward, targetter.target.position - spawnPosition));
             spawnTimer = 0;
         }
 	}
