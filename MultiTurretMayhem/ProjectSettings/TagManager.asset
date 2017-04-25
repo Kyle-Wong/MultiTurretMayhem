@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Manager
   - UI
+  - Turret
   layers:
   - Default
   - TransparentFX
