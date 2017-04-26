@@ -10,40 +10,58 @@ public class gameController : MonoBehaviour {
     public Text pointsText;
     public Text timerText;
     public int levelNum;
-    private List<Spawning> spawnList;
+    private List<GameObject> settingsList;
+    private GameSettings currentSettings;
     private int points;
-    public float timeRemaining;
+    private float timeRemaining;
 	void Start () {
-        spawnList = getSpawners();	
-	}
+        settingsList = getSettings();
+        setLevelSettings(levelNum);
+        currentSettings = settingsList[levelNum].GetComponentInChildren<GameSettings>();
+        timeRemaining = currentSettings.levelDuration;
+        points = 0;
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
         timeRemaining -= Time.deltaTime;
+        
         if(timerText != null)
         {
-            timerText.text = "" + (timeRemaining / 60) + ":";
-            timerText.text = (timeRemaining / 60 >= 10) ? timerText.text + timeRemaining / 60 : timerText.text + "0"+timeRemaining / 60;
+            timerText.text = timeAsString((int)timeRemaining);
         }
+        
         if(pointsText != null)
         {
-            int length = (int)Mathf.Floor(Mathf.Log10(points)) + 1;
-            string result = "";
-            for(int i = length; i < 5; i++)
-            {
-                result += 0;
-            }
-            result += "" + points;
+            pointsText.text = pointsAsString(points);
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            addPoints(9);
         }
 	}
-    private List<Spawning> getSpawners()
+    private List<GameObject> getSettings()
     {
-        List<Spawning> children = new List<Spawning>();
+        List<GameObject> children = new List<GameObject>();
         foreach (Transform child in transform)
         {
-            children.Add(child.gameObject.GetComponent<Spawning>());
+            children.Add(child.gameObject);
         }
         return children;
+    }
+    private void setLevelSettings(int currentLevel)
+    {
+        for(int i = 0; i < settingsList.Count; i++)
+        {
+            if(i != currentLevel)
+            {
+                settingsList[i].SetActive(false);
+            } else
+            {
+                settingsList[i].SetActive(true);
+            }
+        }
     }
     public void addPoints(int amount)
     {
@@ -56,5 +74,23 @@ public class gameController : MonoBehaviour {
     public float time()
     {
         return timeRemaining;
+    }
+    private string pointsAsString(int score)
+    {
+        string result = "";
+        int length = score.ToString().Length;
+        for (int i = length; i < 5; i++)
+        {
+            result += 0;
+        }
+        result += "" + score;
+        return result;
+    }
+    private string timeAsString(int seconds)
+    {
+        string result = "";
+        result = "" + (seconds / 60) + ":";
+        result +=""+ ((seconds / 60 >= 10) ? ""+seconds / 60 : "0" + seconds / 60);
+        return result;
     }
 }
