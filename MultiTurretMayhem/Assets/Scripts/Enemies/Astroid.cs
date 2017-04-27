@@ -6,24 +6,15 @@ public class Astroid : Enemy {
 
 	// Use this for initialization
 	void Start () {
+        baseStart();
         baseHP = 1;
         curHP = 1;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+        baseUpdate();
 	}
-    new void onPlayerHit()
-    {
-        Destroy(gameObject);
-    }
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            onPlayerHit();
-        }
-    }
+    
 
 }

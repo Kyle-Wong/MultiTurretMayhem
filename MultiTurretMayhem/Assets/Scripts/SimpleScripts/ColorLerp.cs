@@ -27,6 +27,7 @@ public class ColorLerp : MonoBehaviour {
 	}
     private IEnumerator colorChange()
     {
+        spriteRenderer.color = startColor;
         while(initialDelay > 0)
         {
             initialDelay -= Time.deltaTime;

@@ -32,6 +32,7 @@ public class gameController : MonoBehaviour {
     public float delayBeforeJump;
     public float jumpDuration;
     private float jumpTimer;
+    public bool hideMouse = true;
 
 	void Start () {
         settingsList = getSettings();
@@ -42,6 +43,8 @@ public class gameController : MonoBehaviour {
         points = 0;
         gameState = GameState.beforeGame;
         gameState = GameState.duringGame;  //debug, will normally start at beforeGame
+        if (hideMouse)
+            Cursor.visible = false;
     }
 	
 	// Update is called once per frame

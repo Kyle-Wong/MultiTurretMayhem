@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114182681287549202}
   - component: {fileID: 50476751641942430}
   - component: {fileID: 114123904616354092}
+  - component: {fileID: 114125995029060718}
   m_Layer: 8
   m_Name: asteroid
   m_TagString: Enemy
@@ -91,8 +92,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f93c595719f2044d8152349affc541e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHP: 0
-  curHP: 0
+  baseHP: 1
+  curHP: 1
+  damage: 1
+  points: 1
+  invincible: 0
+--- !u!114 &114125995029060718
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1100908909280672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7384339cad96534ea457038cac528ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOnStartUp: 0
+  startColor: {r: 1, g: 1, b: 1, a: 1}
+  endColor: {r: 1, g: 1, b: 1, a: 0}
+  duration: 0.3
+  initialDelay: 0.2
 --- !u!114 &114182681287549202
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -108,6 +128,7 @@ MonoBehaviour:
   tanVelocity: 0
   size: 1
   sizeDeviation: 0.5
+  stopped: 0
 --- !u!114 &114505820537942504
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 4128884267342040}
   - component: {fileID: 114958141968216500}
   - component: {fileID: 58103784183711738}
+  - component: {fileID: 114844438567972308}
   m_Layer: 0
   m_Name: FTLBomb
   m_TagString: Untagged
@@ -82,7 +83,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -117,6 +118,19 @@ MonoBehaviour:
   endColor: {r: 1, g: 1, b: 1, a: 0}
   duration: 0.9
   initialDelay: 0.3
+--- !u!114 &114844438567972308
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1976377930338080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01b4672277fe39f45b76539ea9c90789, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOnStartUp: 1
+  lifeTime: 2
 --- !u!114 &114958141968216500
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -132,6 +146,7 @@ MonoBehaviour:
   growthAcceleration: 0
   initialDelay: 0
   color: {r: 1, g: 1, b: 1, a: 1}
+  ignoreOffScreenEnemies: 0
 --- !u!212 &212192542458354802
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -17,6 +17,7 @@ public class Turret : MonoBehaviour
     public string moveRight;
     public string fire;
     public float fireRate;
+    public float damage = 100;
     public GameObject laser;
 
     private float charge;
@@ -75,7 +76,13 @@ public class Turret : MonoBehaviour
         RaycastHit2D[] toKill = Physics2D.RaycastAll(transform.position, HelperFunctions.lineVector(transform.rotation.eulerAngles.z), 20);
         foreach (RaycastHit2D e in toKill)
             if (e.collider.CompareTag("Enemy"))
-                Destroy(e.collider.gameObject);
+            {
+                Enemy enemy = e.collider.gameObject.GetComponent<Enemy>();
+                if(enemy.isOnScreen() && !enemy.invincible)
+                {
+                    enemy.takeDamage(100,laserColor.startColor);
+                }
+            }
 
         charge = 0;
 

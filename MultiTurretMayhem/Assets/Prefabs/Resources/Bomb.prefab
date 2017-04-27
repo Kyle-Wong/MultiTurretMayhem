@@ -113,7 +113,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playOnStartUp: 1
-  lifeTime: 4
+  lifeTime: 2
 --- !u!114 &114332197855108412
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -173,6 +173,7 @@ MonoBehaviour:
   growthAcceleration: 30
   initialDelay: 0
   color: {r: 1, g: 1, b: 0, a: 1}
+  ignoreOffScreenEnemies: 1
 --- !u!120 &120668684868088938
 LineRenderer:
   m_ObjectHideFlags: 1

@@ -12,6 +12,7 @@ public class Bomb : MonoBehaviour {
     private Vector3 accelVector;
     public Color color;
     private LineRenderer[] shapeRenderers;
+    public bool ignoreOffScreenEnemies = true;
 	void Start () {
         growthVector = new Vector3(growthRate, growthRate, 0);
         accelVector = new Vector3(growthAcceleration, growthAcceleration, 0);
@@ -34,10 +35,19 @@ public class Bomb : MonoBehaviour {
             growthVector += accelVector * Time.deltaTime;
         }
     }
-    void OnCollisionEnter2D(Collision2D coll)
+    void OnTriggerEnter2D(Collider2D coll)
     {
-        if (coll.gameObject.tag == "Enemy")
-            coll.gameObject.GetComponent<Enemy>().die();
+
+        if (coll.gameObject.CompareTag("Enemy"))
+        {
+            Enemy enemy = coll.gameObject.GetComponent<Enemy>();
+            if(enemy.isOnScreen() || !ignoreOffScreenEnemies)
+            {
+                coll.gameObject.GetComponent<Enemy>().die(color);       //directly kills enemies, bypassing onHit effects
+            }
+            
+        }
+            
     }
 
 }

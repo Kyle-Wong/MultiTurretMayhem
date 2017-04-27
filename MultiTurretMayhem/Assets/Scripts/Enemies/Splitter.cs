@@ -11,26 +11,25 @@ public class Splitter : Enemy {
 
 	// Use this for initialization
 	void Start () {
-		
+        baseStart();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+        baseUpdate();
 	}
-    new void onPlayerHit()
+    public override void takeDamage(int damage, Color deathColor)
     {
-        for (int i = 0; i < splittersToSpawn; i++)
+        curHP -= damage;
+        if(curHP <= 0)
         {
-            Instantiate(splitterChild, generateRandomDistance() , Quaternion.identity);
+            for (int i = 0; i < splittersToSpawn; i++)
+            {
+                Instantiate(splitterChild, generateRandomDistance(), Quaternion.identity);
+            }
+            die(deathColor);
         }
-    }
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Turret"))
-        {
-            onPlayerHit();
-        }
+        
     }
     Vector3 generateRandomDistance()
     {

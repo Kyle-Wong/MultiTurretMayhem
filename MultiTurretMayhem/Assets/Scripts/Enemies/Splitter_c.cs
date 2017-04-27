@@ -7,6 +7,7 @@ public class Splitter_c : Enemy {
     // Use this for initialization
     void Start()
     {
+        baseStart();
         baseHP = 1;
         curHP = 1;
         launchAway();
@@ -15,22 +16,13 @@ public class Splitter_c : Enemy {
     // Update is called once per frame
     void Update()
     {
-
+        baseUpdate();
     }
-    new void onPlayerHit()
-    {
-        Destroy(this.gameObject);
-    }
+   
     void launchAway()
     {
         Vector3 toPlayer = GetComponent<Simple_Movement>().getPlayerDir();
         this.GetComponent<Rigidbody2D>().AddForce(-toPlayer * 5.0f);
     }
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Turret"))
-        {
-            onPlayerHit();
-        }
-    }
+    
 }

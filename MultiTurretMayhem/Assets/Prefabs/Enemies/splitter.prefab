@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114139356633898154}
   - component: {fileID: 50509903794009640}
   - component: {fileID: 114634288826895770}
+  - component: {fileID: 114892290676098060}
   m_Layer: 8
   m_Name: splitter
   m_TagString: Enemy
@@ -91,9 +92,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6463dce3388a1614c8d0a530b81dc274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 1
+  dirVelocity: 2
+  tanVelocity: 0
   size: 1.2
   sizeDeviation: 0
+  stopped: 0
 --- !u!114 &114264099577382646
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -118,11 +121,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cc8d7aed0231cc4280f7546d89e4d12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHP: 0
-  curHP: 0
+  baseHP: 1
+  curHP: 1
+  damage: 1
+  points: 1
+  invincible: 0
   splitterChild: {fileID: 1415476018937786, guid: 8d726b9a89bce0f48b0bce49cb53d817,
     type: 2}
   splittersToSpawn: 3
+--- !u!114 &114892290676098060
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1556577431847448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7384339cad96534ea457038cac528ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOnStartUp: 0
+  startColor: {r: 1, g: 1, b: 1, a: 1}
+  endColor: {r: 1, g: 1, b: 1, a: 0}
+  duration: 0.3
+  initialDelay: 0.2
 --- !u!212 &212789730329125392
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -152,11 +174,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1910939237
+  m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: dc982fb7c48cc5943b2fa68093317f82, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5798011, g: 1, b: 0.5735294, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

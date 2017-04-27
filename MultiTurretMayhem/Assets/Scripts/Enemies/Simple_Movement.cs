@@ -15,7 +15,7 @@ public class Simple_Movement : MonoBehaviour {
 
     private Vector3 dir;
     private Vector3 tangent;
-
+    public bool stopped = false;
     // Use this for initialization
     void Start () {
 
@@ -26,13 +26,18 @@ public class Simple_Movement : MonoBehaviour {
         GetComponent<Rigidbody2D>().velocity = dir.normalized * dirVelocity + orthoDir() * tanVelocity;
         float newSize = size + (Random.Range(0f, 1f) * sizeDeviation);
         transform.localScale = new Vector3(newSize, newSize, 1);
+
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        dir = getPlayerDir();
-        tangent = orthoDir();
-        GetComponent<Rigidbody2D>().velocity = tangent*tanVelocity + dir.normalized * dirVelocity;
+        if (!stopped)
+        {
+            dir = getPlayerDir();
+            tangent = orthoDir();
+            GetComponent<Rigidbody2D>().velocity = tangent * tanVelocity + dir.normalized * dirVelocity;
+        }
+        
     }
     public Vector3 getPlayerDir()
     {
@@ -46,5 +51,10 @@ public class Simple_Movement : MonoBehaviour {
         ortho.x = dir.y;
         ortho.y = -dir.x;
         return ortho;
+    }
+    public void stopMovement()
+    {
+        stopped = true;
+        GetComponent<Rigidbody2D>().velocity = Vector3.zero;
     }
 }
