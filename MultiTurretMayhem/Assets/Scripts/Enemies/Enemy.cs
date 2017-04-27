@@ -29,4 +29,8 @@ public class Enemy : MonoBehaviour {
         //ToDo: take damage from player turrets
 
     }
+    public void die()
+    {
+        Destroy(gameObject);
+    }
 }

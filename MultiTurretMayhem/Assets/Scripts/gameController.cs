@@ -7,7 +7,8 @@ using UnityEngine.SceneManagement;
 public class gameController : MonoBehaviour {
 
     // Use this for initialization
-    public int health;
+    public int health = 100;
+    public int bombs = 3;
     public Text pointsText;
     public ProgressBar chargeBar;
     public FTLText chargeText;
@@ -55,6 +56,11 @@ public class gameController : MonoBehaviour {
         {
             addPoints(9);
             damagePlayer(1);
+        }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            bombs++;
+            dropBomb();
         }
 	}
     private List<GameObject> getSettings()
@@ -123,5 +129,15 @@ public class gameController : MonoBehaviour {
     public int getHealth()
     {
         return health;
+    }
+    public void dropBomb()
+    {
+        if(bombs > 0)
+        {
+            bombs--;
+            GameObject bomb = (GameObject)Instantiate(Resources.Load("Bomb"));
+            bomb.transform.position = Vector3.zero;
+        }
+        
     }
 }
