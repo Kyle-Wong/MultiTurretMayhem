@@ -22,7 +22,7 @@ public class Turret : MonoBehaviour
     private float charge;
     private SpriteRenderer laserSprite;
     private ColorLerp laserColor;
-
+    public bool inputDisabled = false;
     void Awake()
     {
         laserSprite = laser.GetComponent<SpriteRenderer>();
@@ -44,27 +44,30 @@ public class Turret : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!inputDisabled)
+        {
+            if (Input.GetKey(moveLeft))
+            {
+                transform.Rotate(0, 0, degreesPerSecond * Time.deltaTime);
+                transform.position = HelperFunctions.lineVector(transform.rotation.eulerAngles.z, radius);
+            }
+            else if (Input.GetKey(moveRight))
+            {
+                transform.Rotate(0, 0, -degreesPerSecond * Time.deltaTime);
+                transform.position = HelperFunctions.lineVector(transform.rotation.eulerAngles.z, radius);
+            }
 
-        if (Input.GetKey(moveLeft))
-        {
-            transform.Rotate(0, 0, degreesPerSecond * Time.deltaTime);
-            transform.position = HelperFunctions.lineVector(transform.rotation.eulerAngles.z, radius);
+            if (Input.GetKeyDown(fire))
+            {
+                if (charge >= 1 / fireRate)
+                    Fire();
+            }
+            else if (charge < 1 / fireRate)
+            {
+                charge += Time.deltaTime;
+            }
         }
-        else if (Input.GetKey(moveRight))
-        {
-            transform.Rotate(0, 0, -degreesPerSecond * Time.deltaTime);
-            transform.position = HelperFunctions.lineVector(transform.rotation.eulerAngles.z, radius);
-        }
-
-        if (Input.GetKeyDown(fire))
-        {
-            if (charge >= 1 / fireRate)
-                Fire(); 
-        }
-        else if(charge < 1 / fireRate)
-        {
-            charge += Time.deltaTime;
-        }
+        
     }
 
     private void Fire()

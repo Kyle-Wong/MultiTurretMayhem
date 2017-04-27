@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4484061084000624}
   - component: {fileID: 212524908803495172}
   - component: {fileID: 114745248364860534}
+  - component: {fileID: 114344391942942472}
   m_Layer: 0
   m_Name: Turret L
   m_TagString: Turret
@@ -71,6 +72,22 @@ Transform:
   m_Father: {fileID: 4484061084000624}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114344391942942472
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1109975936221878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7384339cad96534ea457038cac528ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOnStartUp: 0
+  startColor: {r: 0, g: 1, b: 1, a: 1}
+  endColor: {r: 0, g: 1, b: 1, a: 0}
+  duration: 1
+  initialDelay: 0
 --- !u!114 &114745248364860534
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -82,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a870cd3945395340ba311a182baf71a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  side: 0
   radius: 1
   degreesPerSecond: 100
   startDirection: 180
@@ -90,6 +108,7 @@ MonoBehaviour:
   fire: w
   fireRate: 2
   laser: {fileID: 0}
+  inputDisabled: 0
 --- !u!212 &212190820514732124
 SpriteRenderer:
   m_ObjectHideFlags: 1

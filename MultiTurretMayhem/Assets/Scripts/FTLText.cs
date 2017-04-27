@@ -20,16 +20,22 @@ public class FTLText : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(percent >= 1)
+       
+        if (percent >= 1)
         {
             text.text = fullText;
-        } else if(percent >= textChangeThreshold)
+        }
+        else if (percent >= textChangeThreshold)
         {
             text.text = thresholdText;
         }
+
+		
 	}
     public void setPercent(float frac)
     {
         percent = frac;
     }
+    
+
 }
