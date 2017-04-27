@@ -7,29 +7,43 @@ using UnityEngine.SceneManagement;
 public class gameController : MonoBehaviour {
 
     // Use this for initialization
+    public int health;
     public Text pointsText;
-    public Text timerText;
+    public ProgressBar chargeBar;
+    public FTLText chargeText;
     public int levelNum;
     private List<GameObject> settingsList;
     private GameSettings currentSettings;
     private int points;
     private float timeRemaining;
+    private float totalDuration;
 	void Start () {
         settingsList = getSettings();
         setLevelSettings(levelNum);
         currentSettings = settingsList[levelNum].GetComponentInChildren<GameSettings>();
         timeRemaining = currentSettings.levelDuration;
+        totalDuration = timeRemaining;
         points = 0;
-
+        
     }
 	
 	// Update is called once per frame
 	void Update () {
-        timeRemaining -= Time.deltaTime;
-        
-        if(timerText != null)
+        if(timeRemaining > 0)
         {
-            timerText.text = timeAsString((int)timeRemaining);
+            timeRemaining -= Time.deltaTime;
+        } else
+        {
+            timeRemaining = 0f;
+        }
+        
+        if(chargeText != null)
+        {
+            chargeText.setPercent(1 - (timeRemaining / totalDuration));
+        }
+        if(chargeBar != null)
+        {
+            chargeBar.setProgress(1-(timeRemaining/totalDuration));
         }
         
         if(pointsText != null)
@@ -86,11 +100,25 @@ public class gameController : MonoBehaviour {
         result += "" + score;
         return result;
     }
+    /*
     private string timeAsString(int seconds)
     {
         string result = "";
         result = "" + (seconds / 60) + ":";
         result +=""+ ((seconds / 60 >= 10) ? ""+seconds / 60 : "0" + seconds / 60);
         return result;
+    }
+    */
+    public void setHealth(int x)
+    {
+        health = x;
+    }
+    public void damagePlayer(int x)
+    {
+        health -= x;
+    }
+    public int getHealth()
+    {
+        return health;
     }
 }
