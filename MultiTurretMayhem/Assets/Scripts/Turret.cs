@@ -11,8 +11,17 @@ public class Turret : MonoBehaviour
     public string moveRight;
     public string fire;
     public float fireRate;
+    public GameObject laser;
 
     private float charge;
+    private SpriteRenderer laserSprite;
+    private ColorLerp laserColor;
+
+    void Awake()
+    {
+        laserSprite = laser.GetComponent<SpriteRenderer>();
+        laserColor = laser.GetComponent<ColorLerp>();
+    }
 
     // Use this for initialization
     void Start()
@@ -21,6 +30,9 @@ public class Turret : MonoBehaviour
         transform.position = HelperFunctions.lineVector(transform.rotation.eulerAngles.z, radius);
 
         charge = 1 / fireRate;
+
+        laserSprite.color = Color.clear;
+        laserColor.duration = 1 / fireRate;
     }
 
     // Update is called once per frame
@@ -42,21 +54,25 @@ public class Turret : MonoBehaviour
         if (Input.GetKeyDown(fire))
         {
             if (charge >= 1 / fireRate)
-            {
-                RaycastHit2D[] toKill = Physics2D.RaycastAll(transform.position, HelperFunctions.lineVector(transform.rotation.eulerAngles.z), 20);
-                foreach (RaycastHit2D e in toKill)
-                    if (e.collider.CompareTag("Enemy"))
-                        Destroy(e.collider.gameObject);
-
-                Debug.DrawRay(transform.position, HelperFunctions.lineVector(transform.rotation.eulerAngles.z, 20), Color.red, 0.2f);
-
-                charge = 0;
-            }
-            
+                Fire(); 
         }
         else if(charge < 1 / fireRate)
         {
             charge += Time.deltaTime;
         }
+    }
+
+    private void Fire()
+    {
+        RaycastHit2D[] toKill = Physics2D.RaycastAll(transform.position, HelperFunctions.lineVector(transform.rotation.eulerAngles.z), 20);
+        foreach (RaycastHit2D e in toKill)
+            if (e.collider.CompareTag("Enemy"))
+                Destroy(e.collider.gameObject);
+
+        charge = 0;
+
+        laser.transform.position = transform.position + HelperFunctions.lineVector(transform.rotation.eulerAngles.z, laser.transform.localScale.x * 3);
+        laser.transform.rotation = transform.rotation;
+        laserColor.startColorChange();
     }
 }
