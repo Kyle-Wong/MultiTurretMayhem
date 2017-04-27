@@ -3,31 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour {
+    public int baseHP;
+    public int curHP;
 
 	// Use this for initialization
 	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    }
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 
-    public void death()
+    public void onPlayerHit()
     {
-        Destroy(this.gameObject);
+        //Hide this with subclass functionality
     }
-    public void doDamage()
+    public void doDamage(int damage)
     {
-        //ToDo: do damage to player
+        //ToDo: do damage to player turrets, value passed in by child enemy
     }
-    void OnTriggerEnter2D(Collider2D other)
+    public void takeDamage()
     {
-        if (other.gameObject.CompareTag("Turret")) //ToDo: check if this is actually the tag for the player
-        {
-            doDamage();
-            death();
-        }
+        //ToDo: take damage from player turrets
+
     }
 }
