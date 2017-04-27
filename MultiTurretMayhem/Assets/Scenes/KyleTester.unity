@@ -9346,6 +9346,11 @@ GameObject:
   m_PrefabParentObject: {fileID: 1749100330597348, guid: 020a5b9ef3e8a034b95e976ff1ed7e24,
     type: 2}
   m_PrefabInternal: {fileID: 864065414}
+--- !u!4 &1050469617 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4989322922485006, guid: 5729e61cb70a2a041bacefd95a01724a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1459056121}
 --- !u!1 &1051721822
 GameObject:
   m_ObjectHideFlags: 0
@@ -14345,12 +14350,17 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1981086497317062, guid: 93846d93a0ce4a44bb89c1379b39f8ca, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1604258058415488, guid: 93846d93a0ce4a44bb89c1379b39f8ca, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114462544024445008, guid: 93846d93a0ce4a44bb89c1379b39f8ca,
+        type: 2}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1050469617}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 93846d93a0ce4a44bb89c1379b39f8ca, type: 2}
   m_IsPrefabParent: 0
@@ -17956,8 +17966,11 @@ MonoBehaviour:
   chargeBar: {fileID: 898937461}
   chargeText: {fileID: 1032109958}
   shield: {fileID: 163647911}
+  ftlJump: {fileID: 0}
   levelNum: 0
-  isTimed: 0
+  survival: 1
+  delayBeforeJump: 0
+  jumpDuration: 0
 --- !u!4 &1945767594
 Transform:
   m_ObjectHideFlags: 0

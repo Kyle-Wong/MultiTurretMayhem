@@ -16,11 +16,11 @@ public class Astroid : Enemy {
 	}
     new void onPlayerHit()
     {
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Turret"))
+        if (other.gameObject.CompareTag("Player"))
         {
             onPlayerHit();
         }
