@@ -11,6 +11,7 @@ public class gameController : MonoBehaviour {
     public Text pointsText;
     public ProgressBar chargeBar;
     public FTLText chargeText;
+    public ColorLerp shield;
     public int levelNum;
     private List<GameObject> settingsList;
     private GameSettings currentSettings;
@@ -50,9 +51,10 @@ public class gameController : MonoBehaviour {
         {
             pointsText.text = pointsAsString(points);
         }
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.U))
         {
             addPoints(9);
+            damagePlayer(1);
         }
 	}
     private List<GameObject> getSettings()
@@ -116,6 +118,7 @@ public class gameController : MonoBehaviour {
     public void damagePlayer(int x)
     {
         health -= x;
+        shield.startColorChange();
     }
     public int getHealth()
     {
