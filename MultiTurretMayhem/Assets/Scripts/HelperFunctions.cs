@@ -23,4 +23,9 @@ public class HelperFunctions{
             result += f;
         return result;
     }
+
+    public static Vector3 lineVector(float angle, float magnitude = 1)
+    {
+        return magnitude * new Vector3(Mathf.Cos(angle * Mathf.PI / 180), Mathf.Sin(angle * Mathf.PI / 180));
+    }
 }
