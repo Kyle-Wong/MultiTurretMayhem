@@ -13,8 +13,13 @@ public class MenuController : MonoBehaviour {
         credits
     }
     private MenuState menuState;
+    public bool hideMouse = true;
 	void Start () {
         menuState = MenuState.main;
+        if (hideMouse)
+        {
+            Cursor.visible = false;
+        }
 	}
 	
 	// Update is called once per frame
