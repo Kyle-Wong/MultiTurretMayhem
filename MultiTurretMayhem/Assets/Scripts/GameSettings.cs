@@ -34,12 +34,14 @@ public class GameSettings : MonoBehaviour {
     }
     private void setTurrets(TurretsAvailable x)
     {
+        const int LEFT = 0;
+        const int RIGHT = 1;
         switch (x)
         {
             case (TurretsAvailable.left):
                 for(int i = 0; i< turrets.Length; i++)
                 {
-                    if(turrets[i].GetComponent<TurretOneScript>() != null)
+                    if ((int)turrets[i].GetComponent<Turret>().side == RIGHT)
                     {
                         turrets[i].SetActive(false);
                     }
@@ -48,7 +50,7 @@ public class GameSettings : MonoBehaviour {
             case (TurretsAvailable.right):
                 for (int i = 0; i < turrets.Length; i++)
                 {
-                    if (turrets[i].GetComponent<TurretTwoScript>() != null)
+                    if ((int)turrets[i].GetComponent<Turret>().side == LEFT)
                     {
                         turrets[i].SetActive(false);
                     }

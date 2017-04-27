@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
+    public enum turretSide
+    {
+        left,
+        right
+    }
+    public turretSide side;
     public float radius;
     public float degreesPerSecond;
     public float startDirection;
