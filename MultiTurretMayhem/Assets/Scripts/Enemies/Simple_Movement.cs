@@ -8,6 +8,7 @@ public class Simple_Movement : MonoBehaviour {
     public float tanVelocity;
     private Transform playerTransform;
     //Base size for your object
+    public bool randomSize = false;
     public float size;
 
     // Change this from 0 if you want sizes to be different per spawn.
@@ -24,8 +25,11 @@ public class Simple_Movement : MonoBehaviour {
         dir = new Vector3(0,0,0) - transform.position;
 
         GetComponent<Rigidbody2D>().velocity = dir.normalized * dirVelocity + orthoDir() * tanVelocity;
-        float newSize = size + (Random.Range(0f, 1f) * sizeDeviation);
-        transform.localScale = new Vector3(newSize, newSize, 1);
+        if (randomSize)
+        {
+            float newSize = size + (Random.Range(0f, 1f) * sizeDeviation);
+            transform.localScale = new Vector3(newSize, newSize, 1);
+        }
 
 	}
 	

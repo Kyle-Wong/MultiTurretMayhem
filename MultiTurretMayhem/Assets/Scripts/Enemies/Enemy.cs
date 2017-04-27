@@ -8,13 +8,15 @@ abstract public class Enemy : MonoBehaviour
     public int curHP;
     public int damage;
     public int points;
-    private bool isDead;
+    protected bool isDead;
     public bool invincible = false;
     protected Camera mainCamera;
     private gameController controller;
+    protected GameObject spriteObject;
     public void baseStart()
     {
         //Put this in Start() in all Enemy children
+        spriteObject = transform.GetChild(0).gameObject;                    //This object has the spriterenderer, colorLerp, and constantrotation scripts
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         controller = GameObject.FindGameObjectWithTag("GameController").GetComponent<gameController>();
         isDead = false;
@@ -62,12 +64,12 @@ abstract public class Enemy : MonoBehaviour
             {
                 GetComponent<Simple_Movement>().stopMovement();
             }
-            if(GetComponent<ConstantRotation>() != null)
+            if(spriteObject.GetComponent<ConstantRotation>() != null)
             {
-                GetComponent<ConstantRotation>().setSpeed(0);
+                spriteObject.GetComponent<ConstantRotation>().setSpeed(0);
 
             }
-            ColorLerp colorLerp = GetComponent<ColorLerp>();
+            ColorLerp colorLerp = spriteObject.GetComponent<ColorLerp>();
             colorLerp.startColor = deathColor;
             colorLerp.endColor = new Color(deathColor.r, deathColor.g, deathColor.b, 0);
             colorLerp.startColorChange();
