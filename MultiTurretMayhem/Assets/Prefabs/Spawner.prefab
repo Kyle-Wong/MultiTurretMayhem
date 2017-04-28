@@ -53,21 +53,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 4272775911948962}
   objects:
-  - {fileID: 1100908909280672, guid: 73e1eeb34cdd1ba46b8e57e3c2d4969f, type: 2}
-  - {fileID: 1805722405616588, guid: 869ed7dcd6faae1409e032e522355e58, type: 2}
-  - {fileID: 1750669997245230, guid: 0d5329156323018468a675b284456796, type: 2}
-  - {fileID: 1556577431847448, guid: 464fa62b4b4f0e34193e2cbf83ea2a4e, type: 2}
-  - {fileID: 1415476018937786, guid: 8d726b9a89bce0f48b0bce49cb53d817, type: 2}
+  - {fileID: 1793194082606136, guid: ec86bbdcb50db4d4bb0e9dee47978e4f, type: 2}
   chances:
   - 0.1
-  - 0.2
-  - 0.3
-  - 0.4
-  - 0.5
   leftRate: 60
   deltaLeftRate: 60
-  leftAngles: {x: 90, y: 180}
+  leftAngles:
+  - {x: 90, y: 120}
+  - {x: 240, y: 270}
   rightRate: 20
   deltaRightRate: 120
-  rightAngles: {x: 270, y: 360}
+  rightAngles:
+  - {x: 345, y: 375}
   distance: 10
