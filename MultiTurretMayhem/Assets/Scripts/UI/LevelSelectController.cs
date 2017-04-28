@@ -52,6 +52,7 @@ public class LevelSelectController : MonoBehaviour {
     public void playPress()
     {
         //need a way to send level number through scenes 
+        LevelNumber.setLevel(levelIndex);
         SceneManager.LoadScene("Campaign");
     }
     public void backPress()

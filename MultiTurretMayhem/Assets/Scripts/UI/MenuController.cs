@@ -62,7 +62,9 @@ public class MenuController : MonoBehaviour {
         switch (menuState)
         {
             case (MenuState.intro):
-                introCanvas.SetActive(true);
+                if(introCanvas.activeSelf == false)
+                    introCanvas.SetActive(true);
+                introCanvas.GetComponent<GameIntroSequence>().playIntro();
                 break;
             case (MenuState.main):
                 creditsCanvas.SetActive(false);

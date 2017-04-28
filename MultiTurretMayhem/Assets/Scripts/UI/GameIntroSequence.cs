@@ -31,6 +31,10 @@ public class GameIntroSequence : MonoBehaviour {
             }
         }
 	}
+    public void playIntro()
+    {
+        StartCoroutine(intro());
+    }
     private IEnumerator intro()
     {
         FTLJump.startAllStars();

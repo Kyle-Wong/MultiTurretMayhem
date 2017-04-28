@@ -3938,7 +3938,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &382974723
 GameObject:
@@ -7565,7 +7565,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &749151896
 GameObject:
@@ -8857,7 +8857,7 @@ Transform:
   - {fileID: 1638158882}
   - {fileID: 880128111}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &870541599
 MonoBehaviour:
@@ -10272,7 +10272,7 @@ RectTransform:
   - {fileID: 1390822982}
   - {fileID: 948626375}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -12056,7 +12056,7 @@ MonoBehaviour:
   levelSelectCanvas: {fileID: 931533595}
   creditsCanvas: {fileID: 733424929}
   eventSystem: {fileID: 1598473049}
-  skipIntro: 0
+  skipIntro: 1
   hideMouse: 0
 --- !u!4 &1113927570
 Transform:

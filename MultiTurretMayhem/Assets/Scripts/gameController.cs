@@ -36,6 +36,7 @@ public class gameController : MonoBehaviour {
 
 	void Start () {
         settingsList = getSettings();
+        levelNum = LevelNumber.getLevel();
         setLevelSettings(levelNum);
         currentSettings = settingsList[levelNum].GetComponentInChildren<GameSettings>();
         timeRemaining = currentSettings.levelDuration;

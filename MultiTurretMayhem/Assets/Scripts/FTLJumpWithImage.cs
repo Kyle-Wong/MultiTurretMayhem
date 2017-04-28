@@ -8,7 +8,7 @@ public class FTLJumpWithImage : MonoBehaviour {
     private List<Star> starList;
     public Image boostImage;
     private ConstantRotation myRotator;
-    void Start()
+    void Awake()
     {
         boostImage.enabled = false;
         myRotator = GetComponent<ConstantRotation>();
