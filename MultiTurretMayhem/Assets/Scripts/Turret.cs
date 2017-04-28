@@ -12,6 +12,7 @@ public class Turret : MonoBehaviour
     public string fire;
     public float fireRate;
     public GameObject laser;
+    public Vector2 angleRange;
 
     private float charge;
     private SpriteRenderer laserSprite;
