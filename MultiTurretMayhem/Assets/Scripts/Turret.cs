@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
+    public enum turretSide
+    {
+        left,
+        right
+    }
+    public turretSide side;
     public float radius;
     public float degreesPerSecond;
     public float startDirection;
@@ -11,13 +17,14 @@ public class Turret : MonoBehaviour
     public string moveRight;
     public string fire;
     public float fireRate;
+    public float damage = 100;
     public GameObject laser;
     public Vector2 angleRange;
 
     private float charge;
     private SpriteRenderer laserSprite;
     private ColorLerp laserColor;
-
+    public bool inputDisabled = false;
     void Awake()
     {
         laserSprite = laser.GetComponent<SpriteRenderer>();
@@ -39,28 +46,30 @@ public class Turret : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(charge);
+        if (!inputDisabled)
+        {
+            if (Input.GetKey(moveLeft))
+            {
+                transform.Rotate(0, 0, degreesPerSecond * Time.deltaTime);
+                transform.position = HelperFunctions.lineVector(transform.rotation.eulerAngles.z, radius);
+            }
+            else if (Input.GetKey(moveRight))
+            {
+                transform.Rotate(0, 0, -degreesPerSecond * Time.deltaTime);
+                transform.position = HelperFunctions.lineVector(transform.rotation.eulerAngles.z, radius);
+            }
 
-        if (Input.GetKey(moveLeft))
-        {
-            transform.Rotate(0, 0, degreesPerSecond * Time.deltaTime);
-            transform.position = HelperFunctions.lineVector(transform.rotation.eulerAngles.z, radius);
+            if (Input.GetKeyDown(fire))
+            {
+                if (charge >= 1 / fireRate)
+                    Fire();
+            }
+            else if (charge < 1 / fireRate)
+            {
+                charge += Time.deltaTime;
+            }
         }
-        else if (Input.GetKey(moveRight))
-        {
-            transform.Rotate(0, 0, -degreesPerSecond * Time.deltaTime);
-            transform.position = HelperFunctions.lineVector(transform.rotation.eulerAngles.z, radius);
-        }
-
-        if (Input.GetKeyDown(fire))
-        {
-            if (charge >= 1 / fireRate)
-                Fire(); 
-        }
-        else if(charge < 1 / fireRate)
-        {
-            charge += Time.deltaTime;
-        }
+        
     }
 
     private void Fire()
@@ -68,7 +77,13 @@ public class Turret : MonoBehaviour
         RaycastHit2D[] toKill = Physics2D.RaycastAll(transform.position, HelperFunctions.lineVector(transform.rotation.eulerAngles.z), 20);
         foreach (RaycastHit2D e in toKill)
             if (e.collider.CompareTag("Enemy"))
-                Destroy(e.collider.gameObject);
+            {
+                Enemy enemy = e.collider.gameObject.GetComponent<Enemy>();
+                if(enemy.isOnScreen() && !enemy.invincible)
+                {
+                    enemy.takeDamage(100,laserColor.startColor);
+                }
+            }
 
         charge = 0;
 

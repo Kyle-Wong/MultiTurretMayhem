@@ -175,7 +175,7 @@ MonoBehaviour:
   - {fileID: 1100908909280672, guid: 73e1eeb34cdd1ba46b8e57e3c2d4969f, type: 2}
   chances:
   - 1
-  generalRate: 60
+  generalRate: 10
   deltaGeneralRate: 60
   range: 10
 --- !u!114 &114363481461534358
@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbb02924798ace349a5098d78b755d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelDuration: 0
+  levelDuration: 10
   turretsAvailable: 2
   disabledUI: []
 --- !u!114 &114462544024445008
@@ -221,5 +221,5 @@ MonoBehaviour:
   chances:
   - 1
   generalRate: 10
-  deltaGeneralRate: 300
+  deltaGeneralRate: 60
   range: 10

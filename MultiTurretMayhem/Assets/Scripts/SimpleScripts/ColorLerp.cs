@@ -11,8 +11,10 @@ public class ColorLerp : MonoBehaviour {
     public float duration = 0;
     public float initialDelay = 0;
     private SpriteRenderer spriteRenderer;
+    private IEnumerator colorCoroutine;
     void Start () {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        colorCoroutine = colorChange();
         if (playOnStartUp)
         {
             startColorChange();
@@ -25,6 +27,7 @@ public class ColorLerp : MonoBehaviour {
 	}
     private IEnumerator colorChange()
     {
+        spriteRenderer.color = startColor;
         while(initialDelay > 0)
         {
             initialDelay -= Time.deltaTime;
@@ -42,10 +45,13 @@ public class ColorLerp : MonoBehaviour {
             elapsedTime += Time.deltaTime;
             yield return null;
         }
+        spriteRenderer.color = endColor;
     }
     public void startColorChange()
     {
-        StartCoroutine(colorChange());
+        StopCoroutine(colorCoroutine);
+        colorCoroutine = colorChange();
+        StartCoroutine(colorCoroutine);
     }
     public void setColors(Color newStartColor, Color newEndColor)
     {

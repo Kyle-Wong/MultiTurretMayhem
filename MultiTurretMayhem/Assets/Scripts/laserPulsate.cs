@@ -13,7 +13,7 @@ public class laserPulsate : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         elapsedTime += speed * Time.deltaTime;
         transform.localScale += new Vector3(Mathf.Cos(elapsedTime) * magnitude,0,0) * Time.deltaTime;
 	}

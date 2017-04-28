@@ -2,32 +2,87 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-    public void death()
+abstract public class Enemy : MonoBehaviour
+{
+    public int baseHP;
+    public int curHP;
+    public int damage;
+    public int points;
+    protected bool isDead;
+    public bool invincible = false;
+    protected Camera mainCamera;
+    private gameController controller;
+    protected GameObject spriteObject;
+    public void baseStart()
     {
-        Destroy(this.gameObject);
+        //Put this in Start() in all Enemy children
+        spriteObject = transform.GetChild(0).gameObject;                    //This object has the spriterenderer, colorLerp, and constantrotation scripts
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        controller = GameObject.FindGameObjectWithTag("GameController").GetComponent<gameController>();
+        isDead = false;
     }
-    public void doDamage()
+    public void baseUpdate()
     {
-        //ToDo: do damage to player
+        //Put this in Update() in all Enemy children
+
     }
-    void OnTriggerEnter2D(Collider2D other)
+    public void onPlayerHit()
     {
-        if (other.gameObject.CompareTag("Turret")) //ToDo: check if this is actually the tag for the player
+        doDamage(damage);
+        Destroy(gameObject);
+    }
+    public void doDamage(int damage)
+    {
+        //ToDo: do damage to player, value passed in by child enemy
+        controller.damagePlayer(damage);
+    }
+    public virtual void takeDamage(int damage, Color deathColor)
+    {
+        //override this method if an enemy has special effects when hit by laser
+        //Color parameter is necessary so that the death animation knows what color to use
+        curHP -= damage;
+        if(curHP <= 0)
         {
-            doDamage();
-            death();
+            die(deathColor);
+        }
+    }
+    public bool isOnScreen()
+    {
+        Vector3 screenCoords = mainCamera.WorldToViewportPoint(transform.position);     //object is on screen if 0<x<1 and 0<y<1
+        return screenCoords.x <= 1.1 && screenCoords.x >= -0.1 && screenCoords.y <= 1.1 && screenCoords.y >= -0.1;  
+        //10% buffer for player convenience
+    }
+    public void die(Color deathColor)
+    {
+        if (!isDead)
+        {
+            controller.addPoints(points);
+            isDead = true;
+            invincible = true;
+            
+            if(GetComponent<Simple_Movement>() != null)
+            {
+                GetComponent<Simple_Movement>().stopMovement();
+            }
+            if(spriteObject.GetComponent<ConstantRotation>() != null)
+            {
+                spriteObject.GetComponent<ConstantRotation>().setSpeed(0);
+
+            }
+            ColorLerp colorLerp = spriteObject.GetComponent<ColorLerp>();
+            colorLerp.startColor = deathColor;
+            colorLerp.endColor = new Color(deathColor.r, deathColor.g, deathColor.b, 0);
+            colorLerp.startColorChange();
+            Destroy(gameObject, colorLerp.initialDelay+colorLerp.duration);
+        }
+
+    }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            onPlayerHit();
         }
     }
 }
