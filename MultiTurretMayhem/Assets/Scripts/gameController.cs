@@ -15,16 +15,20 @@ public class gameController : MonoBehaviour {
         transitionOver
     }
     public int health = 100;
+    private int maxHealth;
     public int bombs = 3;
     public Text pointsText;
     public ProgressBar chargeBar;
     public FTLText chargeText;
     public ColorLerp shield;
     public FTLJump ftlJump;
+    public Text lowHealthText;
+    public Text shieldPercent;
     public int levelNum;
     private List<GameObject> settingsList;
     private GameSettings currentSettings;
     private int points;
+    public float lowHealthThreshold;
     public bool survival = false;
     private float timeRemaining;
     private float totalDuration;
@@ -33,16 +37,18 @@ public class gameController : MonoBehaviour {
     public float jumpDuration;
     private float jumpTimer;
     public bool hideMouse = true;
-
+    private bool playerIsDead = false;
 	void Start () {
+        maxHealth = health;
         settingsList = getSettings();
-        levelNum = LevelNumber.getLevel();
+        if(!survival)
+            levelNum = LevelNumber.getLevel();
         setLevelSettings(levelNum);
         currentSettings = settingsList[levelNum].GetComponentInChildren<GameSettings>();
         timeRemaining = currentSettings.levelDuration;
         totalDuration = timeRemaining;
         points = 0;
-        gameState = GameState.beforeGame;
+        lowHealthText.enabled = false;
         gameState = GameState.duringGame;  //debug, will normally start at beforeGame
         if (hideMouse)
             Cursor.visible = false;
@@ -64,6 +70,13 @@ public class gameController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Y))
         {
             dropFTLBomb();
+        }
+        shieldPercent.text = "Shields: ";
+        int healthPercent = (int)(100 * (health * 1f / maxHealth));
+        shieldPercent.text += ""+(healthPercent >= 10 ? ""+healthPercent+"%" : "0" +healthPercent+"%");
+        if((health * 1f / maxHealth) < lowHealthThreshold)
+        {
+            shieldPercent.color = Color.red;
         }
         switch (gameState)
         {
@@ -200,8 +213,22 @@ public class gameController : MonoBehaviour {
     }
     public void damagePlayer(int x)
     {
-        health -= x;
+        if (!playerIsDead)
+        {
+            health -= x;
+        }
+        shield.startColor.a = Mathf.Lerp(0f, 1f, health * 1.0f / maxHealth);
         shield.startColorChange();
+        if(health*1f/maxHealth < lowHealthThreshold)
+        {
+            lowHealthText.enabled = true;
+        }
+        if(health <= 0)
+        {
+            playerIsDead = true;
+            lowHealthText.enabled = false;
+            health = 0;
+        }
     }
     public int getHealth()
     {
