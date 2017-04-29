@@ -8,13 +8,18 @@ public class ConstantRotation : MonoBehaviour {
     private Transform myTransform;
     public bool playOnStartUp = true;
     private bool isRotating;
-    public float rotSpeed; //I think this is radians per second?
+    public float rotSpeed; //Probably degrees per second
+    public float deltaRotSpeed;
+    public bool randomDirection = false;
+
     private Vector3 rotVector;
 	void Start () {
         myTransform = transform;
 
         rotVector = new Vector3(0, 0, rotSpeed);
-  
+        rotSpeed += Random.Range(-deltaRotSpeed / 2, deltaRotSpeed / 2);
+        if (randomDirection && Random.Range(0, 1) < 0.5f)
+            rotSpeed *= -1;
         isRotating = playOnStartUp;
 	}
 	

@@ -8,10 +8,10 @@ public class Spawning : MonoBehaviour {
     public List<float> chances;         //Which probabilties (respectively) at which the objects spawn
     public float leftRate;              //The starting rate at which objects generally spawn on the left side (objects per minute)
     public float deltaLeftRate;         //The change over time in which objects generally spawn on the left side(objects per minute squared)
-    public List<Vector2> leftAngles;          //The angle range at which the object can spawn on the left side (degrees)
+    public float deltaLeftAngle;
     public float rightRate;             //The starting rate at which objects generally spawn on the right side (objects per minute)
     public float deltaRightRate;        //The change over time in which objects generally spawn on the right side(objects per minute squared)
-    public List<Vector2> rightAngles;         //The angle range at which the object can spawn on the right side (degrees)
+    public float deltaRightAngle;
     public float distance;              //The distance at which objects spawn from
 
     private float spawnTimer = 0.0f;
@@ -47,7 +47,7 @@ public class Spawning : MonoBehaviour {
     {
         return objects[HelperFunctions.randomIndex(chances)];
     }
-
+    /*
     private void spawnObject() //Spawn a game object
     {
         float spawnAngle = 0.0f;
@@ -57,6 +57,19 @@ public class Spawning : MonoBehaviour {
         else
             angleRange = rightAngles[HelperFunctions.randomIndex(rightAngles)];
         spawnAngle = Random.Range(angleRange.x, angleRange.y);
+
+        Vector3 spawnPosition = transform.position + HelperFunctions.lineVector(spawnAngle, distance);
+        Instantiate(pickRandom(), spawnPosition, Quaternion.LookRotation(Vector3.forward, target.position - spawnPosition));
+        spawnTimer = 0;
+    }
+    */
+    private void spawnObject() //Spawn a game object
+    {
+        float spawnAngle = 0.0f;
+        if (Random.Range(0.0f, leftRate + rightRate) < leftRate)
+            spawnAngle = 180 + Random.Range(-deltaLeftAngle/2, deltaLeftAngle/2);
+        else
+            spawnAngle = Random.Range(-deltaRightAngle/2, deltaRightAngle/2);
 
         Vector3 spawnPosition = transform.position + HelperFunctions.lineVector(spawnAngle, distance);
         Instantiate(pickRandom(), spawnPosition, Quaternion.LookRotation(Vector3.forward, target.position - spawnPosition));
