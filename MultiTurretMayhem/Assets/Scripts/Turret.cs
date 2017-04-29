@@ -101,7 +101,8 @@ public class Turret : MonoBehaviour
 
         charge = 0;
 
-        laser.transform.position = transform.position + HelperFunctions.lineVector(transform.rotation.eulerAngles.z, laser.transform.localScale.x * 3);
+        laser.transform.position = transform.position + HelperFunctions.lineVector(transform.rotation.eulerAngles.z, laser.transform.localScale.x * 0.5f);
+
         laser.transform.rotation = transform.rotation;
         laserColor.startColorChange();
     }

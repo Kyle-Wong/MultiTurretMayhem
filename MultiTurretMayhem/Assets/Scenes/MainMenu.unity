@@ -8646,6 +8646,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playOnStartUp: 1
   rotSpeed: 1.5
+  deltaRotSpeed: 0
+  randomDirection: 0
 --- !u!4 &870541598
 Transform:
   m_ObjectHideFlags: 0
@@ -12056,7 +12058,7 @@ MonoBehaviour:
   levelSelectCanvas: {fileID: 931533595}
   creditsCanvas: {fileID: 733424929}
   eventSystem: {fileID: 1598473049}
-  skipIntro: 1
+  skipIntro: 0
   hideMouse: 0
 --- !u!4 &1113927570
 Transform:
