@@ -85,12 +85,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   side: 1
   radius: 0.8
-  degreesPerSecond: 100
+  minRotSpeed: 60
+  maxRotSpeed: 120
+  accelerationDuration: 0.2
+  accelerationResetMultiplier: 1.5
   startDirection: 0
   moveLeft: left
   moveRight: right
   fire: up
-  fireRate: 2
+  fireRate: 1.8
   damage: 100
   laser: {fileID: 0}
   angleRange: {x: 0, y: 0}

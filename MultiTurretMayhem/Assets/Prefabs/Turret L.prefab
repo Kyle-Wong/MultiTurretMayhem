@@ -84,8 +84,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playOnStartUp: 0
-  startColor: {r: 0, g: 1, b: 1, a: 1}
-  endColor: {r: 0, g: 1, b: 1, a: 0}
+  startColor: {r: 1, g: 1, b: 1, a: 1}
+  endColor: {r: 1, g: 1, b: 1, a: 0}
   duration: 1
   initialDelay: 0
 --- !u!114 &114745248364860534
@@ -101,12 +101,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   side: 0
   radius: 0.8
-  degreesPerSecond: 100
+  minRotSpeed: 60
+  maxRotSpeed: 120
+  accelerationDuration: 0.2
+  accelerationResetMultiplier: 1.5
   startDirection: 180
   moveLeft: a
   moveRight: d
   fire: w
-  fireRate: 2
+  fireRate: 1.8
   damage: 100
   laser: {fileID: 0}
   angleRange: {x: 0, y: 0}

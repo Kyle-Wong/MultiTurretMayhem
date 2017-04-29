@@ -11,20 +11,24 @@ public class Turret : MonoBehaviour
     }
     public turretSide side;
     public float radius;
-    public float degreesPerSecond;
-    public float startDirection;
-    public string moveLeft;
-    public string moveRight;
-    public string fire;
-    public float fireRate;
-    public float damage = 100;
-    public GameObject laser;
+    public float minRotSpeed;                   //minimum speed on input
+    public float maxRotSpeed;                   //maximum speed reached after accelerationDuration seconds
+    public float accelerationDuration;          //time to reach max speed;
+    private float accelTimer;
+
+    public float startDirection;                //starting direction
+    public string moveLeft;                     //String key input
+    public string moveRight;                    //string key input
+    public string fire;                         //string key input
+    public float fireRate;                      //seconds between shots
+    public float damage = 100;                  //damage per hit
+    public GameObject laser;                    //laser gameobject
     public Vector2 angleRange;
 
     private float charge;
     private SpriteRenderer laserSprite;
-    private ColorLerp laserColor;
-    public bool inputDisabled = false;
+    private ColorLerp laserColor;               //color of laser
+    public bool inputDisabled = false;          //player input is/is not disabled
     void Awake()
     {
         laserSprite = laser.GetComponent<SpriteRenderer>();
@@ -34,6 +38,7 @@ public class Turret : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        
         transform.rotation = Quaternion.AngleAxis(startDirection, Vector3.forward);
         transform.position = HelperFunctions.lineVector(transform.rotation.eulerAngles.z, radius);
 
@@ -41,6 +46,8 @@ public class Turret : MonoBehaviour
 
         laserSprite.color = Color.clear;
         laserColor.duration = 1 / fireRate;
+        accelTimer = 0f;
+
     }
 
     // Update is called once per frame
@@ -50,13 +57,20 @@ public class Turret : MonoBehaviour
         {
             if (Input.GetKey(moveLeft))
             {
-                transform.Rotate(0, 0, degreesPerSecond * Time.deltaTime);
+                if (accelTimer < accelerationDuration)
+                    accelTimer += Time.deltaTime;
+                transform.Rotate(0, 0, Mathf.Lerp(minRotSpeed,maxRotSpeed,accelTimer/accelerationDuration) * Time.deltaTime);
                 transform.position = HelperFunctions.lineVector(transform.rotation.eulerAngles.z, radius);
             }
             else if (Input.GetKey(moveRight))
             {
-                transform.Rotate(0, 0, -degreesPerSecond * Time.deltaTime);
+                if(accelTimer < accelerationDuration)
+                    accelTimer += Time.deltaTime;
+                transform.Rotate(0, 0, -Mathf.Lerp(minRotSpeed, maxRotSpeed, accelTimer / accelerationDuration) * Time.deltaTime);
                 transform.position = HelperFunctions.lineVector(transform.rotation.eulerAngles.z, radius);
+            } else
+            {
+                accelTimer = 0;
             }
 
             if (Input.GetKeyDown(fire))
