@@ -24,6 +24,7 @@ public class gameController : MonoBehaviour {
     public FTLJump ftlJump;
     public Text lowHealthText;
     public Text shieldPercent;
+    public Text bombText;
     public GameObject tutorialCanvas;
     public int levelNum;
     private List<GameObject> settingsList;
@@ -86,6 +87,9 @@ public class gameController : MonoBehaviour {
         shieldPercent.text = "Shields: ";
         int healthPercent = (int)(100 * (health * 1f / maxHealth));
         shieldPercent.text += ""+(healthPercent >= 10 ? ""+healthPercent+"%" : "0" +healthPercent+"%");
+
+        bombText.text = "Bombs: " + bombs.ToString();
+
         if((health * 1f / maxHealth) < lowHealthThreshold)
         {
             shieldPercent.color = Color.red;
