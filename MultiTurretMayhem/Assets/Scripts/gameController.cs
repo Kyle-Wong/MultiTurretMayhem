@@ -38,6 +38,7 @@ public class gameController : MonoBehaviour {
     private float jumpTimer;
     public bool hideMouse = true;
     private bool playerIsDead = false;
+    public Transform cam;
 	void Start () {
         maxHealth = health;
         settingsList = getSettings();
@@ -229,6 +230,7 @@ public class gameController : MonoBehaviour {
             lowHealthText.enabled = false;
             health = 0;
         }
+        StartCoroutine(cameraShake(1.0f, 0.5f));
     }
     public int getHealth()
     {
@@ -248,5 +250,21 @@ public class gameController : MonoBehaviour {
     {
         GameObject FTLBomb = (GameObject)Instantiate(Resources.Load("FTLBomb"));
         FTLBomb.transform.position = Vector3.zero;
+    }
+
+    public IEnumerator cameraShake (float duration, float magnitude)
+    {
+        Vector3 originalPos = cam.position;
+        Debug.Log("Hit");
+
+        for (float elapsed = 0.0f; elapsed < duration; elapsed += Time.deltaTime)
+        {
+            Debug.Log("shaking");
+            float x = Random.Range(-magnitude, magnitude) * (1 - elapsed / duration);
+            float y = Random.Range(-magnitude, magnitude) * (1 - elapsed / duration);
+            cam.position = originalPos + new Vector3(x, y, 0);
+            yield return new WaitForEndOfFrame();
+        }
+        cam.position = originalPos;
     }
 }

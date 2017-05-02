@@ -930,6 +930,7 @@ MonoBehaviour:
   delayBeforeJump: 1.5
   jumpDuration: 7
   hideMouse: 1
+  cam: {fileID: 271810602}
 --- !u!4 &1196438735
 Transform:
   m_ObjectHideFlags: 0
@@ -1006,7 +1007,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelDuration: 0
   turretsAvailable: 2
-  disabledUI: []
+  leftTurretRestr: 0
+  rightTurretRestr: 0
+  enabledUI: []
 --- !u!1001 &1320857349
 Prefab:
   m_ObjectHideFlags: 0
@@ -1099,7 +1102,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelDuration: 0
   turretsAvailable: 2
-  disabledUI: []
+  leftTurretRestr: 0
+  rightTurretRestr: 0
+  enabledUI: []
 --- !u!1001 &1369163154
 Prefab:
   m_ObjectHideFlags: 0
