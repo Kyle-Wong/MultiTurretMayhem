@@ -1211,6 +1211,11 @@ Prefab:
       propertyPath: laser
       value: 
       objectReference: {fileID: 1540831598}
+    - target: {fileID: 114515446742029672, guid: af8a3b2c92c6df849bb95722c5dbf27b,
+        type: 2}
+      propertyPath: restriction
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: af8a3b2c92c6df849bb95722c5dbf27b, type: 2}
   m_IsPrefabParent: 0

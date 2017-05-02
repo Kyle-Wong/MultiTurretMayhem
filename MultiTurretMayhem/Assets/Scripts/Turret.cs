@@ -9,7 +9,14 @@ public class Turret : MonoBehaviour
         left,
         right
     }
+    public enum TurretRestriction
+    {
+        no_restriction,
+        left,
+        right
+    }
     public turretSide side;
+    public TurretRestriction restriction = TurretRestriction.no_restriction;
     public float radius;
     public float minRotSpeed;                   //minimum speed on input
     public float maxRotSpeed;                   //maximum speed reached after accelerationDuration seconds
@@ -60,6 +67,20 @@ public class Turret : MonoBehaviour
                 if (accelTimer < accelerationDuration)
                     accelTimer += Time.deltaTime;
                 transform.Rotate(0, 0, Mathf.Lerp(minRotSpeed,maxRotSpeed,accelTimer/accelerationDuration) * Time.deltaTime);
+                switch (restriction)
+                {
+                    //If out of bounds, counter-rotate
+                    case (TurretRestriction.left):
+                        if (transform.position.x > 0 && transform.position.y < 0)
+                            transform.Rotate(0, 0, -maxRotSpeed * Time.deltaTime);
+                        break;
+                    case (TurretRestriction.right):
+                        if (transform.position.x < 0 && transform.position.y > 0)
+                            transform.Rotate(0, 0, -maxRotSpeed * Time.deltaTime);
+                        break;
+                    case (TurretRestriction.no_restriction):
+                        break;
+                }
                 transform.position = HelperFunctions.lineVector(transform.rotation.eulerAngles.z, radius);
             }
             else if (Input.GetKey(moveRight))
@@ -67,6 +88,20 @@ public class Turret : MonoBehaviour
                 if(accelTimer < accelerationDuration)
                     accelTimer += Time.deltaTime;
                 transform.Rotate(0, 0, -Mathf.Lerp(minRotSpeed, maxRotSpeed, accelTimer / accelerationDuration) * Time.deltaTime);
+                switch (restriction)
+                {
+                    //If out of bounds, counter-rotate
+                    case (TurretRestriction.left):
+                        if(transform.position.x > 0 && transform.position.y > 0)
+                            transform.Rotate(0, 0, maxRotSpeed * Time.deltaTime);
+                        break;
+                    case (TurretRestriction.right):
+                        if (transform.position.x < 0 && transform.position.y < 0)
+                            transform.Rotate(0, 0, maxRotSpeed * Time.deltaTime);
+                        break;
+                    case (TurretRestriction.no_restriction):
+                        break;
+                }
                 transform.position = HelperFunctions.lineVector(transform.rotation.eulerAngles.z, radius);
             } else
             {
