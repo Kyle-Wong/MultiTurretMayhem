@@ -51,7 +51,11 @@ public class HelperFunctions{
 
     public static float directionBetween(Vector2 v1, Vector2 v2)
     {
-        float result = Mathf.Atan2(v2.y - v1.y, v2.x - v1.x) * 180 / Mathf.PI;
-        return result;
+        return Mathf.Atan2(v2.y - v1.y, v2.x - v1.x) * 180 / Mathf.PI;
+    }
+
+    public static Vector3 objectCameraConvert(Vector3 pos, GameObject can, Camera cam)
+    {
+        return pos * can.GetComponent<RectTransform>().rect.height/2 / cam.orthographicSize;
     }
 }

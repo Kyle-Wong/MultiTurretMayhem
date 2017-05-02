@@ -126,6 +126,7 @@ MonoBehaviour:
   damage: 1
   points: 50
   invincible: 0
+  pointsText: {fileID: 1730592498059714, guid: bf1e6d18bfabc7e4d95532ba801b6b72, type: 2}
   minDistance: 5
 --- !u!114 &114401220929075408
 MonoBehaviour:

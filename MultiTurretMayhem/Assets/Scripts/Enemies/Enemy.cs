@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 abstract public class Enemy : MonoBehaviour
 {
@@ -13,6 +14,16 @@ abstract public class Enemy : MonoBehaviour
     protected Camera mainCamera;
     private gameController controller;
     protected GameObject spriteObject;
+    public GameObject pointsText;
+    private GameObject canvas;
+    private Camera cam;
+
+    private void Awake()
+    {
+        canvas = GameObject.Find("Canvas");
+        cam = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
+    }
+
     public void baseStart()
     {
         //Put this in Start() in all Enemy children
@@ -69,6 +80,11 @@ abstract public class Enemy : MonoBehaviour
                 spriteObject.GetComponent<ConstantRotation>().setSpeed(0);
 
             }
+
+            GameObject p = Instantiate(pointsText, canvas.transform);
+            p.GetComponent<RectTransform>().localPosition = HelperFunctions.objectCameraConvert(transform.position, canvas, cam);
+            p.GetComponent<Text>().text = points.ToString();
+
             ColorLerp colorLerp = spriteObject.GetComponent<ColorLerp>();
             colorLerp.startColor = deathColor;
             colorLerp.endColor = new Color(deathColor.r, deathColor.g, deathColor.b, 0);
