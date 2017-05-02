@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Spawning : MonoBehaviour {
-    public Transform target;            //The target to aim at
     public List<GameObject> objects;    //Which objects to spawn
-    public List<float> chances;         //Which probabilties (respectively) at which the objects spawn
+    public List<float> leftChances;         //Which probabilties (respectively) at which the objects spawn
+    public List<float> rightChances;
     public float leftRate;              //The starting rate at which objects generally spawn on the left side (objects per minute)
     public float deltaLeftRate;         //The change over time in which objects generally spawn on the left side(objects per minute squared)
     public float deltaLeftAngle;
@@ -43,7 +43,7 @@ public class Spawning : MonoBehaviour {
     //    return f;
     //}
 
-    private GameObject pickRandom() //Pick a random object from the objects list using the chances list
+    private GameObject pickRandom(List<float> chances) //Pick a random object from the objects list using the chances list
     {
         return objects[HelperFunctions.randomIndex(chances)];
     }
@@ -65,14 +65,26 @@ public class Spawning : MonoBehaviour {
     */
     private void spawnObject() //Spawn a game object
     {
+        const int LEFT = -1;
+        const int RIGHT = 1;
+        int side = 0;
         float spawnAngle = 0.0f;
         if (Random.Range(0.0f, leftRate + rightRate) < leftRate)
-            spawnAngle = 180 + Random.Range(-deltaLeftAngle/2, deltaLeftAngle/2);
+        {
+            spawnAngle = 180 + Random.Range(-deltaLeftAngle / 2, deltaLeftAngle / 2);
+            side = LEFT;
+        }
         else
-            spawnAngle = Random.Range(-deltaRightAngle/2, deltaRightAngle/2);
+        {
+            spawnAngle = Random.Range(-deltaRightAngle / 2, deltaRightAngle / 2);
+            side = RIGHT;
+        }
 
         Vector3 spawnPosition = transform.position + HelperFunctions.lineVector(spawnAngle, distance);
-        Instantiate(pickRandom(), spawnPosition, Quaternion.LookRotation(Vector3.forward, target.position - spawnPosition));
+        if(side == LEFT)
+            Instantiate(pickRandom(leftChances), spawnPosition, Quaternion.LookRotation(Vector3.forward, Vector3.zero-spawnPosition));
+        if(side == RIGHT)
+            Instantiate(pickRandom(rightChances), spawnPosition, Quaternion.LookRotation(Vector3.forward, Vector3.zero - spawnPosition));
         spawnTimer = 0;
     }
 }
