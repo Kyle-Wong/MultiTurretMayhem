@@ -39,12 +39,8 @@ public class gameController : MonoBehaviour {
     private float jumpTimer;
     public bool hideMouse = true;
     private bool playerIsDead = false;
-<<<<<<< HEAD
-	void Awake () {
-=======
     public Transform cam;
-	void Start () {
->>>>>>> d37a1858bcb7fc09a9fd1b1ce8673fdeb0a144ed
+	void Awake () {
         maxHealth = health;
         settingsList = getSettings();
         if(!survival)
