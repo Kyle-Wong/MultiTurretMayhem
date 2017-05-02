@@ -11,32 +11,52 @@ public class GameSettings : MonoBehaviour {
         right,
         both
     }
+    public enum TurretRestriction
+    {
+        no_restriction,
+        left,
+        right,
+
+    }
     public int levelDuration;
     private GameObject[] turrets;
     public TurretsAvailable turretsAvailable = TurretsAvailable.both;
-    public GameObject[] disabledUI;
+    public TurretRestriction leftTurretRestr = TurretRestriction.no_restriction;
+    public TurretRestriction rightTurretRestr = TurretRestriction.no_restriction;
+    public GameObject[] enabledUI;
 	void Start () {
         turrets = GameObject.FindGameObjectsWithTag("Turret");
-        disableUI(disabledUI);
-        setTurrets(turretsAvailable);
+        enableUI(enabledUI);
+        //setTurrets(turretsAvailable, leftTurretRestr, rightTurretRestr);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
-    private void disableUI(GameObject[] list)
+    private void enableUI(GameObject[] list)
     {
         for(int i = 0; i < list.Length; i++)
         {
-            list[i].SetActive(false);
+            list[i].SetActive(true);
         }
     }
-    private void setTurrets(TurretsAvailable x)
+    private void setTurrets(TurretsAvailable available, TurretRestriction lRestriction, TurretRestriction rRestriction)
     {
         const int LEFT = 0;
         const int RIGHT = 1;
-        switch (x)
+        for(int i = 0; i < turrets.Length; i++)
+        {
+            if ((int)turrets[i].GetComponent<Turret>().side == RIGHT)
+            {
+                turrets[i].GetComponent<Turret>().setRestriction((int)lRestriction);
+            }
+            if ((int)turrets[i].GetComponent<Turret>().side == LEFT)
+            {
+                turrets[i].GetComponent<Turret>().setRestriction((int)rRestriction);
+            }
+        }
+        switch (available)
         {
             case (TurretsAvailable.left):
                 for(int i = 0; i< turrets.Length; i++)

@@ -141,4 +141,8 @@ public class Turret : MonoBehaviour
         laser.transform.rotation = transform.rotation;
         laserColor.startColorChange();
     }
+    public void setRestriction(int x)
+    {
+        restriction = (TurretRestriction)x;
+    }
 }
