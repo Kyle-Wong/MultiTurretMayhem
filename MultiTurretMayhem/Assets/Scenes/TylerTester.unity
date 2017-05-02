@@ -402,26 +402,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114659611829050588, guid: dac26c01abe71b342b8fd2bdda50951e,
-        type: 2}
-      propertyPath: objects.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114659611829050588, guid: dac26c01abe71b342b8fd2bdda50951e,
-        type: 2}
-      propertyPath: chances.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114659611829050588, guid: dac26c01abe71b342b8fd2bdda50951e,
-        type: 2}
-      propertyPath: leftAngles.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114659611829050588, guid: dac26c01abe71b342b8fd2bdda50951e,
-        type: 2}
-      propertyPath: rightAngles.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4272775911948962, guid: dac26c01abe71b342b8fd2bdda50951e, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -453,86 +433,6 @@ Prefab:
     - target: {fileID: 4272775911948962, guid: dac26c01abe71b342b8fd2bdda50951e, type: 2}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114659611829050588, guid: dac26c01abe71b342b8fd2bdda50951e,
-        type: 2}
-      propertyPath: objects.Array.data[0]
-      value: 
-      objectReference: {fileID: 1793194082606136, guid: ec86bbdcb50db4d4bb0e9dee47978e4f,
-        type: 2}
-    - target: {fileID: 114659611829050588, guid: dac26c01abe71b342b8fd2bdda50951e,
-        type: 2}
-      propertyPath: objects.Array.data[1]
-      value: 
-      objectReference: {fileID: 1805722405616588, guid: 869ed7dcd6faae1409e032e522355e58,
-        type: 2}
-    - target: {fileID: 114659611829050588, guid: dac26c01abe71b342b8fd2bdda50951e,
-        type: 2}
-      propertyPath: objects.Array.data[2]
-      value: 
-      objectReference: {fileID: 1750669997245230, guid: 0d5329156323018468a675b284456796,
-        type: 2}
-    - target: {fileID: 114659611829050588, guid: dac26c01abe71b342b8fd2bdda50951e,
-        type: 2}
-      propertyPath: objects.Array.data[3]
-      value: 
-      objectReference: {fileID: 1556577431847448, guid: 464fa62b4b4f0e34193e2cbf83ea2a4e,
-        type: 2}
-    - target: {fileID: 114659611829050588, guid: dac26c01abe71b342b8fd2bdda50951e,
-        type: 2}
-      propertyPath: objects.Array.data[4]
-      value: 
-      objectReference: {fileID: 1415476018937786, guid: 8d726b9a89bce0f48b0bce49cb53d817,
-        type: 2}
-    - target: {fileID: 114659611829050588, guid: dac26c01abe71b342b8fd2bdda50951e,
-        type: 2}
-      propertyPath: chances.Array.data[1]
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114659611829050588, guid: dac26c01abe71b342b8fd2bdda50951e,
-        type: 2}
-      propertyPath: chances.Array.data[2]
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114659611829050588, guid: dac26c01abe71b342b8fd2bdda50951e,
-        type: 2}
-      propertyPath: chances.Array.data[3]
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114659611829050588, guid: dac26c01abe71b342b8fd2bdda50951e,
-        type: 2}
-      propertyPath: chances.Array.data[4]
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114659611829050588, guid: dac26c01abe71b342b8fd2bdda50951e,
-        type: 2}
-      propertyPath: leftAngles.Array.data[0].x
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 114659611829050588, guid: dac26c01abe71b342b8fd2bdda50951e,
-        type: 2}
-      propertyPath: leftAngles.Array.data[0].y
-      value: 120
-      objectReference: {fileID: 0}
-    - target: {fileID: 114659611829050588, guid: dac26c01abe71b342b8fd2bdda50951e,
-        type: 2}
-      propertyPath: leftAngles.Array.data[1].x
-      value: 240
-      objectReference: {fileID: 0}
-    - target: {fileID: 114659611829050588, guid: dac26c01abe71b342b8fd2bdda50951e,
-        type: 2}
-      propertyPath: leftAngles.Array.data[1].y
-      value: 270
-      objectReference: {fileID: 0}
-    - target: {fileID: 114659611829050588, guid: dac26c01abe71b342b8fd2bdda50951e,
-        type: 2}
-      propertyPath: rightAngles.Array.data[0].x
-      value: 345
-      objectReference: {fileID: 0}
-    - target: {fileID: 114659611829050588, guid: dac26c01abe71b342b8fd2bdda50951e,
-        type: 2}
-      propertyPath: rightAngles.Array.data[0].y
-      value: 375
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dac26c01abe71b342b8fd2bdda50951e, type: 2}
