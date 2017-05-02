@@ -158,6 +158,7 @@ MonoBehaviour:
   damage: 1
   points: 1
   invincible: 0
+  pointsText: {fileID: 1730592498059714, guid: bf1e6d18bfabc7e4d95532ba801b6b72, type: 2}
   missile: {fileID: 1805722405616588, guid: 869ed7dcd6faae1409e032e522355e58, type: 2}
   orbitRadius: 4.5
   fireDelay: 3

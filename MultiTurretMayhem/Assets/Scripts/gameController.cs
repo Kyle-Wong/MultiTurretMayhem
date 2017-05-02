@@ -24,6 +24,7 @@ public class gameController : MonoBehaviour {
     public FTLJump ftlJump;
     public Text lowHealthText;
     public Text shieldPercent;
+    public GameObject tutorialCanvas;
     public int levelNum;
     private List<GameObject> settingsList;
     private GameSettings currentSettings;
@@ -38,7 +39,7 @@ public class gameController : MonoBehaviour {
     private float jumpTimer;
     public bool hideMouse = true;
     private bool playerIsDead = false;
-	void Start () {
+	void Awake () {
         maxHealth = health;
         settingsList = getSettings();
         if(!survival)
@@ -53,10 +54,10 @@ public class gameController : MonoBehaviour {
         if (hideMouse)
             Cursor.visible = false;
     }
-	
-	// Update is called once per frame
-	void Update () {
-        
+
+    // Update is called once per frame
+    void Update() {
+
         if (Input.GetKeyDown(KeyCode.U))
         {
             addPoints(9);
@@ -70,6 +71,16 @@ public class gameController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Y))
         {
             dropFTLBomb();
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            LevelNumber.setLevel(levelNum + 1);
+            SceneManager.LoadScene("Campaign");
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            LevelNumber.setLevel(levelNum - 1);
+            SceneManager.LoadScene("Campaign");
         }
         shieldPercent.text = "Shields: ";
         int healthPercent = (int)(100 * (health * 1f / maxHealth));
@@ -111,6 +122,7 @@ public class gameController : MonoBehaviour {
                 }
                 if (!survival && timeRemaining <= 0)                    //survival game mode never leaves this state
                 {
+                    tutorialCanvas.SetActive(false);                    //disable tutorial UI
                     chargeBar.setProgress(1);              
                     dropFTLBomb();                                      //kill all enemies
                     settingsList[levelNum].SetActive(false);            //turn off enemySpawner

@@ -126,6 +126,7 @@ MonoBehaviour:
   damage: 1
   points: 1
   invincible: 0
+  pointsText: {fileID: 1730592498059714, guid: bf1e6d18bfabc7e4d95532ba801b6b72, type: 2}
 --- !u!114 &114454925491000290
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -172,6 +173,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playOnStartUp: 1
   rotSpeed: 45
+  deltaRotSpeed: 0
+  randomDirection: 0
 --- !u!212 &212869846228222812
 SpriteRenderer:
   m_ObjectHideFlags: 1

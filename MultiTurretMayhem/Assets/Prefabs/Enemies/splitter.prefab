@@ -159,6 +159,7 @@ MonoBehaviour:
   damage: 1
   points: 1
   invincible: 0
+  pointsText: {fileID: 1730592498059714, guid: bf1e6d18bfabc7e4d95532ba801b6b72, type: 2}
   splitterChild: {fileID: 1415476018937786, guid: 8d726b9a89bce0f48b0bce49cb53d817,
     type: 2}
   splittersToSpawn: 3
@@ -175,6 +176,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playOnStartUp: 1
   rotSpeed: 45
+  deltaRotSpeed: 0
+  randomDirection: 0
 --- !u!212 &212546404304947300
 SpriteRenderer:
   m_ObjectHideFlags: 1

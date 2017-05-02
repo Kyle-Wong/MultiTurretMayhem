@@ -27,7 +27,7 @@ public class GameSettings : MonoBehaviour {
 	void Start () {
         turrets = GameObject.FindGameObjectsWithTag("Turret");
         enableUI(enabledUI);
-        //setTurrets(turretsAvailable, leftTurretRestr, rightTurretRestr);
+        setTurrets(turretsAvailable, leftTurretRestr, rightTurretRestr);
 	}
 	
 	// Update is called once per frame
@@ -49,11 +49,11 @@ public class GameSettings : MonoBehaviour {
         {
             if ((int)turrets[i].GetComponent<Turret>().side == RIGHT)
             {
-                turrets[i].GetComponent<Turret>().setRestriction((int)lRestriction);
+                turrets[i].GetComponent<Turret>().setRestriction((int)rRestriction);
             }
             if ((int)turrets[i].GetComponent<Turret>().side == LEFT)
             {
-                turrets[i].GetComponent<Turret>().setRestriction((int)rRestriction);
+                turrets[i].GetComponent<Turret>().setRestriction((int)lRestriction);
             }
         }
         switch (available)
