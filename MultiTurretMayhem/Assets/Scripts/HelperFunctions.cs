@@ -48,4 +48,10 @@ public class HelperFunctions{
     {
         return magnitude * new Vector3(Mathf.Cos(angle * Mathf.PI / 180), Mathf.Sin(angle * Mathf.PI / 180));
     }
+
+    public static float directionBetween(Vector2 v1, Vector2 v2)
+    {
+        float result = Mathf.Atan2(v2.y - v1.y, v2.x - v1.x) * 180 / Mathf.PI;
+        return result;
+    }
 }
