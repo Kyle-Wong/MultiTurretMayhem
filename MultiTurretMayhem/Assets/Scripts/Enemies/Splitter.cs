@@ -27,7 +27,7 @@ public class Splitter : Enemy {
             {
                 Instantiate(splitterChild, generateRandomDistance(), Quaternion.identity);
             }
-            die(deathColor);
+            die(deathColor, false);
         }
         
     }

@@ -43,7 +43,7 @@ public class Bomb : MonoBehaviour {
             Enemy enemy = coll.gameObject.GetComponent<Enemy>();
             if(enemy.isOnScreen() || !ignoreOffScreenEnemies)
             {
-                coll.gameObject.GetComponent<Enemy>().die(color);       //directly kills enemies, bypassing onHit effects
+                coll.gameObject.GetComponent<Enemy>().die(color, true);       //directly kills enemies, bypassing onHit effects
             }
             
         }

@@ -41,6 +41,7 @@ public class gameController : MonoBehaviour {
     public bool hideMouse = true;
     private bool playerIsDead = false;
     public Transform cam;
+    public float multiplier = 1;
 	void Awake () {
         maxHealth = health;
         settingsList = getSettings();
@@ -173,6 +174,8 @@ public class gameController : MonoBehaviour {
                 //display GUI
                 break;
         }
+
+        Debug.Log(multiplier);
 	}
     private List<GameObject> getSettings()
     {        
@@ -271,11 +274,9 @@ public class gameController : MonoBehaviour {
     public IEnumerator cameraShake (float duration, float magnitude)
     {
         Vector3 originalPos = cam.position;
-        Debug.Log("Hit");
 
         for (float elapsed = 0.0f; elapsed < duration; elapsed += Time.deltaTime)
         {
-            Debug.Log("shaking");
             float x = Random.Range(-magnitude, magnitude) * (1 - elapsed / duration);
             float y = Random.Range(-magnitude, magnitude) * (1 - elapsed / duration);
             cam.position = originalPos + new Vector3(x, y, 0);
