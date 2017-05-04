@@ -5,18 +5,18 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/RichardTester.unity
-    guid: 222b748d0bbf08b479e51a9343a42f52
-  - enabled: 1
-    path: Assets/Scenes/Campaign.unity
-    guid: 4e895a802cc7afa48aca7bd38a86d2f3
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 159c066e1500baa45a7c21806999449f
   - enabled: 1
+    path: Assets/Scenes/Campaign.unity
+    guid: 4e895a802cc7afa48aca7bd38a86d2f3
+  - enabled: 1
     path: Assets/Scenes/Survival.unity
     guid: 1340030721a5b584b8993f9277b0bfa6
+  - enabled: 0
+    path: Assets/Scenes/RichardTester.unity
+    guid: 222b748d0bbf08b479e51a9343a42f52
   - enabled: 0
     path: Assets/Scenes/KyleTester.unity
     guid: fe4d8c507d2286149b76fd95aecd5d31

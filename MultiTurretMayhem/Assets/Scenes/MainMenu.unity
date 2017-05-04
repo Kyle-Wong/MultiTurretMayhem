@@ -12059,7 +12059,7 @@ MonoBehaviour:
   creditsCanvas: {fileID: 733424929}
   eventSystem: {fileID: 1598473049}
   skipIntro: 0
-  hideMouse: 0
+  hideMouse: 1
 --- !u!4 &1113927570
 Transform:
   m_ObjectHideFlags: 0
