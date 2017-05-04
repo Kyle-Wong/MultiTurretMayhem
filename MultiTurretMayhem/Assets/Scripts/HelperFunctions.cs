@@ -63,4 +63,9 @@ public class HelperFunctions{
     {
         return (num < 0 ? -Mathf.Sqrt(-num) : Mathf.Sqrt(num));
     }
+
+    public static Color colorInterpolation(Color c1, Color c2, float percent)
+    {
+        return new Color(c1.r * percent + c2.r * (1 - percent), c1.g * percent + c2.g * (1 - percent), c1.b * percent + c2.b * (1 - percent), c1.a * percent + c2.a * (1 - percent));
+    }
 }
