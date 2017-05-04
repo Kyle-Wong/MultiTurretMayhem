@@ -178,8 +178,6 @@ public class gameController : MonoBehaviour {
                 //display GUI
                 break;
         }
-
-        Debug.Log(multiplier);
 	}
     private List<GameObject> getSettings()
     {        
