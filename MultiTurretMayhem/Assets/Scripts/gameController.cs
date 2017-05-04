@@ -132,7 +132,10 @@ public class gameController : MonoBehaviour {
                 }
                 if (!survival && timeRemaining <= 0)                    //survival game mode never leaves this state
                 {
-                    tutorialCanvas.SetActive(false);                    //disable tutorial UI
+                    for(int i = 0; i < currentSettings.enabledUI.Length; i++)
+                    {
+                        currentSettings.enabledUI[i].SetActive(false);
+                    }
                     chargeBar.setProgress(1);              
                     dropFTLBomb();                                      //kill all enemies
                     settingsList[levelNum].SetActive(false);            //turn off enemySpawner
