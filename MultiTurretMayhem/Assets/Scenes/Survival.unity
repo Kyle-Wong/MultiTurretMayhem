@@ -646,6 +646,48 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dac26c01abe71b342b8fd2bdda50951e, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &694684144
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4064539472551916, guid: 39f7e9249a3a49c488c86936c18d8040, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4064539472551916, guid: 39f7e9249a3a49c488c86936c18d8040, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4064539472551916, guid: 39f7e9249a3a49c488c86936c18d8040, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4064539472551916, guid: 39f7e9249a3a49c488c86936c18d8040, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4064539472551916, guid: 39f7e9249a3a49c488c86936c18d8040, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4064539472551916, guid: 39f7e9249a3a49c488c86936c18d8040, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4064539472551916, guid: 39f7e9249a3a49c488c86936c18d8040, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4064539472551916, guid: 39f7e9249a3a49c488c86936c18d8040, type: 2}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 39f7e9249a3a49c488c86936c18d8040, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &740768902
 GameObject:
   m_ObjectHideFlags: 0
@@ -1121,6 +1163,7 @@ MonoBehaviour:
   turretsAvailable: 2
   leftTurretRestr: 0
   rightTurretRestr: 0
+  startingBombs: 3
   enabledUI: []
 --- !u!1001 &1320857349
 Prefab:
@@ -1216,6 +1259,7 @@ MonoBehaviour:
   turretsAvailable: 2
   leftTurretRestr: 0
   rightTurretRestr: 0
+  startingBombs: 3
   enabledUI: []
 --- !u!1001 &1369163154
 Prefab:

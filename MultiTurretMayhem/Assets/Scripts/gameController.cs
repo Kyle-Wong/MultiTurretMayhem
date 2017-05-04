@@ -57,6 +57,7 @@ public class gameController : MonoBehaviour {
         totalDuration = timeRemaining;
         points = 0;
         lowHealthText.enabled = false;
+        bombs = currentSettings.startingBombs;
         gameState = GameState.duringGame;  //debug, will normally start at beforeGame
         if (hideMouse)
             Cursor.visible = false;
@@ -300,5 +301,9 @@ public class gameController : MonoBehaviour {
             yield return new WaitForEndOfFrame();
         }
         cam.position = originalPos;
+    }
+    public int getGameState()
+    {
+        return (int)gameState;
     }
 }

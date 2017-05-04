@@ -23,6 +23,7 @@ public class GameSettings : MonoBehaviour {
     public TurretsAvailable turretsAvailable = TurretsAvailable.both;
     public TurretRestriction leftTurretRestr = TurretRestriction.no_restriction;
     public TurretRestriction rightTurretRestr = TurretRestriction.no_restriction;
+    public int startingBombs = 3;
     public GameObject[] enabledUI;
 	void Start () {
         turrets = GameObject.FindGameObjectsWithTag("Turret");

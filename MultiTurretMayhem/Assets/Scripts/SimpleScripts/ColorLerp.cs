@@ -12,7 +12,7 @@ public class ColorLerp : MonoBehaviour {
     public float initialDelay = 0;
     private SpriteRenderer spriteRenderer;
     private IEnumerator colorCoroutine;
-    void Start () {
+    void Awake () {
         spriteRenderer = GetComponent<SpriteRenderer>();
         colorCoroutine = colorChange();
         if (playOnStartUp)
