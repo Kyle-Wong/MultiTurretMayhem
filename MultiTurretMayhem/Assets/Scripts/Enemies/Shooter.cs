@@ -9,6 +9,7 @@ public class Shooter : Enemy {
     public float fireDelay;
     private float fireTimer;
     public float missileOffSet;
+    public AudioClip shootSound;
 
     private Transform playerTransform;
     private Simple_Movement movement;
@@ -51,5 +52,6 @@ public class Shooter : Enemy {
     {
         Instantiate(missile, transform.position+(playerTransform.position-transform.position).normalized*missileOffSet, 
             Quaternion.LookRotation(Vector3.back, playerTransform.position-transform.position));
+        HelperFunctions.playSound(ref _audioSource, shootSound);
     }
 }

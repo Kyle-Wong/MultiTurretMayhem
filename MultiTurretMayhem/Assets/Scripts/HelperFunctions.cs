@@ -68,4 +68,10 @@ public class HelperFunctions{
     {
         return new Color(c1.r * percent + c2.r * (1 - percent), c1.g * percent + c2.g * (1 - percent), c1.b * percent + c2.b * (1 - percent), c1.a * percent + c2.a * (1 - percent));
     }
+
+    public static void playSound(ref AudioSource source, AudioClip clip)
+    {
+        source.clip = clip;
+        source.Play();
+    }
 }

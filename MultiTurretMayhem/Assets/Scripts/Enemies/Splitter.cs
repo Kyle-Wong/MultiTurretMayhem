@@ -8,6 +8,7 @@ public class Splitter : Enemy {
     public int splittersToSpawn = 3;
 
     private float deltaDistance = 2;
+    public AudioClip splitSound;
 
 	// Use this for initialization
 	void Start () {
@@ -27,6 +28,7 @@ public class Splitter : Enemy {
             {
                 Instantiate(splitterChild, generateRandomDistance(), Quaternion.identity);
             }
+            HelperFunctions.playSound(ref _audioSource, splitSound);
             die(deathColor, false);
         }
         

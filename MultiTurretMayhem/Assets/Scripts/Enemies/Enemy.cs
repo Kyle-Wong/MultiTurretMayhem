@@ -18,12 +18,15 @@ abstract public class Enemy : MonoBehaviour
     private GameObject canvas;
     private Camera cam;
     private gameController ctrl;
+    public AudioClip deathSound;
+    protected AudioSource _audioSource;
 
     private void Awake()
     {
         canvas = GameObject.Find("Canvas");
         cam = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
         ctrl = GameObject.Find("GameController").GetComponent<gameController>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     public void baseStart()
@@ -33,6 +36,7 @@ abstract public class Enemy : MonoBehaviour
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         controller = GameObject.FindGameObjectWithTag("GameController").GetComponent<gameController>();
         isDead = false;
+        _audioSource.clip = deathSound;
     }
     public void baseUpdate()
     {
@@ -77,7 +81,9 @@ abstract public class Enemy : MonoBehaviour
                 p.GetComponent<RectTransform>().localPosition = HelperFunctions.objectCameraConvert(transform.position, canvas, cam);
                 p.GetComponent<Text>().text = ((int)(points * ctrl.multiplier)).ToString();
             }
-            
+
+            HelperFunctions.playSound(ref _audioSource, deathSound);
+
             isDead = true;
             invincible = true;
             

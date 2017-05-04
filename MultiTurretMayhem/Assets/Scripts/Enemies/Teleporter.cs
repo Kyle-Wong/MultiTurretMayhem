@@ -5,6 +5,7 @@ using UnityEngine;
 public class Teleporter : Enemy {
     public float minDistance;
     private Transform target;
+    public AudioClip teleportSound;
 
     //void Awake()
     //{
@@ -35,6 +36,8 @@ public class Teleporter : Enemy {
 
     public void teleport()
     {
+        HelperFunctions.playSound(ref _audioSource, teleportSound);
+
         float distance = Vector3.Distance(target.position, transform.position);
 
         if (distance < minDistance)

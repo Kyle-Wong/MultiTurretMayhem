@@ -31,17 +31,20 @@ public class Turret : MonoBehaviour
     public float damage = 100;                  //damage per hit
     public GameObject laser;                    //laser gameobject
     public Vector2 angleRange;
+    public AudioClip fireSound;
 
     private float charge;
     private SpriteRenderer laserSprite;
     private ColorLerp laserColor;               //color of laser
     public bool inputDisabled = false;          //player input is/is not disabled
     private gameController ctrl;
+    private AudioSource _audioSource;
     void Awake()
     {
         laserSprite = laser.GetComponent<SpriteRenderer>();
         laserColor = laser.GetComponent<ColorLerp>();
         ctrl = GameObject.Find("GameController").GetComponent<gameController>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     // Use this for initialization
@@ -57,6 +60,7 @@ public class Turret : MonoBehaviour
         laserColor.duration = 1 / fireRate;
         accelTimer = 0f;
 
+        _audioSource.clip = fireSound;
     }
 
     // Update is called once per frame
@@ -125,6 +129,7 @@ public class Turret : MonoBehaviour
 
     private void Fire()
     {
+        HelperFunctions.playSound(ref _audioSource, fireSound);
         RaycastHit2D[] toKill = Physics2D.RaycastAll(transform.position, HelperFunctions.lineVector(transform.rotation.eulerAngles.z), 20);
         int enemiesHit = 0;
         foreach (RaycastHit2D e in toKill)

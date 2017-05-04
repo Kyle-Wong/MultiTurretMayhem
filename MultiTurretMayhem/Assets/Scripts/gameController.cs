@@ -54,6 +54,11 @@ public class gameController : MonoBehaviour {
     public Text multiplierText;
     private EventSystem eventSystem;
     private GraphicColorLerp blackPanel;
+    public AudioSource shipAudio;
+    public AudioClip shipHit;
+    public AudioClip shipDanger;
+    public AudioClip shipDeath;
+    public AudioClip bombSound;
 	void Awake () {
         maxHealth = health;
         settingsList = getSettings();
@@ -86,6 +91,7 @@ public class gameController : MonoBehaviour {
             preGameDelay = 0;
         }
         LevelNumber.setSkipIntro(true);     //main menu intro should no longer be played when returning to it
+        shipAudio.clip = shipHit;
     }
     // Update is called once per frame
     void Update() {
@@ -345,12 +351,18 @@ public class gameController : MonoBehaviour {
         if(health*1f/maxHealth < lowHealthThreshold)
         {
             lowHealthText.enabled = true;
+            HelperFunctions.playSound(ref shipAudio, shipDanger);
         }
-        if(health <= 0)
+        else if (health * 1f / maxHealth >= lowHealthThreshold)
+        {
+            HelperFunctions.playSound(ref shipAudio, shipHit);
+        }
+        else if(health <= 0)
         {
             playerIsDead = true;
             lowHealthText.enabled = false;
             health = 0;
+            HelperFunctions.playSound(ref shipAudio, shipDeath);
         }
         
     }
@@ -365,6 +377,7 @@ public class gameController : MonoBehaviour {
             bombs--;
             GameObject bomb = (GameObject)Instantiate(Resources.Load("Bomb"));
             bomb.transform.position = Vector3.zero;
+            HelperFunctions.playSound(ref shipAudio, bombSound);
         }
         
     }

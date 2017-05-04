@@ -2196,6 +2196,11 @@ MonoBehaviour:
   gameIsOver: 0
   multiplier: 1
   multiplierText: {fileID: 924434569}
+  shipAudio: {fileID: 1673488076}
+  shipHit: {fileID: 0}
+  shipDanger: {fileID: 0}
+  shipDeath: {fileID: 0}
+  bombSound: {fileID: 0}
 --- !u!4 &1196438735
 Transform:
   m_ObjectHideFlags: 0
@@ -2645,11 +2650,6 @@ Prefab:
       propertyPath: laser
       value: 
       objectReference: {fileID: 1540831598}
-    - target: {fileID: 114515446742029672, guid: af8a3b2c92c6df849bb95722c5dbf27b,
-        type: 2}
-      propertyPath: restriction
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: af8a3b2c92c6df849bb95722c5dbf27b, type: 2}
   m_IsPrefabParent: 0
@@ -3176,6 +3176,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4989322922485006, guid: 5729e61cb70a2a041bacefd95a01724a,
     type: 2}
   m_PrefabInternal: {fileID: 1673488074}
+--- !u!82 &1673488076 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82071690654425174, guid: 5729e61cb70a2a041bacefd95a01724a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1673488074}
 --- !u!1 &1708404408
 GameObject:
   m_ObjectHideFlags: 0
@@ -3300,11 +3305,6 @@ Prefab:
       propertyPath: laser
       value: 
       objectReference: {fileID: 972507110}
-    - target: {fileID: 212524908803495172, guid: a4848851a7423fc438eef3250eed4d64,
-        type: 2}
-      propertyPath: m_FlipX
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a4848851a7423fc438eef3250eed4d64, type: 2}
   m_IsPrefabParent: 0
