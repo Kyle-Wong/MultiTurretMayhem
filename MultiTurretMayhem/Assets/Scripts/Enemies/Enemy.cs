@@ -17,11 +17,13 @@ abstract public class Enemy : MonoBehaviour
     public GameObject pointsText;
     private GameObject canvas;
     private Camera cam;
+    private gameController ctrl;
 
     private void Awake()
     {
         canvas = GameObject.Find("Canvas");
         cam = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
+        ctrl = GameObject.Find("GameController").GetComponent<gameController>();
     }
 
     public void baseStart()
@@ -46,6 +48,7 @@ abstract public class Enemy : MonoBehaviour
     {
         //ToDo: do damage to player, value passed in by child enemy
         controller.damagePlayer(damage);
+        ctrl.multiplier = 1;
     }
     public virtual void takeDamage(int damage, Color deathColor)
     {
@@ -54,7 +57,7 @@ abstract public class Enemy : MonoBehaviour
         curHP -= damage;
         if(curHP <= 0)
         {
-            die(deathColor);
+            die(deathColor, false);
         }
     }
     public bool isOnScreen()
@@ -63,11 +66,18 @@ abstract public class Enemy : MonoBehaviour
         return screenCoords.x <= 1.1 && screenCoords.x >= -0.1 && screenCoords.y <= 1.1 && screenCoords.y >= -0.1;  
         //10% buffer for player convenience
     }
-    public void die(Color deathColor)
+    public void die(Color deathColor, bool byBomb)
     {
         if (!isDead)
         {
-            controller.addPoints(points);
+            if (!byBomb)
+            {
+                controller.addPoints((int)(points * ctrl.multiplier));
+                GameObject p = Instantiate(pointsText, canvas.transform);
+                p.GetComponent<RectTransform>().localPosition = HelperFunctions.objectCameraConvert(transform.position, canvas, cam);
+                p.GetComponent<Text>().text = ((int)(points * ctrl.multiplier)).ToString();
+            }
+            
             isDead = true;
             invincible = true;
             
@@ -81,9 +91,7 @@ abstract public class Enemy : MonoBehaviour
 
             }
 
-            GameObject p = Instantiate(pointsText, canvas.transform);
-            p.GetComponent<RectTransform>().localPosition = HelperFunctions.objectCameraConvert(transform.position, canvas, cam);
-            p.GetComponent<Text>().text = points.ToString();
+
 
             ColorLerp colorLerp = spriteObject.GetComponent<ColorLerp>();
             colorLerp.startColor = deathColor;

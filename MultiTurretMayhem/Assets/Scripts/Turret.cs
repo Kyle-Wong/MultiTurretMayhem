@@ -36,10 +36,12 @@ public class Turret : MonoBehaviour
     private SpriteRenderer laserSprite;
     private ColorLerp laserColor;               //color of laser
     public bool inputDisabled = false;          //player input is/is not disabled
+    private gameController ctrl;
     void Awake()
     {
         laserSprite = laser.GetComponent<SpriteRenderer>();
         laserColor = laser.GetComponent<ColorLerp>();
+        ctrl = GameObject.Find("GameController").GetComponent<gameController>();
     }
 
     // Use this for initialization
@@ -124,9 +126,11 @@ public class Turret : MonoBehaviour
     private void Fire()
     {
         RaycastHit2D[] toKill = Physics2D.RaycastAll(transform.position, HelperFunctions.lineVector(transform.rotation.eulerAngles.z), 20);
+        int enemiesHit = 0;
         foreach (RaycastHit2D e in toKill)
             if (e.collider.CompareTag("Enemy"))
             {
+                ++enemiesHit;
                 Enemy enemy = e.collider.gameObject.GetComponent<Enemy>();
                 if(enemy.isOnScreen() && !enemy.invincible)
                 {
@@ -135,6 +139,7 @@ public class Turret : MonoBehaviour
             }
 
         charge = 0;
+        changeMultiplier(ref ctrl.multiplier, enemiesHit);
 
         laser.transform.position = transform.position + HelperFunctions.lineVector(transform.rotation.eulerAngles.z, laser.transform.localScale.x * 0.5f);
 
@@ -144,5 +149,11 @@ public class Turret : MonoBehaviour
     public void setRestriction(int x)
     {
         restriction = (TurretRestriction)x;
+    }
+
+    private void changeMultiplier(ref float multi, int hits)
+    {
+        multi += (hits - 1) * 0.5f;
+        multi = (multi < 1 ? 1 : multi);
     }
 }
