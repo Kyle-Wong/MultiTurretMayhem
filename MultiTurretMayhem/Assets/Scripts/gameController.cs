@@ -26,6 +26,9 @@ public class gameController : MonoBehaviour {
     public Text shieldPercent;
     public Text bombText;
     public GameObject tutorialCanvas;
+    public Transform cam;
+    public float screenShakeDuration;
+    public float screenShakeMagnitude;
     public int levelNum;
     private List<GameObject> settingsList;
     private GameSettings currentSettings;
@@ -40,7 +43,7 @@ public class gameController : MonoBehaviour {
     private float jumpTimer;
     public bool hideMouse = true;
     private bool playerIsDead = false;
-    public Transform cam;
+
 	void Awake () {
         maxHealth = health;
         settingsList = getSettings();
@@ -233,6 +236,7 @@ public class gameController : MonoBehaviour {
         if (!playerIsDead)
         {
             health -= x;
+            StartCoroutine(cameraShake(screenShakeDuration, screenShakeMagnitude));
         }
         shield.startColor.a = Mathf.Lerp(0f, 1f, health * 1.0f / maxHealth);
         shield.startColorChange();
@@ -246,7 +250,7 @@ public class gameController : MonoBehaviour {
             lowHealthText.enabled = false;
             health = 0;
         }
-        StartCoroutine(cameraShake(1.0f, 0.5f));
+        
     }
     public int getHealth()
     {

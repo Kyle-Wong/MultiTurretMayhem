@@ -504,11 +504,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 204073158}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -386, y: -217, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 10}
   m_LocalScale: {x: 0.47, y: 131.36, z: 1}
   m_Children: []
-  m_Father: {fileID: 1781908266}
-  m_RootOrder: 2
+  m_Father: {fileID: 1778970645}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &212550190
 GameObject:
@@ -578,7 +578,11 @@ MonoBehaviour:
   ftlJump: {fileID: 1651328253}
   lowHealthText: {fileID: 892892476}
   shieldPercent: {fileID: 316917839}
+  bombText: {fileID: 2019408201}
   tutorialCanvas: {fileID: 1781908262}
+  cam: {fileID: 1778970645}
+  screenShakeDuration: 0.25
+  screenShakeMagnitude: 0.4
   levelNum: 0
   lowHealthThreshold: 0.3
   survival: 0
@@ -908,10 +912,10 @@ MonoBehaviour:
   - 1
   rightChances:
   - 1
-  leftRate: 25
+  leftRate: 0
   deltaLeftRate: 0
-  deltaLeftAngle: 180
-  rightRate: 25
+  deltaLeftAngle: 0
+  rightRate: 30
   deltaRightRate: 0
   deltaRightAngle: 180
   distance: 10
@@ -1150,6 +1154,7 @@ RectTransform:
   - {fileID: 1259989379}
   - {fileID: 316917837}
   - {fileID: 892892474}
+  - {fileID: 2019408199}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2465,7 +2470,7 @@ MonoBehaviour:
   - 1
   rightChances:
   - 1
-  leftRate: 50
+  leftRate: 30
   deltaLeftRate: 0
   deltaLeftAngle: 90
   rightRate: 15
@@ -3160,7 +3165,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 204073160}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3251,7 +3257,6 @@ RectTransform:
   m_Children:
   - {fileID: 1506568967}
   - {fileID: 702857277}
-  - {fileID: 204073160}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3765,6 +3770,95 @@ Transform:
   m_Father: {fileID: 250599231}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2019408198
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2019408199}
+  - component: {fileID: 2019408202}
+  - component: {fileID: 2019408201}
+  - component: {fileID: 2019408200}
+  m_Layer: 5
+  m_Name: BombText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2019408199
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2019408198}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 634568901}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.02, y: 0.95}
+  m_AnchorMax: {x: 0.3, y: 0.95}
+  m_AnchoredPosition: {x: 0, y: -12.5}
+  m_SizeDelta: {x: 0, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2019408200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2019408198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
+--- !u!114 &2019408201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2019408198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 389f3883c6cac1246be7a0ae98628768, type: 3}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 1
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 5
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: ' Bombs: 3'
+--- !u!222 &2019408202
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2019408198}
 --- !u!1 &2092578404
 GameObject:
   m_ObjectHideFlags: 0
@@ -3817,12 +3911,12 @@ MonoBehaviour:
   rightChances:
   - 0
   - 1
-  leftRate: 10
+  leftRate: 45
   deltaLeftRate: 30
-  deltaLeftAngle: 0
-  rightRate: 60
+  deltaLeftAngle: 120
+  rightRate: 5
   deltaRightRate: 0
-  deltaRightAngle: 180
+  deltaRightAngle: 45
   distance: 10
 --- !u!1 &2102051010
 GameObject:
