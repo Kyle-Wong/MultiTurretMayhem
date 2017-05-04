@@ -129,12 +129,12 @@ public class Turret : MonoBehaviour
         int enemiesHit = 0;
         foreach (RaycastHit2D e in toKill)
             if (e.collider.CompareTag("Enemy"))
-            {
-                ++enemiesHit;
+            { 
                 Enemy enemy = e.collider.gameObject.GetComponent<Enemy>();
                 if(enemy.isOnScreen() && !enemy.invincible)
                 {
                     enemy.takeDamage(100,laserColor.startColor);
+                    ++enemiesHit;
                 }
             }
 
