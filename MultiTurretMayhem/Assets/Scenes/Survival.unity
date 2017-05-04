@@ -2195,6 +2195,7 @@ MonoBehaviour:
   hideMouse: 1
   gameIsOver: 0
   multiplier: 1
+  multiplierText: {fileID: 924434569}
 --- !u!4 &1196438735
 Transform:
   m_ObjectHideFlags: 0

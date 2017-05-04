@@ -51,6 +51,7 @@ public class gameController : MonoBehaviour {
     private bool playerIsDead = false;
     public bool gameIsOver = false;
     public float multiplier = 1;
+    public Text multiplierText;
     private EventSystem eventSystem;
     private GraphicColorLerp blackPanel;
 	void Awake () {
@@ -155,6 +156,8 @@ public class gameController : MonoBehaviour {
                 {
                     pointsText.text = pointsAsString(points);                       //display points
                 }
+                multiplierText.text = multiplier.ToString("n1") + " x";
+                multiplierText.color = HelperFunctions.colorInterpolation(Color.red, Color.white, (multiplier - 1) / 9);
                 if(Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
                 {
                     dropBomb();
