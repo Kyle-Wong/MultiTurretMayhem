@@ -952,6 +952,7 @@ MonoBehaviour:
   delayBeforeJump: 1.5
   jumpDuration: 7
   hideMouse: 1
+  multiplier: 1
 --- !u!4 &1196438735
 Transform:
   m_ObjectHideFlags: 0

@@ -58,4 +58,9 @@ public class HelperFunctions{
     {
         return pos * can.GetComponent<RectTransform>().rect.height/2 / cam.orthographicSize;
     }
+
+    public static float friendlySqrt(float num)
+    {
+        return (num < 0 ? -Mathf.Sqrt(-num) : Mathf.Sqrt(num));
+    }
 }
