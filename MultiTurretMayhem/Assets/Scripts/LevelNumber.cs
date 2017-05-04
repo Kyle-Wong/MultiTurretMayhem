@@ -6,6 +6,7 @@ public class LevelNumber : MonoBehaviour {
 
     // Use this for initialization
     static int level = 0;
+    static bool skipIntro = false;
 	void Start () {
 		
 	}
@@ -21,5 +22,13 @@ public class LevelNumber : MonoBehaviour {
     public static void setLevel(int x)
     {
         level = x;
+    }
+    public static void setSkipIntro(bool x)
+    {
+        skipIntro = x;
+    }
+    public static bool getSkipIntro()
+    {
+        return skipIntro;
     }
 }

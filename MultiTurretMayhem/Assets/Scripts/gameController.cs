@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.EventSystems;
 public class gameController : MonoBehaviour {
 
     // Use this for initialization
@@ -14,7 +14,8 @@ public class gameController : MonoBehaviour {
         transition,
         transitionOver,
         survivalDeathState,
-        campaignDeathState
+        campaignDeathState,
+        paused
     }
     public int health = 8;
     private int maxHealth;
@@ -28,6 +29,7 @@ public class gameController : MonoBehaviour {
     public GameObject tutorialCanvas;
     public GameObject deathCanvas;
     public GameObject levelCompletionCanvas;
+    public GameObject pauseCanvas;
     public Transform cam;
     public float screenShakeDuration;
     public float screenShakeMagnitude;
@@ -42,16 +44,18 @@ public class gameController : MonoBehaviour {
     private GameState gameState;
     public float delayBeforeJump;
     public float jumpDuration;
+    public float delayAfterJump;
     private float jumpTimer;
     public bool hideMouse = true;
     private bool playerIsDead = false;
     public bool gameIsOver = false;
     public float multiplier = 1;
-
+    private EventSystem eventSystem;
 	void Awake () {
         maxHealth = health;
         settingsList = getSettings();
-        if(!survival)
+        LevelNumber.setSkipIntro(true);     //main menu intro should no longer be played when returning to it
+        if (!survival)
             levelNum = LevelNumber.getLevel();
         setLevelSettings(levelNum);
         currentSettings = settingsList[levelNum].GetComponentInChildren<GameSettings>();
@@ -61,6 +65,7 @@ public class gameController : MonoBehaviour {
         lowHealthText.enabled = false;
         bombs = currentSettings.startingBombs;
         gameState = GameState.duringGame;  //debug, will normally start at beforeGame
+        eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
         if (hideMouse)
             Cursor.visible = false;
     }
@@ -107,7 +112,14 @@ public class gameController : MonoBehaviour {
                     timeRemaining = 0f;                                             //Ensure values sent to progress bar
                                                                                     //and progress text do not exceed 100%
                 }
-
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    gameState = GameState.paused;
+                    pauseCanvas.SetActive(true);
+                    eventSystem.SetSelectedGameObject(GameObject.Find("ResumeButton"));                               //set default button
+                    GameObject.Find("ResumeButton").GetComponent<Button>().OnSelect(new BaseEventData(EventSystem.current));  //force highlight button
+                    Time.timeScale = 0;
+                }
                 if (chargeText != null)
                 {
                     chargeText.setPercent(1 - (timeRemaining / totalDuration));     //update progress bar
@@ -126,6 +138,10 @@ public class gameController : MonoBehaviour {
                 }
                 if (playerIsDead)
                 {
+                    for (int i = 0; i < currentSettings.enabledUI.Length; i++)
+                    {
+                        currentSettings.enabledUI[i].SetActive(false);
+                    }
                     lowHealthText.enabled = false;
                     gameIsOver = true;
                     GameObject[] turrets = GameObject.FindGameObjectsWithTag("Turret");
@@ -140,9 +156,13 @@ public class gameController : MonoBehaviour {
                     if (survival)
                     {
                         gameState = GameState.survivalDeathState;   //change state to game over screen
+                        eventSystem.SetSelectedGameObject(GameObject.Find("RestartButton"));
+                        GameObject.Find("RestartButton").GetComponent<Button>().OnSelect(new BaseEventData(EventSystem.current));  //force highlight button
                     } else
                     {
                         gameState = GameState.campaignDeathState;   //change state to campaign game over screen
+                        eventSystem.SetSelectedGameObject(GameObject.Find("RestartButton"));
+                        GameObject.Find("RestartButton").GetComponent<Button>().OnSelect(new BaseEventData(EventSystem.current));  //force highlight button
                     }
                 }
                 
@@ -171,36 +191,65 @@ public class gameController : MonoBehaviour {
                 break;
             case (GameState.transition):
 
-                    if (delayBeforeJump > 0)
+                if (delayBeforeJump > 0)
+                {
+                    delayBeforeJump -= Time.deltaTime;                  //delay before FTL jump
+                }
+                else
+                {
+                    if (jumpTimer == 0)
                     {
-                        delayBeforeJump -= Time.deltaTime;                  //delay before FTL jump
+                        chargeText.enabled = false;                     //disable automatic color/text changes
+                        chargeBar.enabled = false;                      //disable automatic color/text changes
+                        ftlJump.startAllStars();                        //start FTL jump
+                        chargeText.GetComponent<Text>().text = "Jumping...";
+                    }
+                    if (jumpTimer < jumpDuration)
+                    {
+                        jumpTimer += Time.deltaTime;
+                        chargeBar.gameObject.GetComponent<RectTransform>().anchorMax = new Vector2(1 - (jumpTimer / jumpDuration), 1);
+                        //Decrease progress bar during jump
                     }
                     else
                     {
-                        if (jumpTimer == 0)
+                        ftlJump.stopAllStars();                         //stop FTL jump
+                        chargeText.GetComponent<Text>().text = "Jump Complete";
+                        if(delayAfterJump > 0)
                         {
-                            chargeText.enabled = false;                     //disable automatic color/text changes
-                            chargeBar.enabled = false;                      //disable automatic color/text changes
-                            ftlJump.startAllStars();                        //start FTL jump
-                            chargeText.GetComponent<Text>().text = "Jumping...";
-                        }
-                        if (jumpTimer < jumpDuration)
+                            delayAfterJump -= Time.deltaTime;
+                        } else
                         {
-                            jumpTimer += Time.deltaTime;
-                            chargeBar.gameObject.GetComponent<RectTransform>().anchorMax = new Vector2(1 - (jumpTimer / jumpDuration), 1);
-                            //Decrease progress bar during jump
-                        }
-                        else
-                        {
-                            ftlJump.stopAllStars();                         //stop FTL jump
-                            chargeText.GetComponent<Text>().text = "Jump Complete";
                             gameState = GameState.transitionOver;           //State Transition
+                            levelCompletionCanvas.SetActive(true);
+                            eventSystem.SetSelectedGameObject(GameObject.Find("MainMenuButton"));                               //set default button
+                            GameObject.Find("MainMenuButton").GetComponent<Button>().OnSelect(new BaseEventData(EventSystem.current));  //force highlight button
+                            if (levelNum >= settingsList.Count)
+                            {
+                                GameObject.Find("ContinueButton").GetComponent<Button>().interactable = false;      //if on last level, grey out continueButton
+                            }
                         }
                     }
+                }
                 
                 break;
             case (GameState.transitionOver):
+
                 //display GUI
+                break;
+            case (GameState.campaignDeathState):
+                
+                break;
+            case (GameState.survivalDeathState):
+
+                break;
+            case (GameState.paused):
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    gameState = GameState.duringGame;
+                    pauseCanvas.SetActive(false);
+                    eventSystem.SetSelectedGameObject(null);
+                    Time.timeScale = 1;
+                }
                 break;
         }
 	}
@@ -315,5 +364,30 @@ public class gameController : MonoBehaviour {
     public int getGameState()
     {
         return (int)gameState;
+    }
+    public void mainMenuButton()
+    {
+        Time.timeScale = 1;     //in case of returning to main menu from pause screen
+        SceneManager.LoadScene("MainMenu");
+    }
+    public void continueButton()
+    {
+        LevelNumber.setLevel(levelNum + 1);
+        SceneManager.LoadScene("Campaign");
+    }
+    public void restartLevelButton()
+    {
+        SceneManager.LoadScene("Campaign");
+    }
+    public void restartSurvival()
+    {
+        SceneManager.LoadScene("Survival");
+    }
+    public void resumeButton()
+    {
+        gameState = GameState.duringGame;
+        pauseCanvas.SetActive(false);
+        eventSystem.SetSelectedGameObject(null);
+        Time.timeScale = 1;
     }
 }

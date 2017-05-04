@@ -24,6 +24,7 @@ public class MenuController : MonoBehaviour {
     public bool skipIntro = false;
     public bool hideMouse = true;
 	void Start () {
+        skipIntro = LevelNumber.getSkipIntro();
         levelSelectController = levelSelectCanvas.GetComponent<LevelSelectController>();
         mainCanvas.SetActive(false);
         levelSelectCanvas.SetActive(false);
