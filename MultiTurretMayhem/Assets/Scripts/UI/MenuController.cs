@@ -19,12 +19,14 @@ public class MenuController : MonoBehaviour {
     public GameObject mainCanvas;
     public GameObject levelSelectCanvas;
     public GameObject creditsCanvas;
+    private GraphicColorLerp blackPanel;
     private LevelSelectController levelSelectController;
     public EventSystem eventSystem;
     public bool skipIntro = false;
     public bool hideMouse = true;
 	void Start () {
         skipIntro = LevelNumber.getSkipIntro();
+        blackPanel = GameObject.Find("BlackPanel1").GetComponent<GraphicColorLerp>();
         levelSelectController = levelSelectCanvas.GetComponent<LevelSelectController>();
         mainCanvas.SetActive(false);
         levelSelectCanvas.SetActive(false);
@@ -33,9 +35,11 @@ public class MenuController : MonoBehaviour {
         {
             setMenuState((int)MenuState.main);
             GameObject.Find("StarList").GetComponent<FTLJumpWithImage>().stopAllStars();
+            LevelNumber.setSkipIntro(false);
         } else
         {
             setMenuState((int)MenuState.intro);
+
         }
         if (hideMouse)
         {
@@ -93,6 +97,14 @@ public class MenuController : MonoBehaviour {
     }
     public void survivalPress()
     {
+        StartCoroutine(loadSurvival());
+        eventSystem.SetSelectedGameObject(null);
+    }
+    private IEnumerator loadSurvival()
+    {
+        blackPanel.gameObject.GetComponent<Image>().enabled = true;
+        blackPanel.startColorChange();
+        yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene("Survival");
     }
     public void creditsPress()

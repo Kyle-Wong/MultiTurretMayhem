@@ -42,6 +42,7 @@ public class gameController : MonoBehaviour {
     private float timeRemaining;
     private float totalDuration;
     private GameState gameState;
+    public float preGameDelay;
     public float delayBeforeJump;
     public float jumpDuration;
     public float delayAfterJump;
@@ -51,10 +52,12 @@ public class gameController : MonoBehaviour {
     public bool gameIsOver = false;
     public float multiplier = 1;
     private EventSystem eventSystem;
+    private GraphicColorLerp blackPanel;
 	void Awake () {
         maxHealth = health;
         settingsList = getSettings();
-        LevelNumber.setSkipIntro(true);     //main menu intro should no longer be played when returning to it
+        blackPanel = GameObject.Find("BlackPanel").GetComponent<GraphicColorLerp>();
+        
         if (!survival)
             levelNum = LevelNumber.getLevel();
         setLevelSettings(levelNum);
@@ -64,12 +67,25 @@ public class gameController : MonoBehaviour {
         points = 0;
         lowHealthText.enabled = false;
         bombs = currentSettings.startingBombs;
-        gameState = GameState.duringGame;  //debug, will normally start at beforeGame
+        gameState = GameState.beforeGame;
         eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
         if (hideMouse)
             Cursor.visible = false;
     }
-
+    void Start()
+    {
+        if (!LevelNumber.getSkipIntro())
+        {
+            blackPanel.gameObject.GetComponent<Image>().enabled = true;
+            blackPanel.startColorChange();
+        }
+        else
+        {
+            blackPanel.gameObject.SetActive(false);
+            preGameDelay = 0;
+        }
+        LevelNumber.setSkipIntro(true);     //main menu intro should no longer be played when returning to it
+    }
     // Update is called once per frame
     void Update() {
 
@@ -101,6 +117,13 @@ public class gameController : MonoBehaviour {
         switch (gameState)
         {
             case (GameState.beforeGame):
+                if(preGameDelay > 0)
+                {
+                    preGameDelay -= Time.deltaTime;
+                } else
+                {
+                    gameState = GameState.duringGame;
+                }
                 break;
             case (GameState.duringGame):
                 if (timeRemaining > 0)
@@ -372,6 +395,14 @@ public class gameController : MonoBehaviour {
     }
     public void continueButton()
     {
+        StartCoroutine(loadNextLevel());
+        eventSystem.SetSelectedGameObject(null);
+    }
+    public IEnumerator loadNextLevel()
+    {
+        GameObject.Find("BlackPanel1").GetComponent<GraphicColorLerp>().startColorChange();
+        LevelNumber.setSkipIntro(false);
+        yield return new WaitForSeconds(1.5f);
         LevelNumber.setLevel(levelNum + 1);
         SceneManager.LoadScene("Campaign");
     }

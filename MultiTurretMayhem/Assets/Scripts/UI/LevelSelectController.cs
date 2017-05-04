@@ -10,11 +10,13 @@ public class LevelSelectController : MonoBehaviour {
     public GameObject levelNumParent;
     private List<UIScroller> levels;
     private MenuController menuController;
-
+    private GraphicColorLerp blackPanel;
     public int levelIndex;
+    private EventSystem eventSystem;
 	void Start () {
         menuController = GameObject.Find("MainMenuController").GetComponent<MenuController>();
-        
+        blackPanel = GameObject.Find("BlackPanel").GetComponent<GraphicColorLerp>();
+        eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
         levels = getScollers(levelNumParent);
         levelIndex = 0;
 	}
@@ -51,8 +53,15 @@ public class LevelSelectController : MonoBehaviour {
     }
     public void playPress()
     {
-        //need a way to send level number through scenes 
+        StartCoroutine(loadLevel());
+        eventSystem.SetSelectedGameObject(null);
+    }
+    private IEnumerator loadLevel()
+    {
         LevelNumber.setLevel(levelIndex);
+        blackPanel.gameObject.GetComponent<Image>().enabled = true;
+        blackPanel.startColorChange();
+        yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene("Campaign");
     }
     public void backPress()

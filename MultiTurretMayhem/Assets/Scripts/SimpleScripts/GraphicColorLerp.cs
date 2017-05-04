@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class ColorLerp : MonoBehaviour {
+public class GraphicColorLerp : MonoBehaviour
+{
 
     // Use this for initialization
     public bool playOnStartUp = true;
@@ -10,42 +11,44 @@ public class ColorLerp : MonoBehaviour {
     public Color endColor = Color.white;
     public float duration = 0;
     public float initialDelay = 0;
-    private SpriteRenderer spriteRenderer;
+    private Graphic graphicRenderer;
     private IEnumerator colorCoroutine;
-    void Awake () {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+    void Awake()
+    {
+        graphicRenderer = GetComponent<Graphic>();
         colorCoroutine = colorChange();
         if (playOnStartUp)
         {
             startColorChange();
         }
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
     private IEnumerator colorChange()
     {
-        spriteRenderer.color = startColor;
-        while(initialDelay > 0)
+        graphicRenderer.color = startColor;
+        while (initialDelay > 0)
         {
             initialDelay -= Time.deltaTime;
             yield return null;
         }
         float elapsedTime = 0;
-        if(duration == 0)
+        if (duration == 0)
         {
-            spriteRenderer.color = endColor;
+            graphicRenderer.color = endColor;
         }
-        while(elapsedTime < duration)
+        while (elapsedTime < duration)
         {
-            spriteRenderer.color = Color.Lerp(startColor,
+            graphicRenderer.color = Color.Lerp(startColor,
                 endColor, (elapsedTime / duration));
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        spriteRenderer.color = endColor;
+        graphicRenderer.color = endColor;
     }
     public void startColorChange()
     {
