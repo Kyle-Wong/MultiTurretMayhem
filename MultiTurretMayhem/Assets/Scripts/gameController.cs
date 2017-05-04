@@ -130,6 +130,17 @@ public class gameController : MonoBehaviour {
                 {
                     dropBomb();
                 }
+                if (playerIsDead)
+                {
+                    GameObject[] turrets = GameObject.FindGameObjectsWithTag("Turret");
+                    for (int i = 0; i < turrets.Length; i++)
+                    {
+
+                        turrets[i].GetComponent<Turret>().inputDisabled = true;             //disable player input
+                        turrets[i].GetComponent<ColorLerp>().startColorChange();            //fade turrets to transparent
+                        turrets[i].transform.GetChild(0).gameObject.SetActive(false);       //disable targetting lines
+                    }
+                }
                 if (!survival && timeRemaining <= 0)                    //survival game mode never leaves this state
                 {
                     for(int i = 0; i < currentSettings.enabledUI.Length; i++)
