@@ -25,7 +25,7 @@ public class BombOrbit : MonoBehaviour {
             bombs = controller.bombs;
             updateLocations(bombs);
         }
-        if(!gameIsOver && controller.getGameState() == 2)  //2 == game over
+        if(!gameIsOver && controller.gameIsOver)  //run once when game ends
         {
             gameIsOver = true;
             //only run this code once because it's inefficient

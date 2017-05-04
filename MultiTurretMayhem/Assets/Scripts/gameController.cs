@@ -11,10 +11,12 @@ public class gameController : MonoBehaviour {
     {
         beforeGame,
         duringGame,
-        gameOver,
-        transitionOver
+        transition,
+        transitionOver,
+        survivalDeathState,
+        campaignDeathState
     }
-    public int health = 100;
+    public int health = 8;
     private int maxHealth;
     public int bombs = 3;
     public Text pointsText;
@@ -23,9 +25,9 @@ public class gameController : MonoBehaviour {
     public ColorLerp shield;
     public FTLJump ftlJump;
     public Text lowHealthText;
-    public Text shieldPercent;
-    public Text bombText;
     public GameObject tutorialCanvas;
+    public GameObject deathCanvas;
+    public GameObject levelCompletionCanvas;
     public Transform cam;
     public float screenShakeDuration;
     public float screenShakeMagnitude;
@@ -43,7 +45,7 @@ public class gameController : MonoBehaviour {
     private float jumpTimer;
     public bool hideMouse = true;
     private bool playerIsDead = false;
-
+    public bool gameIsOver = false;
     public float multiplier = 1;
 
 	void Awake () {
@@ -90,16 +92,7 @@ public class gameController : MonoBehaviour {
             LevelNumber.setLevel(levelNum - 1);
             SceneManager.LoadScene("Campaign");
         }
-        shieldPercent.text = "Shields: ";
-        int healthPercent = (int)(100 * (health * 1f / maxHealth));
-        shieldPercent.text += ""+(healthPercent >= 10 ? ""+healthPercent+"%" : "0" +healthPercent+"%");
-
-        bombText.text = "Bombs: " + bombs.ToString();
-
-        if((health * 1f / maxHealth) < lowHealthThreshold)
-        {
-            shieldPercent.color = Color.red;
-        }
+        
         switch (gameState)
         {
             case (GameState.beforeGame):
@@ -133,6 +126,8 @@ public class gameController : MonoBehaviour {
                 }
                 if (playerIsDead)
                 {
+                    lowHealthText.enabled = false;
+                    gameIsOver = true;
                     GameObject[] turrets = GameObject.FindGameObjectsWithTag("Turret");
                     for (int i = 0; i < turrets.Length; i++)
                     {
@@ -141,9 +136,20 @@ public class gameController : MonoBehaviour {
                         turrets[i].GetComponent<ColorLerp>().startColorChange();            //fade turrets to transparent
                         turrets[i].transform.GetChild(0).gameObject.SetActive(false);       //disable targetting lines
                     }
+                    deathCanvas.SetActive(true);
+                    if (survival)
+                    {
+                        gameState = GameState.survivalDeathState;   //change state to game over screen
+                    } else
+                    {
+                        gameState = GameState.campaignDeathState;   //change state to campaign game over screen
+                    }
                 }
+                
                 if (!survival && timeRemaining <= 0)                    //survival game mode never leaves this state
                 {
+                    lowHealthText.enabled = false;
+                    gameIsOver = true;
                     for(int i = 0; i < currentSettings.enabledUI.Length; i++)
                     {
                         currentSettings.enabledUI[i].SetActive(false);
@@ -152,7 +158,7 @@ public class gameController : MonoBehaviour {
                     dropFTLBomb();                                      //kill all enemies
                     settingsList[levelNum].SetActive(false);            //turn off enemySpawner
                     jumpTimer = 0;                                      //set jump timer to zero for next state
-                    gameState = GameState.gameOver;                     //State Transition
+                    gameState = GameState.transition;                     //State Transition
                     GameObject[] turrets = GameObject.FindGameObjectsWithTag("Turret");
                     for(int i = 0; i < turrets.Length; i++)
                     {
@@ -163,31 +169,35 @@ public class gameController : MonoBehaviour {
                     
                 }
                 break;
-            case (GameState.gameOver):
-                if(delayBeforeJump > 0)
-                {
-                    delayBeforeJump -= Time.deltaTime;                  //delay before FTL jump
-                } else
-                {
-                    if(jumpTimer == 0)
+            case (GameState.transition):
+
+                    if (delayBeforeJump > 0)
                     {
-                        chargeText.enabled = false;                     //disable automatic color/text changes
-                        chargeBar.enabled = false;                      //disable automatic color/text changes
-                        ftlJump.startAllStars();                        //start FTL jump
-                        chargeText.GetComponent<Text>().text = "Jumping...";
+                        delayBeforeJump -= Time.deltaTime;                  //delay before FTL jump
                     }
-                    if(jumpTimer < jumpDuration)
+                    else
                     {
-                        jumpTimer += Time.deltaTime;
-                        chargeBar.gameObject.GetComponent<RectTransform>().anchorMax = new Vector2(1-(jumpTimer/jumpDuration),1);
-                        //Decrease progress bar during jump
-                    } else
-                    {
-                        ftlJump.stopAllStars();                         //stop FTL jump
-                        chargeText.GetComponent<Text>().text = "Jump Complete";
-                        gameState = GameState.transitionOver;           //State Transition
+                        if (jumpTimer == 0)
+                        {
+                            chargeText.enabled = false;                     //disable automatic color/text changes
+                            chargeBar.enabled = false;                      //disable automatic color/text changes
+                            ftlJump.startAllStars();                        //start FTL jump
+                            chargeText.GetComponent<Text>().text = "Jumping...";
+                        }
+                        if (jumpTimer < jumpDuration)
+                        {
+                            jumpTimer += Time.deltaTime;
+                            chargeBar.gameObject.GetComponent<RectTransform>().anchorMax = new Vector2(1 - (jumpTimer / jumpDuration), 1);
+                            //Decrease progress bar during jump
+                        }
+                        else
+                        {
+                            ftlJump.stopAllStars();                         //stop FTL jump
+                            chargeText.GetComponent<Text>().text = "Jump Complete";
+                            gameState = GameState.transitionOver;           //State Transition
+                        }
                     }
-                }
+                
                 break;
             case (GameState.transitionOver):
                 //display GUI
