@@ -22,9 +22,18 @@ public class MenuController : MonoBehaviour {
     private GraphicColorLerp blackPanel;
     private LevelSelectController levelSelectController;
     public EventSystem eventSystem;
+    public AudioClip menuMusic;
+    private AudioSource musicSource;
     public bool skipIntro = false;
     public bool hideMouse = true;
-	void Start () {
+
+    private void Awake()
+    {
+        musicSource = GetComponent<AudioSource>();
+    }
+
+    void Start () {
+        musicSource.clip = menuMusic;
         skipIntro = LevelNumber.getSkipIntro();
         blackPanel = GameObject.Find("BlackPanel1").GetComponent<GraphicColorLerp>();
         levelSelectController = levelSelectCanvas.GetComponent<LevelSelectController>();
@@ -72,6 +81,7 @@ public class MenuController : MonoBehaviour {
                 introCanvas.GetComponent<GameIntroSequence>().playIntro();
                 break;
             case (MenuState.main):
+                HelperFunctions.playSound(ref musicSource, menuMusic);
                 creditsCanvas.SetActive(false);
                 levelSelectCanvas.SetActive(false);
                 introCanvas.SetActive(false);

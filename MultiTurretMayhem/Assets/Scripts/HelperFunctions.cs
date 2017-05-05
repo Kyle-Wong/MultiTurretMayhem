@@ -74,4 +74,13 @@ public class HelperFunctions{
         source.clip = clip;
         source.Play();
     }
+
+    public static IEnumerator interpolateSound (AudioSource source, float duration)
+    {
+        for (float elapsed = 0; elapsed < duration; elapsed += Time.deltaTime)
+        {
+            source.volume = elapsed / duration;
+            yield return new WaitForEndOfFrame();
+        }
+    }
 }

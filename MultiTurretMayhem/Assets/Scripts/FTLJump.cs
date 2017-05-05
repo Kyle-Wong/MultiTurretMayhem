@@ -8,6 +8,8 @@ public class FTLJump : MonoBehaviour {
     private List<Star> starList;
     public SpriteRenderer boostSprite;
     private ConstantRotation myRotator;
+    public AudioSource ftlSource;
+    public AudioClip ftlSound;
     void Start () {
         boostSprite.enabled = false;
         myRotator = GetComponent<ConstantRotation>();
@@ -52,6 +54,7 @@ public class FTLJump : MonoBehaviour {
     }
     public void startAllStars()
     {
+        HelperFunctions.playSound(ref ftlSource, ftlSound);
         for (int i = 0; i < starList.Count; i++)
         {
             starList[i].startMoving();
@@ -61,6 +64,7 @@ public class FTLJump : MonoBehaviour {
     }
     public void stopAllStars()
     {
+        ftlSource.Stop();
         for (int i = 0; i < starList.Count; i++)
         {
             starList[i].stopMoving();

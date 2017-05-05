@@ -8,6 +8,8 @@ public class FTLJumpWithImage : MonoBehaviour {
     private List<Star> starList;
     public Image boostImage;
     private ConstantRotation myRotator;
+    public AudioSource ftlSource;
+    public AudioClip ftlSound;
     void Awake()
     {
         boostImage.enabled = false;
@@ -54,6 +56,7 @@ public class FTLJumpWithImage : MonoBehaviour {
     }
     public void startAllStars()
     {
+        HelperFunctions.playSound(ref ftlSource, ftlSound);
         for (int i = 0; i < starList.Count; i++)
         {
             starList[i].startMoving();
@@ -63,6 +66,7 @@ public class FTLJumpWithImage : MonoBehaviour {
     }
     public void stopAllStars()
     {
+        ftlSource.Stop();
         for (int i = 0; i < starList.Count; i++)
         {
             starList[i].stopMoving();

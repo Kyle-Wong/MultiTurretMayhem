@@ -15,7 +15,10 @@ public class GameIntroSequence : MonoBehaviour {
     public float FTLDuration;
     public float delayUntilInput;
     public bool allowInput = false;
-	void Start () {
+    public AudioClip introMusic;
+    public AudioSource musicSource;
+
+    void Start () {
         menuController = GameObject.Find("MainMenuController").GetComponent<MenuController>();
         if(playOnStartUp)
             StartCoroutine(intro());
@@ -38,6 +41,8 @@ public class GameIntroSequence : MonoBehaviour {
     private IEnumerator intro()
     {
         FTLJump.startAllStars();
+        HelperFunctions.playSound(ref musicSource, introMusic);
+        StartCoroutine(HelperFunctions.interpolateSound(musicSource, 2));
         yield return new WaitForSeconds(FTLDuration);
         FTLJump.stopAllStars();
         ship.startMovement();
