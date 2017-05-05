@@ -688,6 +688,12 @@ MonoBehaviour:
   hideMouse: 1
   gameIsOver: 0
   multiplier: 1
+  multiplierText: {fileID: 0}
+  shipAudio: {fileID: 977801742}
+  shipHit: {fileID: 0}
+  shipDanger: {fileID: 0}
+  shipDeath: {fileID: 0}
+  bombSound: {fileID: 0}
 --- !u!4 &250599231
 Transform:
   m_ObjectHideFlags: 0
@@ -2789,6 +2795,11 @@ Transform:
   m_Father: {fileID: 250599231}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &977801742 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82071690654425174, guid: 5729e61cb70a2a041bacefd95a01724a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1959314424}
 --- !u!4 &985888220
 Transform:
   m_ObjectHideFlags: 0
