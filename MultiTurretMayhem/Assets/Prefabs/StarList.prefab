@@ -6848,6 +6848,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boostSprite: {fileID: 0}
+  ftlSource: {fileID: 0}
+  ftlSound: {fileID: 8300000, guid: 1c41e9752f9c7714a9093dfcd8347de7, type: 3}
 --- !u!114 &114184073157928680
 MonoBehaviour:
   m_ObjectHideFlags: 1

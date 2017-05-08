@@ -178,7 +178,7 @@ MonoBehaviour:
   damage: 100
   laser: {fileID: 0}
   angleRange: {x: 0, y: 0}
-  fireSound: {fileID: 0}
+  fireSound: {fileID: 8300000, guid: 1c41e9752f9c7714a9093dfcd8347de7, type: 3}
   inputDisabled: 0
 --- !u!114 &114808044979241122
 MonoBehaviour:
