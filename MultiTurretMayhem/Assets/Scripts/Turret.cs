@@ -32,6 +32,8 @@ public class Turret : MonoBehaviour
     public GameObject laser;                    //laser gameobject
     public Vector2 angleRange;
     public AudioClip fireSound;
+    public AudioClip lowerMultiplierSound;
+    public AudioClip higherMultiplierSound;
 
     private float charge;
     private SpriteRenderer laserSprite;
@@ -39,12 +41,14 @@ public class Turret : MonoBehaviour
     public bool inputDisabled = false;          //player input is/is not disabled
     private gameController ctrl;
     private AudioSource _audioSource;
+    private AudioSource _multiplierSource;
     void Awake()
     {
         laserSprite = laser.GetComponent<SpriteRenderer>();
         laserColor = laser.GetComponent<ColorLerp>();
         ctrl = GameObject.Find("GameController").GetComponent<gameController>();
-        _audioSource = GetComponent<AudioSource>();
+        _audioSource = GetComponents<AudioSource>()[0];
+        _multiplierSource = GetComponents<AudioSource>()[1];
     }
 
     // Use this for initialization
@@ -142,6 +146,11 @@ public class Turret : MonoBehaviour
                     ++enemiesHit;
                 }
             }
+
+        if (enemiesHit == 0)
+            HelperFunctions.playSound(ref _multiplierSource, lowerMultiplierSound);
+        else if (enemiesHit > 1)
+            HelperFunctions.playSound(ref _multiplierSource, higherMultiplierSound);
 
         charge = 0;
         changeMultiplier(ref ctrl.multiplier, enemiesHit);
