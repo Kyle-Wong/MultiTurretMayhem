@@ -17,6 +17,11 @@ public class gameController : MonoBehaviour {
         campaignDeathState,
         paused
     }
+    public struct HighScore
+    {
+        float score;
+        string name;
+    }
     public int health = 8;
     private int maxHealth;
     public int bombs = 3;
@@ -59,6 +64,7 @@ public class gameController : MonoBehaviour {
     public AudioClip shipDanger;
     public AudioClip shipDeath;
     public AudioClip bombSound;
+    private List<int> highScores;
 	void Awake () {
         maxHealth = health;
         settingsList = getSettings();
@@ -92,6 +98,7 @@ public class gameController : MonoBehaviour {
         }
         LevelNumber.setSkipIntro(true);     //main menu intro should no longer be played when returning to it
         shipAudio.clip = shipHit;
+        highScores = getHighScores();
     }
     // Update is called once per frame
     void Update() {
@@ -436,5 +443,12 @@ public class gameController : MonoBehaviour {
         pauseCanvas.SetActive(false);
         eventSystem.SetSelectedGameObject(null);
         Time.timeScale = 1;
+    }
+    
+    public List<int> getHighScores()
+    {
+        List<int> result = new List<int>(10);
+        for (string s = "highScore1"; s != "highScore11"; s += "highScore1") ;
+        return result;
     }
 }
