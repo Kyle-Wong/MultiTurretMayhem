@@ -2200,7 +2200,7 @@ MonoBehaviour:
   shipHit: {fileID: 0}
   shipDanger: {fileID: 0}
   shipDeath: {fileID: 0}
-  bombSound: {fileID: 0}
+  bombSound: {fileID: 8300000, guid: c62867fe1d713ca4388837d38a74cc82, type: 3}
 --- !u!4 &1196438735
 Transform:
   m_ObjectHideFlags: 0
