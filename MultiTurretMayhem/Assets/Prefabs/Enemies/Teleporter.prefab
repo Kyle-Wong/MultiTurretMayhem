@@ -22,8 +22,9 @@ GameObject:
   - component: {fileID: 212466387534367638}
   - component: {fileID: 114553944160781634}
   - component: {fileID: 114401220929075408}
+  - component: {fileID: 114586107501503574}
   m_Layer: 8
-  m_Name: AsteroidSprite
+  m_Name: TeleporterSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -210,6 +211,8 @@ MonoBehaviour:
   pointsText: {fileID: 1730592498059714, guid: bf1e6d18bfabc7e4d95532ba801b6b72, type: 2}
   deathSound: {fileID: 0}
   minDistance: 5
+  speedMultiplierPostTeleport: 0.5
+  postTeleportColor: {r: 0.45172417, g: 0.2967828, b: 0, a: 1}
   teleportSound: {fileID: 0}
 --- !u!114 &114401220929075408
 MonoBehaviour:
@@ -242,6 +245,24 @@ MonoBehaviour:
   rotSpeed: 60
   deltaRotSpeed: 20
   randomDirection: 1
+--- !u!114 &114586107501503574
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1069993401759708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61976acd6d986a4458db3a64dfe49a2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOnStartUp: 1
+  spriteRenderer: {fileID: 0}
+  startColor: {r: 1, g: 1, b: 0, a: 1}
+  endColor: {r: 1, g: 0.657, b: 0, a: 1}
+  transitionTime: 0.3
+  timer: 0
+  stopped: 0
 --- !u!114 &114635639392723596
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -253,7 +274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6463dce3388a1614c8d0a530b81dc274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dirVelocity: 1
+  dirVelocity: 1.5
   tanVelocity: 0
   randomSize: 1
   size: 1
@@ -292,7 +313,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: dc982fb7c48cc5943b2fa68093317f82, type: 3}
-  m_Color: {r: 1, g: 1, b: 0, a: 1}
+  m_Color: {r: 0.1544118, g: 0.9626946, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

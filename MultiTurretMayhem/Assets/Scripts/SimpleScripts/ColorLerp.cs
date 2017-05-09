@@ -13,13 +13,16 @@ public class ColorLerp : MonoBehaviour {
     private SpriteRenderer spriteRenderer;
     private IEnumerator colorCoroutine;
     void Awake () {
+
         spriteRenderer = GetComponent<SpriteRenderer>();
         colorCoroutine = colorChange();
         if (playOnStartUp)
         {
             startColorChange();
         }
-	}
+        print(spriteRenderer != null);
+   	}
+
 	
 	// Update is called once per frame
 	void Update () {
