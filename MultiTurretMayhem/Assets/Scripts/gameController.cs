@@ -445,10 +445,10 @@ public class gameController : MonoBehaviour {
         Time.timeScale = 1;
     }
     
+
     public List<int> getHighScores()
     {
-        List<int> result = new List<int>(10);
-        for (string s = "highScore1"; s != "highScore11"; s += "highScore1") ;
-        return result;
+        return new List<int>();
     }
+
 }
