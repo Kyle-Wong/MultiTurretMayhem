@@ -12,12 +12,12 @@ abstract public class Enemy : MonoBehaviour
     protected bool isDead;
     public bool invincible = false;
     protected Camera mainCamera;
-    private gameController controller;
+    protected gameController controller;
     protected GameObject spriteObject;
     public GameObject pointsText;
-    private GameObject canvas;
-    private Camera cam;
-    private gameController ctrl;
+    protected GameObject canvas;
+    protected Camera cam;
+    protected gameController ctrl;
     public AudioClip deathSound;
     protected AudioSource _audioSource;
 
@@ -70,7 +70,7 @@ abstract public class Enemy : MonoBehaviour
         return screenCoords.x <= 1.1 && screenCoords.x >= -0.1 && screenCoords.y <= 1.1 && screenCoords.y >= -0.1;  
         //10% buffer for player convenience
     }
-    public void die(Color deathColor, bool byBomb)
+    public virtual void die(Color deathColor, bool byBomb)
     {
         if (!isDead)
         {
