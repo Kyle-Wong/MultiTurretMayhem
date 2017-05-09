@@ -38,7 +38,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4702817816375782}
   - component: {fileID: 58362883833176826}
-  - component: {fileID: 114454925491000290}
   - component: {fileID: 50437957786242184}
   - component: {fileID: 114081150899882422}
   - component: {fileID: 82198875718435084}
@@ -209,23 +208,6 @@ MonoBehaviour:
   invincible: 0
   pointsText: {fileID: 1730592498059714, guid: bf1e6d18bfabc7e4d95532ba801b6b72, type: 2}
   deathSound: {fileID: 0}
---- !u!114 &114454925491000290
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1415476018937786}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6463dce3388a1614c8d0a530b81dc274, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dirVelocity: 0
-  tanVelocity: 0
-  randomSize: 0
-  size: 0.4
-  sizeDeviation: 0
-  stopped: 0
 --- !u!114 &114898346933499040
 MonoBehaviour:
   m_ObjectHideFlags: 1

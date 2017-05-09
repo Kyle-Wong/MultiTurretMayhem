@@ -21,7 +21,7 @@ public class Simple_Movement : MonoBehaviour {
     void Start () {
 
         //Velocity will be set to move towards the center
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        playerTransform = GameObject.FindGameObjectWithTag("Turret").transform;
         dir = new Vector3(0,0,0) - transform.position;
 
         GetComponent<Rigidbody2D>().velocity = dir.normalized * dirVelocity + orthoDir() * tanVelocity;
