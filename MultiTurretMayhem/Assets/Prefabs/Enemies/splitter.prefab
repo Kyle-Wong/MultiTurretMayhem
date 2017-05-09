@@ -218,8 +218,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6463dce3388a1614c8d0a530b81dc274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dirVelocity: 0
-  tanVelocity: 2
+  dirVelocity: 1.2
+  tanVelocity: 0
   randomSize: 0
   size: 1.2
   sizeDeviation: 0
