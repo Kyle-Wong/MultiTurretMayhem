@@ -2,7 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public struct HighScore
+{
+    public string name;
+    public int score;
+}
+
 public class HelperFunctions{
+
 
     public static int randomIndex(List<float> probabilities) // Pick a random index in a list of floats weighted by the contents in the list
     {
@@ -28,7 +35,7 @@ public class HelperFunctions{
         return -1;
     }
 
-    public static float sumOfList(List<float> list) // Return the sum of a list of floats
+    public static float sumOfList(List<float> list)  // Return the sum of a list of floats
     {
         float result = 0.0f;
         foreach (float f in list)
@@ -82,5 +89,29 @@ public class HelperFunctions{
             source.volume = elapsed / duration;
             yield return new WaitForEndOfFrame();
         }
+    }
+
+    public static int getMinScore (List<HighScore> list)
+    {
+        if (list.Count < 1)
+            return -1;
+
+        int result = 0;
+        int minScore = list[0].score;
+        for (int i = 0; i < list.Count; ++i)
+        {
+            if (list[i].score < minScore)
+            {
+                result = i;
+                minScore = list[i].score;
+            }
+        }
+        return result;
+    }
+
+    public static void fillList<T> (ref List<T> list, T value)
+    {
+        for (int i = 0; i < list.Count; ++i)
+            list[i] = value;
     }
 }

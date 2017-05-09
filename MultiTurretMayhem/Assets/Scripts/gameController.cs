@@ -17,11 +17,11 @@ public class gameController : MonoBehaviour {
         campaignDeathState,
         paused
     }
-    public struct HighScore
-    {
-        float score;
-        string name;
-    }
+    //public struct HighScore
+    //{
+    //    public float score;
+    //    public string name;
+    //}
     public int health = 8;
     private int maxHealth;
     public int bombs = 3;
@@ -64,7 +64,7 @@ public class gameController : MonoBehaviour {
     public AudioClip shipDanger;
     public AudioClip shipDeath;
     public AudioClip bombSound;
-    private List<int> highScores;
+    private List<HighScore> highScores;
 	void Awake () {
         maxHealth = health;
         settingsList = getSettings();
@@ -279,6 +279,7 @@ public class gameController : MonoBehaviour {
                 
                 break;
             case (GameState.survivalDeathState):
+                setHighScore(points);
 
                 break;
             case (GameState.paused):
@@ -445,10 +446,27 @@ public class gameController : MonoBehaviour {
         Time.timeScale = 1;
     }
     
-    public List<int> getHighScores()
+    public List<HighScore> getHighScores()
     {
-        List<int> result = new List<int>(10);
-        for (string s = "highScore1"; s != "highScore11"; s += "highScore1") ;
+        List<HighScore> result = new List<HighScore>(10);
+        HelperFunctions.fillList(ref result, new HighScore());
+
+        for (int i = 0; i < result.Count; ++i)
+        {
+            string s = "highScore" + i.ToString();
+            HighScore temp = result[i];
+            temp.name = s;
+            temp.score = PlayerPrefs.GetInt(s);
+        }
         return result;
+    }
+
+    public void setHighScore(int score)
+    {
+        int index = HelperFunctions.getMinScore(highScores);
+        if (score < highScores[index].score)
+            return;
+        PlayerPrefs.SetInt(highScores[index].name, score);
+        highScores = getHighScores();
     }
 }
