@@ -9,7 +9,9 @@ public class Splitter_c : Enemy
     private bool launching;
     private bool goingIn;
     private int frameInvincibility = 5; //so small dudes don't die from the original shot
-
+    public float maxDirVelocity;
+    public float decelerationFactor;
+    public float acceleration;
     public AudioClip splitSound;
     public int ID;
 
@@ -26,27 +28,33 @@ public class Splitter_c : Enemy
     // Update is called once per frame
     void Update()
     {
-        baseUpdate();
-        if (frameInvincibility > 0) { frameInvincibility--; }
-        if (launching)
+        if (!isDead)
         {
-            Vector2 curVelocity = GetComponent<Rigidbody2D>().velocity;
-            curVelocity = GetComponent<Rigidbody2D>().velocity = curVelocity * .9f; //Deceleration
-            if (Mathf.Abs(curVelocity.x) <= .08f || Mathf.Abs(curVelocity.y) <= .08f) //Max velocity going away from turrets
+            baseUpdate();
+            if (frameInvincibility > 0) { frameInvincibility--; }
+            if (launching)
             {
-                launching = false;
-                GetComponent<Rigidbody2D>().velocity = (playerTransform.position - transform.position).normalized * .08f; //Initial speed
-                goingIn = true;
+                Vector2 curVelocity = GetComponent<Rigidbody2D>().velocity;
+                curVelocity = GetComponent<Rigidbody2D>().velocity = curVelocity * decelerationFactor * (1-Time.deltaTime); //Deceleration
+                if (Mathf.Abs(curVelocity.x) <= .08f || Mathf.Abs(curVelocity.y) <= .08f) //Max velocity going away from turrets
+                {
+                    launching = false;
+                    GetComponent<Rigidbody2D>().velocity = (playerTransform.position - transform.position).normalized * .08f; //Initial speed
+                    goingIn = true;
+                }
             }
-        }
-        if (goingIn)
+            if (goingIn)
+            {
+                Vector2 curVelocity = GetComponent<Rigidbody2D>().velocity;
+                curVelocity = GetComponent<Rigidbody2D>().velocity = curVelocity + (Vector2)(playerTransform.position - transform.position).normalized * acceleration * Time.deltaTime; //Acceleration
+                if (Mathf.Abs(curVelocity.x) >= maxDirVelocity || Mathf.Abs(curVelocity.y) >= maxDirVelocity) //Max velocity going back into the turrets
+                {
+                    goingIn = false;
+                }
+            }
+        } else
         {
-            Vector2 curVelocity = GetComponent<Rigidbody2D>().velocity;
-            curVelocity = GetComponent<Rigidbody2D>().velocity = curVelocity * 1.1f; //Acceleration
-            if (Mathf.Abs(curVelocity.x) >= 1f || Mathf.Abs(curVelocity.y) >= 1f) //Max velocity going back into the turrets
-            {
-                goingIn = false;
-            }
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
     }
 

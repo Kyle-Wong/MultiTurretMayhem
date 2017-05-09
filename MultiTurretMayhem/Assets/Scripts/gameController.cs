@@ -169,8 +169,11 @@ public class gameController : MonoBehaviour {
                 {
                     pointsText.text = pointsAsString(points);                       //display points
                 }
-                multiplierText.text = multiplier.ToString("n1") + " x";
-                multiplierText.color = HelperFunctions.colorInterpolation(Color.red, Color.white, (multiplier - 1) / 9);
+                if (multiplierText != null)
+                {
+                    multiplierText.text = multiplier.ToString("n1") + " x";
+                    multiplierText.color = HelperFunctions.colorInterpolation(Color.red, Color.white, (multiplier - 1) / 9);
+                }
                 if(Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
                 {
                     dropBomb();

@@ -151,12 +151,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbb02924798ace349a5098d78b755d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelDuration: 10
+  levelDuration: 80
   turretsAvailable: 2
-  leftTurretRestr: 0
-  rightTurretRestr: 0
+  leftTurretRestr: 1
+  rightTurretRestr: 2
   startingBombs: 3
-  enabledUI: []
+  enabledUI:
+  - {fileID: 702710027}
 --- !u!1 &26199129
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,17 +202,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objects:
-  - {fileID: 1793194082606136, guid: ec86bbdcb50db4d4bb0e9dee47978e4f, type: 2}
+  - {fileID: 1100908909280672, guid: 73e1eeb34cdd1ba46b8e57e3c2d4969f, type: 2}
+  - {fileID: 1556577431847448, guid: 464fa62b4b4f0e34193e2cbf83ea2a4e, type: 2}
   leftChances:
   - 1
+  - 0.1
   rightChances:
   - 1
-  leftRate: 60
-  deltaLeftRate: 60
-  deltaLeftAngle: 0
-  rightRate: 20
-  deltaRightRate: 120
-  deltaRightAngle: 0
+  - 0.1
+  leftRate: 30
+  deltaLeftRate: 0
+  deltaLeftAngle: 120
+  rightRate: 30
+  deltaRightRate: 0
+  deltaRightAngle: 45
   distance: 10
 --- !u!1 &100891029
 GameObject:
@@ -1188,7 +1192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbb02924798ace349a5098d78b755d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelDuration: 10
+  levelDuration: 80
   turretsAvailable: 2
   leftTurretRestr: 0
   rightTurretRestr: 0
@@ -1275,7 +1279,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 553233500}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: b70d3a51ee92d9f49ba74fce2441cbcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_HorizontalAxis: Horizontal
@@ -2415,12 +2419,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbb02924798ace349a5098d78b755d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelDuration: 60
+  levelDuration: 80
   turretsAvailable: 2
-  leftTurretRestr: 0
-  rightTurretRestr: 0
+  leftTurretRestr: 1
+  rightTurretRestr: 2
   startingBombs: 3
-  enabledUI: []
+  enabledUI:
+  - {fileID: 702710027}
 --- !u!1 &845973508
 GameObject:
   m_ObjectHideFlags: 0
@@ -2755,7 +2760,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbb02924798ace349a5098d78b755d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelDuration: 35
+  levelDuration: 50
   turretsAvailable: 1
   leftTurretRestr: 0
   rightTurretRestr: 0
@@ -3135,17 +3140,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objects:
-  - {fileID: 1793194082606136, guid: ec86bbdcb50db4d4bb0e9dee47978e4f, type: 2}
+  - {fileID: 1637503903218606, guid: 2d9f066fcf9c61e4487eee5fecb1a681, type: 2}
+  - {fileID: 1750669997245230, guid: 0d5329156323018468a675b284456796, type: 2}
   leftChances:
   - 1
+  - 0.2
   rightChances:
   - 1
-  leftRate: 60
-  deltaLeftRate: 60
-  deltaLeftAngle: 0
-  rightRate: 20
-  deltaRightRate: 120
-  deltaRightAngle: 0
+  - 0.2
+  leftRate: 40
+  deltaLeftRate: 0
+  deltaLeftAngle: 180
+  rightRate: 40
+  deltaRightRate: 0
+  deltaRightAngle: 180
   distance: 10
 --- !u!1 &1107161893
 GameObject:
@@ -3274,17 +3282,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objects:
-  - {fileID: 1793194082606136, guid: ec86bbdcb50db4d4bb0e9dee47978e4f, type: 2}
+  - {fileID: 1100908909280672, guid: 73e1eeb34cdd1ba46b8e57e3c2d4969f, type: 2}
+  - {fileID: 1289427453672480, guid: f66dad86b018eaa41ae121a09a28c39b, type: 2}
+  - {fileID: 1556577431847448, guid: 464fa62b4b4f0e34193e2cbf83ea2a4e, type: 2}
   leftChances:
   - 1
+  - 1
+  - 0.2
   rightChances:
   - 1
-  leftRate: 60
-  deltaLeftRate: 60
-  deltaLeftAngle: 0
-  rightRate: 20
-  deltaRightRate: 120
-  deltaRightAngle: 0
+  - 1
+  - 0.2
+  leftRate: 35
+  deltaLeftRate: 0
+  deltaLeftAngle: 180
+  rightRate: 35
+  deltaRightRate: 0
+  deltaRightAngle: 180
   distance: 10
 --- !u!1001 &1173969902
 Prefab:
@@ -3378,6 +3392,91 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1207480664 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1352613444478026, guid: 01b2486d00747d346bb0cded0501ce1a,
+    type: 2}
+  m_PrefabInternal: {fileID: 2001987460}
+--- !u!82 &1207480667
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1207480664}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!1 &1209036405
 GameObject:
   m_ObjectHideFlags: 0
@@ -3759,16 +3858,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objects:
   - {fileID: 1100908909280672, guid: 73e1eeb34cdd1ba46b8e57e3c2d4969f, type: 2}
+  - {fileID: 1556577431847448, guid: 464fa62b4b4f0e34193e2cbf83ea2a4e, type: 2}
   leftChances:
   - 1
+  - 0
   rightChances:
+  - 0
   - 1
-  leftRate: 60
-  deltaLeftRate: 60
-  deltaLeftAngle: 0
-  rightRate: 20
-  deltaRightRate: 120
-  deltaRightAngle: 0
+  leftRate: 30
+  deltaLeftRate: 0
+  deltaLeftAngle: 90
+  rightRate: 5
+  deltaRightRate: 0
+  deltaRightAngle: 60
   distance: 10
 --- !u!1 &1357829549
 GameObject:
@@ -3869,7 +3971,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbb02924798ace349a5098d78b755d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelDuration: 10
+  levelDuration: 80
   turretsAvailable: 2
   leftTurretRestr: 0
   rightTurretRestr: 0
@@ -4006,6 +4108,95 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1436500286
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1436500287}
+  - component: {fileID: 1436500290}
+  - component: {fileID: 1436500289}
+  - component: {fileID: 1436500288}
+  m_Layer: 5
+  m_Name: DividerTutorial
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1436500287
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1436500286}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1781908266}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.3, y: 0.1}
+  m_AnchorMax: {x: 0.7, y: 0.25}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1436500288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1436500286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
+--- !u!114 &1436500289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1436500286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 389f3883c6cac1246be7a0ae98628768, type: 3}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Turrets cannot cross the sub-space barrier
+--- !u!222 &1436500290
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1436500286}
 --- !u!1 &1506400700
 GameObject:
   m_ObjectHideFlags: 0
@@ -4609,13 +4800,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbb02924798ace349a5098d78b755d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelDuration: 60
+  levelDuration: 80
   turretsAvailable: 2
   leftTurretRestr: 1
   rightTurretRestr: 2
   startingBombs: 3
   enabledUI:
   - {fileID: 702710027}
+  - {fileID: 1436500286}
 --- !u!1 &1614654627
 GameObject:
   m_ObjectHideFlags: 0
@@ -5190,7 +5382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbb02924798ace349a5098d78b755d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelDuration: 10
+  levelDuration: 80
   turretsAvailable: 2
   leftTurretRestr: 0
   rightTurretRestr: 0
@@ -5763,6 +5955,7 @@ RectTransform:
   m_Children:
   - {fileID: 1506568967}
   - {fileID: 702857277}
+  - {fileID: 1436500287}
   m_Father: {fileID: 553456674}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6539,6 +6732,11 @@ Prefab:
       propertyPath: boostSprite
       value: 
       objectReference: {fileID: 1039646306}
+    - target: {fileID: 114182925921247722, guid: 01b2486d00747d346bb0cded0501ce1a,
+        type: 2}
+      propertyPath: ftlSource
+      value: 
+      objectReference: {fileID: 1207480667}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01b2486d00747d346bb0cded0501ce1a, type: 2}
   m_IsPrefabParent: 0
@@ -6892,14 +7090,14 @@ MonoBehaviour:
   - {fileID: 1853541506744958, guid: 3d9b29791a347a845bf81d57146bd97f, type: 2}
   leftChances:
   - 1
-  - 0.3
+  - 0.2
   rightChances:
-  - 1
+  - 0
   - 0
   leftRate: 45
-  deltaLeftRate: 30
+  deltaLeftRate: 0
   deltaLeftAngle: 120
-  rightRate: 5
+  rightRate: 0
   deltaRightRate: 0
   deltaRightAngle: 45
   distance: 10
@@ -7020,7 +7218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbb02924798ace349a5098d78b755d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelDuration: 35
+  levelDuration: 50
   turretsAvailable: 0
   leftTurretRestr: 0
   rightTurretRestr: 0

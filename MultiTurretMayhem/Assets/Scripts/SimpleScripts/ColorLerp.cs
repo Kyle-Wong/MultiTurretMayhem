@@ -20,7 +20,6 @@ public class ColorLerp : MonoBehaviour {
         {
             startColorChange();
         }
-        print(spriteRenderer != null);
    	}
 
 	
