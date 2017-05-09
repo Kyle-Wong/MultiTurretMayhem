@@ -463,10 +463,24 @@ public class gameController : MonoBehaviour {
 
     public void setHighScore(int score)
     {
-        int index = HelperFunctions.getMinScore(highScores);
-        if (score < highScores[index].score)
+        if (score < highScores[highScores.Count-1].score)
             return;
-        PlayerPrefs.SetInt(highScores[index].name, score);
-        highScores = getHighScores();
+
+        HighScore temp = highScores[highScores.Count - 1];
+        temp.score = score;
+        highScores[highScores.Count - 1] = temp;
+        sortHighScores(ref highScores);
+
+        for (int i = 0; i < highScores.Count; ++i)
+        {
+            string s = "highScore" + i.ToString();
+            PlayerPrefs.SetInt(s, highScores[i].score);
+        }
+        
+    }
+
+    public void sortHighScores(ref List<HighScore> hs)
+    {
+        hs.Sort(delegate (HighScore a, HighScore b) { return a.score - b.score; });
     }
 }
