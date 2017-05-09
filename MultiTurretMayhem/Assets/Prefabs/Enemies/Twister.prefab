@@ -225,7 +225,7 @@ MonoBehaviour:
   invincible: 0
   pointsText: {fileID: 1730592498059714, guid: bf1e6d18bfabc7e4d95532ba801b6b72, type: 2}
   deathSound: {fileID: 0}
-  tanSpeed: 100
+  tanSpeed: 5
 --- !u!114 &114353520772315222
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -252,7 +252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6463dce3388a1614c8d0a530b81dc274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dirVelocity: 0.5
+  dirVelocity: 0.9
   tanVelocity: 0
   randomSize: 1
   size: 1
@@ -291,7 +291,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: dc982fb7c48cc5943b2fa68093317f82, type: 3}
-  m_Color: {r: 0, g: 0, b: 1, a: 1}
+  m_Color: {r: 0.9855106, g: 0.014705896, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
