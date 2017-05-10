@@ -17,11 +17,6 @@ public class gameController : MonoBehaviour {
         campaignDeathState,
         paused
     }
-    //public struct HighScore
-    //{
-    //    public float score;
-    //    public string name;
-    //}
     public int health = 8;
     private int maxHealth;
     public int bombs = 3;

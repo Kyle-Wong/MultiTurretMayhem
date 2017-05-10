@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 abstract public class Enemy : MonoBehaviour
 {
@@ -74,7 +75,7 @@ abstract public class Enemy : MonoBehaviour
     {
         if (!isDead)
         {
-            if (!byBomb)
+            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Survival") && !byBomb)
             {
                 controller.addPoints((int)(points * ctrl.multiplier));
                 GameObject p = Instantiate(pointsText, canvas.transform);
