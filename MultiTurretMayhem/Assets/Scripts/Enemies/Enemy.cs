@@ -75,7 +75,7 @@ abstract public class Enemy : MonoBehaviour
     {
         if (!isDead)
         {
-            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Survival") && !byBomb)
+            if (!controller.survival && !byBomb)
             {
                 controller.addPoints((int)(points * ctrl.multiplier));
                 GameObject p = Instantiate(pointsText, canvas.transform);
