@@ -144,7 +144,7 @@ public class Turret : MonoBehaviour
                 if(enemy.isOnScreen() && !enemy.invincible)
                 {
                     enemy.takeDamage(100,laserColor.startColor);
-                    ParticleSystem.MainModule enemyParticles = enemy.GetComponent<ParticleSystem>().main;
+                    ParticleSystem.MainModule enemyParticles = enemy.GetComponentInChildren<ParticleSystem>().main;
                     enemyParticles.startColor = particleColor;
                     ++enemiesHit;
                 }

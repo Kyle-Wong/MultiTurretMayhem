@@ -29,7 +29,7 @@ abstract public class Enemy : MonoBehaviour
         cam = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
         ctrl = GameObject.Find("GameController").GetComponent<gameController>();
         _audioSource = GetComponent<AudioSource>();
-        _particleSystem = GetComponent<ParticleSystem>();
+        _particleSystem = GetComponentInChildren<ParticleSystem>();
     }
 
     public void baseStart()
