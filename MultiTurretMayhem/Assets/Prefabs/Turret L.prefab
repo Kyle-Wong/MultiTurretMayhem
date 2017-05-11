@@ -267,6 +267,7 @@ MonoBehaviour:
   minRotSpeed: 60
   maxRotSpeed: 120
   accelerationDuration: 0.2
+  particleColor: {r: 0, g: 1, b: 1, a: 1}
   startDirection: 180
   moveLeft: a
   moveRight: d

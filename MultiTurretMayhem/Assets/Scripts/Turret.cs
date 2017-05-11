@@ -22,6 +22,7 @@ public class Turret : MonoBehaviour
     public float maxRotSpeed;                   //maximum speed reached after accelerationDuration seconds
     public float accelerationDuration;          //time to reach max speed;
     private float accelTimer;
+    public Color particleColor;
 
     public float startDirection;                //starting direction
     public string moveLeft;                     //String key input
@@ -143,6 +144,8 @@ public class Turret : MonoBehaviour
                 if(enemy.isOnScreen() && !enemy.invincible)
                 {
                     enemy.takeDamage(100,laserColor.startColor);
+                    ParticleSystem.MainModule enemyParticles = enemy.GetComponent<ParticleSystem>().main;
+                    enemyParticles.startColor = particleColor;
                     ++enemiesHit;
                 }
             }

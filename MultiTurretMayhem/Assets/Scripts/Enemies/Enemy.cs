@@ -21,6 +21,7 @@ abstract public class Enemy : MonoBehaviour
     protected gameController ctrl;
     public AudioClip deathSound;
     protected AudioSource _audioSource;
+    private ParticleSystem _particleSystem;
 
     private void Awake()
     {
@@ -28,6 +29,7 @@ abstract public class Enemy : MonoBehaviour
         cam = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
         ctrl = GameObject.Find("GameController").GetComponent<gameController>();
         _audioSource = GetComponent<AudioSource>();
+        _particleSystem = GetComponent<ParticleSystem>();
     }
 
     public void baseStart()
@@ -84,6 +86,7 @@ abstract public class Enemy : MonoBehaviour
             }
 
             HelperFunctions.playSound(ref _audioSource, deathSound);
+            _particleSystem.Play();
 
             isDead = true;
             invincible = true;
@@ -104,7 +107,7 @@ abstract public class Enemy : MonoBehaviour
             colorLerp.startColor = deathColor;
             colorLerp.endColor = new Color(deathColor.r, deathColor.g, deathColor.b, 0);
             colorLerp.startColorChange();
-            Destroy(gameObject, colorLerp.initialDelay+colorLerp.duration);
+            Destroy(gameObject, 1);
         }
 
     }
