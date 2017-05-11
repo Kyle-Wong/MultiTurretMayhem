@@ -15,7 +15,8 @@ public class gameController : MonoBehaviour {
         transitionOver,
         survivalDeathState,
         campaignDeathState,
-        paused
+        paused,
+        highScore
     }
     public int health = 8;
     private int maxHealth;
@@ -30,6 +31,7 @@ public class gameController : MonoBehaviour {
     public GameObject deathCanvas;
     public GameObject levelCompletionCanvas;
     public GameObject pauseCanvas;
+    public GameObject highScoreCanvas;
     public Transform cam;
     public float screenShakeDuration;
     public float screenShakeMagnitude;
@@ -258,8 +260,8 @@ public class gameController : MonoBehaviour {
                         {
                             gameState = GameState.transitionOver;           //State Transition
                             levelCompletionCanvas.SetActive(true);
-                            eventSystem.SetSelectedGameObject(GameObject.Find("MainMenuButton"));                               //set default button
-                            GameObject.Find("MainMenuButton").GetComponent<Button>().OnSelect(new BaseEventData(EventSystem.current));  //force highlight button
+                            eventSystem.SetSelectedGameObject(GameObject.Find("ContinueButton"));                               //set default button
+                            GameObject.Find("ContinueButton").GetComponent<Button>().OnSelect(new BaseEventData(EventSystem.current));  //force highlight button
                             if (levelNum >= settingsList.Count)
                             {
                                 GameObject.Find("ContinueButton").GetComponent<Button>().interactable = false;      //if on last level, grey out continueButton
@@ -363,7 +365,7 @@ public class gameController : MonoBehaviour {
         {
             HelperFunctions.playSound(ref shipAudio, shipHit);
         }
-        else if(health <= 0)
+        if(health <= 0)
         {
             playerIsDead = true;
             lowHealthText.enabled = false;
@@ -420,6 +422,22 @@ public class gameController : MonoBehaviour {
         StartCoroutine(loadNextLevel());
         eventSystem.SetSelectedGameObject(null);
     }
+    public void backButton()
+    {
+        gameState = GameState.survivalDeathState;
+        deathCanvas.SetActive(true);
+        highScoreCanvas.SetActive(false);
+        eventSystem.SetSelectedGameObject(GameObject.Find("RestartButton"));                               //set default button
+        GameObject.Find("RestartButton").GetComponent<Button>().OnSelect(new BaseEventData(EventSystem.current));  //force highlight button
+    }
+    public void highScoreButton()
+    {
+        gameState = GameState.highScore;
+        highScoreCanvas.SetActive(true);
+        deathCanvas.SetActive(false);
+        eventSystem.SetSelectedGameObject(GameObject.Find("BackButton"));                               //set default button
+        GameObject.Find("BackButton").GetComponent<Button>().OnSelect(new BaseEventData(EventSystem.current));  //force highlight button
+    }
     public IEnumerator loadNextLevel()
     {
         GameObject.Find("BlackPanel1").GetComponent<GraphicColorLerp>().startColorChange();
@@ -447,8 +465,9 @@ public class gameController : MonoBehaviour {
     public List<HighScore> getHighScores()
     {
         List<HighScore> result = new List<HighScore>(10);
+        Debug.Log("A");
         HelperFunctions.fillList(ref result, new HighScore());
-
+        Debug.Log("B");
         for (int i = 0; i < result.Count; ++i)
         {
             string s = "highScore" + i.ToString();
@@ -474,7 +493,7 @@ public class gameController : MonoBehaviour {
             string s = "highScore" + i.ToString();
             PlayerPrefs.SetInt(s, highScores[i].score);
         }
-        
+        highScoreCanvas.GetComponentInChildren<HighScoreList>().updateHighScores();
     }
 
     public void sortHighScores(ref List<HighScore> hs)
