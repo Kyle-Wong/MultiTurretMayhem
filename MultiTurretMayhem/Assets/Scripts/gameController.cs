@@ -476,13 +476,13 @@ public class gameController : MonoBehaviour {
             HighScore temp = result[i];
             temp.name = s;
             temp.score = PlayerPrefs.GetInt(s);
+            result[i] = temp;
         }
         return result;
     }
 
     public void setHighScore(int score)
     {
-        print("myScore: " + score);
         if (score < highScores[highScores.Count-1].score)
             return;
 
