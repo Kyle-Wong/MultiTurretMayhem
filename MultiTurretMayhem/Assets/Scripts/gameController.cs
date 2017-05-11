@@ -189,6 +189,9 @@ public class gameController : MonoBehaviour {
                         turrets[i].GetComponent<ColorLerp>().startColorChange();            //fade turrets to transparent
                         turrets[i].transform.GetChild(0).gameObject.SetActive(false);       //disable targetting lines
                     }
+                    GameObject ship = GameObject.FindWithTag("Player");
+                    ship.GetComponent<ColorLerp>().startColorChange();
+                    ship.GetComponent<ParticleSystem>().Play();
                     deathCanvas.SetActive(true);
                     if (survival)
                     {
