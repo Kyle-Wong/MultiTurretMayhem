@@ -77,7 +77,7 @@ abstract public class Enemy : MonoBehaviour
     {
         if (!isDead)
         {
-            if (!controller.survival && !byBomb)
+            if (controller.survival && !byBomb)
             {
                 controller.addPoints((int)(points * ctrl.multiplier));
                 GameObject p = Instantiate(pointsText, canvas.transform);

@@ -6,6 +6,21 @@ public struct HighScore
 {
     public string name;
     public int score;
+
+    public string scoreAsString()
+    {
+        string result = "";
+        int tempScore = score;
+        int DIGITS = 5;
+        Debug.Log(tempScore);
+        for (int i = 0; i < DIGITS; ++i)
+        {
+
+            result = " " + (tempScore % 10) + result;
+            tempScore /= 10;
+        }
+        return result.Substring(1);
+    }
 }
 
 public class HelperFunctions{

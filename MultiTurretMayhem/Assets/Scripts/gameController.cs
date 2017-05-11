@@ -200,7 +200,9 @@ public class gameController : MonoBehaviour {
                         gameState = GameState.survivalDeathState;   //change state to game over screen
                         eventSystem.SetSelectedGameObject(GameObject.Find("RestartButton"));
                         GameObject.Find("RestartButton").GetComponent<Button>().OnSelect(new BaseEventData(EventSystem.current));  //force highlight button
-                    } else
+                        setHighScore(points);
+                    }
+                    else
                     {
                         gameState = GameState.campaignDeathState;   //change state to campaign game over screen
                         eventSystem.SetSelectedGameObject(GameObject.Find("RestartButton"));
@@ -282,7 +284,6 @@ public class gameController : MonoBehaviour {
                 
                 break;
             case (GameState.survivalDeathState):
-                setHighScore(points);
 
                 break;
             case (GameState.paused):
@@ -468,9 +469,7 @@ public class gameController : MonoBehaviour {
     public List<HighScore> getHighScores()
     {
         List<HighScore> result = new List<HighScore>(10);
-        Debug.Log("A");
         HelperFunctions.fillList(ref result, new HighScore());
-        Debug.Log("B");
         for (int i = 0; i < result.Count; ++i)
         {
             string s = "highScore" + i.ToString();
@@ -483,6 +482,7 @@ public class gameController : MonoBehaviour {
 
     public void setHighScore(int score)
     {
+        print("myScore: " + score);
         if (score < highScores[highScores.Count-1].score)
             return;
 
@@ -493,14 +493,15 @@ public class gameController : MonoBehaviour {
 
         for (int i = 0; i < highScores.Count; ++i)
         {
+            print(highScores[i].score);
             string s = "highScore" + i.ToString();
             PlayerPrefs.SetInt(s, highScores[i].score);
         }
-        highScoreCanvas.GetComponentInChildren<HighScoreList>().updateHighScores();
+        highScoreCanvas.GetComponentInChildren<HighScoreList>().updateHighScores(highScores);
     }
 
     public void sortHighScores(ref List<HighScore> hs)
     {
-        hs.Sort(delegate (HighScore a, HighScore b) { return a.score - b.score; });
+        hs.Sort(delegate (HighScore a, HighScore b) { return -(a.score - b.score); });
     }
 }
