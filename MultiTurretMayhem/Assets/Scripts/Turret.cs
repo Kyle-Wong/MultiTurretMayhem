@@ -139,25 +139,28 @@ public class Turret : MonoBehaviour
         int enemiesHit = 0;
         foreach (RaycastHit2D e in toKill)
             if (e.collider.CompareTag("Enemy"))
-            { 
+            {
                 Enemy enemy = e.collider.gameObject.GetComponent<Enemy>();
-                if(enemy.isOnScreen() && !enemy.invincible)
+                if (enemy.isOnScreen() && !enemy.invincible)
                 {
-                    enemy.takeDamage(100,laserColor.startColor);
+                    enemy.takeDamage(100, laserColor.startColor);
                     ParticleSystem.MainModule enemyParticles = enemy.GetComponentInChildren<ParticleSystem>().main;
                     enemyParticles.startColor = particleColor;
                     ++enemiesHit;
                 }
             }
 
-        if (enemiesHit == 0)
-            HelperFunctions.playSound(ref _multiplierSource, lowerMultiplierSound);
-        else if (enemiesHit > 1)
-            HelperFunctions.playSound(ref _multiplierSource, higherMultiplierSound);
+        if (ctrl.survival)
+        {
+            if (enemiesHit == 0)
+                HelperFunctions.playSound(ref _multiplierSource, lowerMultiplierSound);
+            else if (enemiesHit > 1)
+                HelperFunctions.playSound(ref _multiplierSource, higherMultiplierSound);
+            changeMultiplier(ref ctrl.multiplier, enemiesHit);
+        }
 
         charge = 0;
-        changeMultiplier(ref ctrl.multiplier, enemiesHit);
-
+        
         laser.transform.position = transform.position + HelperFunctions.lineVector(transform.rotation.eulerAngles.z, laser.transform.localScale.x * 0.5f);
 
         laser.transform.rotation = transform.rotation;
