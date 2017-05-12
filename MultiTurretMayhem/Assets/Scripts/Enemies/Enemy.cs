@@ -77,17 +77,21 @@ abstract public class Enemy : MonoBehaviour
     {
         if (!isDead)
         {
-            if (controller.survival && !byBomb)
+            if (!byBomb) // Die not by bomb
             {
-                controller.addPoints((int)(points * ctrl.multiplier));
-                GameObject p = Instantiate(pointsText, canvas.transform);
-                p.GetComponent<RectTransform>().localPosition = HelperFunctions.objectCameraConvert(transform.position, canvas, cam);
-                p.GetComponent<Text>().text = ((int)(points * ctrl.multiplier)).ToString();
+                if (controller.survival) // Add points
+                {
+                    controller.addPoints((int)(points * ctrl.multiplier));
+                    GameObject p = Instantiate(pointsText, canvas.transform);
+                    p.GetComponent<RectTransform>().localPosition = HelperFunctions.objectCameraConvert(transform.position, canvas, cam);
+                    p.GetComponent<Text>().text = ((int)(points * ctrl.multiplier)).ToString();
+                }
+                
+                _particleSystem.Play();
             }
 
             HelperFunctions.playSound(ref _audioSource, deathSound);
-            _particleSystem.Play();
-
+            
             isDead = true;
             invincible = true;
             
@@ -103,7 +107,7 @@ abstract public class Enemy : MonoBehaviour
 
 
 
-            ColorLerp colorLerp = spriteObject.GetComponent<ColorLerp>();
+            ColorLerp colorLerp = spriteObject.GetComponent<ColorLerp>(); // Fade to transparent
             colorLerp.startColor = deathColor;
             colorLerp.endColor = new Color(deathColor.r, deathColor.g, deathColor.b, 0);
             colorLerp.startColorChange();
