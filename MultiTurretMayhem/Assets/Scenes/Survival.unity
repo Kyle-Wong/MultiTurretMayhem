@@ -1729,6 +1729,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 114659611829050588, guid: dac26c01abe71b342b8fd2bdda50951e,
         type: 2}
+      propertyPath: objects.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114659611829050588, guid: dac26c01abe71b342b8fd2bdda50951e,
+        type: 2}
       propertyPath: leftChances.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -1825,6 +1830,36 @@ Prefab:
       propertyPath: rightChances.Array.data[0]
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114659611829050588, guid: dac26c01abe71b342b8fd2bdda50951e,
+        type: 2}
+      propertyPath: objects.Array.data[1]
+      value: 
+      objectReference: {fileID: 1289427453672480, guid: f66dad86b018eaa41ae121a09a28c39b,
+        type: 2}
+    - target: {fileID: 114659611829050588, guid: dac26c01abe71b342b8fd2bdda50951e,
+        type: 2}
+      propertyPath: objects.Array.data[2]
+      value: 
+      objectReference: {fileID: 1637503903218606, guid: 2d9f066fcf9c61e4487eee5fecb1a681,
+        type: 2}
+    - target: {fileID: 114659611829050588, guid: dac26c01abe71b342b8fd2bdda50951e,
+        type: 2}
+      propertyPath: objects.Array.data[3]
+      value: 
+      objectReference: {fileID: 1556577431847448, guid: 464fa62b4b4f0e34193e2cbf83ea2a4e,
+        type: 2}
+    - target: {fileID: 114659611829050588, guid: dac26c01abe71b342b8fd2bdda50951e,
+        type: 2}
+      propertyPath: objects.Array.data[4]
+      value: 
+      objectReference: {fileID: 1853541506744958, guid: 3d9b29791a347a845bf81d57146bd97f,
+        type: 2}
+    - target: {fileID: 114659611829050588, guid: dac26c01abe71b342b8fd2bdda50951e,
+        type: 2}
+      propertyPath: objects.Array.data[5]
+      value: 
+      objectReference: {fileID: 1750669997245230, guid: 0d5329156323018468a675b284456796,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dac26c01abe71b342b8fd2bdda50951e, type: 2}
   m_IsPrefabParent: 0
@@ -3061,6 +3096,62 @@ Transform:
   m_PrefabParentObject: {fileID: 4272775911948962, guid: dac26c01abe71b342b8fd2bdda50951e,
     type: 2}
   m_PrefabInternal: {fileID: 604725203}
+--- !u!1 &1110032580 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1794901749313228, guid: dac26c01abe71b342b8fd2bdda50951e,
+    type: 2}
+  m_PrefabInternal: {fileID: 604725203}
+--- !u!114 &1110032581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1110032580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51b5065354f1c6346a98db39dbc45064, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objects:
+  - {fileID: 1100908909280672, guid: 73e1eeb34cdd1ba46b8e57e3c2d4969f, type: 2}
+  - {fileID: 1289427453672480, guid: f66dad86b018eaa41ae121a09a28c39b, type: 2}
+  - {fileID: 1637503903218606, guid: 2d9f066fcf9c61e4487eee5fecb1a681, type: 2}
+  - {fileID: 1556577431847448, guid: 464fa62b4b4f0e34193e2cbf83ea2a4e, type: 2}
+  - {fileID: 1853541506744958, guid: 3d9b29791a347a845bf81d57146bd97f, type: 2}
+  - {fileID: 1750669997245230, guid: 0d5329156323018468a675b284456796, type: 2}
+  spawnChance:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  commonObjects:
+  - {fileID: 1100908909280672, guid: 73e1eeb34cdd1ba46b8e57e3c2d4969f, type: 2}
+  - {fileID: 1289427453672480, guid: f66dad86b018eaa41ae121a09a28c39b, type: 2}
+  - {fileID: 1637503903218606, guid: 2d9f066fcf9c61e4487eee5fecb1a681, type: 2}
+  uncommonObjects:
+  - {fileID: 1556577431847448, guid: 464fa62b4b4f0e34193e2cbf83ea2a4e, type: 2}
+  - {fileID: 1853541506744958, guid: 3d9b29791a347a845bf81d57146bd97f, type: 2}
+  - {fileID: 1750669997245230, guid: 0d5329156323018468a675b284456796, type: 2}
+  timerList:
+  - 60
+  - 25
+  - 15
+  - 10
+  - 5
+  deltaRate:
+  - 17
+  - 15
+  - 12
+  - 10
+  - 5
+  commonSpawnRate: 1
+  uncommonSpawnRate: 0.2
+  setTimer: 60
+  timer: 60
+  rateListCounter: 0
+  deltaTimer: 0
 --- !u!1 &1176244234
 GameObject:
   m_ObjectHideFlags: 0
