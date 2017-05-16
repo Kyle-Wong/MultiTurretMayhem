@@ -23,7 +23,10 @@ public class MenuController : MonoBehaviour {
     private LevelSelectController levelSelectController;
     public EventSystem eventSystem;
     public AudioClip menuMusic;
-    private AudioSource musicSource;
+    public AudioClip soundOnMove;
+    public AudioClip soundOnConfirm;
+    public AudioSource menuEffects;
+    public AudioSource musicSource;
     public bool skipIntro = false;
     public bool hideMouse = true;
 
@@ -103,10 +106,12 @@ public class MenuController : MonoBehaviour {
     }
     public void campaignPress()
     {
+        confirmSound();
         setMenuState((int)MenuState.levelSelect);
     }
     public void survivalPress()
     {
+        confirmSound();
         StartCoroutine(loadSurvival());
         eventSystem.SetSelectedGameObject(null);
     }
@@ -119,10 +124,21 @@ public class MenuController : MonoBehaviour {
     }
     public void creditsPress()
     {
+        confirmSound();
         menuState = MenuState.levelSelect;
     }
     public void quitPress()
     {
         Application.Quit();
+    }
+    public void navigateSound()
+    {
+        menuEffects.clip = soundOnMove;
+        menuEffects.PlayDelayed(.1f);
+    }
+    public void confirmSound()
+    {
+        menuEffects.clip = soundOnConfirm;
+        menuEffects.Play();
     }
 }
