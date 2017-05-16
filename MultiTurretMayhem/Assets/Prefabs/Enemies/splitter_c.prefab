@@ -274,7 +274,7 @@ MonoBehaviour:
   maxDirVelocity: 1
   decelerationFactor: 0.9
   acceleration: 1
-  splitSound: {fileID: 0}
+  splitSound: {fileID: 8300000, guid: 1c41e9752f9c7714a9093dfcd8347de7, type: 3}
   ID: 0
 --- !u!114 &114275957744968052
 MonoBehaviour:

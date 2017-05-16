@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 50476751641942430}
   - component: {fileID: 114123904616354092}
   - component: {fileID: 82911514524922328}
-  - component: {fileID: 61810666917431736}
+  - component: {fileID: 58506286196184430}
   m_Layer: 8
   m_Name: asteroid
   m_TagString: Enemy
@@ -127,8 +127,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &61810666917431736
-BoxCollider2D:
+--- !u!58 &58506286196184430
+CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -140,18 +140,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Radius: 0.65
 --- !u!82 &82911514524922328
 AudioSource:
   m_ObjectHideFlags: 1

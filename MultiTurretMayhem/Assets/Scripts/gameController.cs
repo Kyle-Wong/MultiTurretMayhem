@@ -101,20 +101,7 @@ public class gameController : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            addPoints(9);
-            damagePlayer(1);
-        }
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            bombs++;
-            dropBomb();
-        }
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            dropFTLBomb();
-        }
+        
         if (Input.GetKeyDown(KeyCode.L))
         {
             LevelNumber.setLevel(levelNum + 1);
@@ -190,7 +177,7 @@ public class gameController : MonoBehaviour {
 
                         turrets[i].GetComponent<Turret>().inputDisabled = true;             //disable player input
                         turrets[i].GetComponent<Turret>().fadeTurret();            //fade turrets to transparent
-                        turrets[i].transform.GetChild(0).gameObject.SetActive(false);       //disable targetting lines
+                        turrets[i].transform.FindChild("TargettingLine").gameObject.SetActive(false);
                     }
                     GameObject ship = GameObject.FindWithTag("Player");
                     ship.GetComponent<ColorLerp>().startColorChange();
@@ -229,9 +216,10 @@ public class gameController : MonoBehaviour {
                     {
                         turrets[i].GetComponent<Turret>().inputDisabled = true;             //disable player input
                         turrets[i].GetComponent<Turret>().fadeTurret();       //fade turrets to transparent
-                        turrets[i].transform.GetChild(0).gameObject.SetActive(false);       //disable targetting lines
+                        turrets[i].transform.FindChild("TargettingLine").gameObject.SetActive(false);
+                        //disable targetting lines
                     }
-                    
+
                 }
                 break;
             case (GameState.transition):
