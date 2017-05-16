@@ -14,7 +14,7 @@ abstract public class Enemy : MonoBehaviour
     public bool invincible = false;
     protected Camera mainCamera;
     protected gameController controller;
-    protected GameObject spriteObject;
+    protected GameObject[] spriteObjects;
     public GameObject pointsText;
     protected GameObject canvas;
     protected Camera cam;
@@ -46,7 +46,7 @@ abstract public class Enemy : MonoBehaviour
     public void baseStart()
     {
         //Put this in Start() in all Enemy children
-        spriteObject = transform.GetChild(0).gameObject;                    //This object has the spriterenderer, colorLerp, and constantrotation scripts
+        spriteObjects = HelperFunctions.getChildren(transform);                 //These objects the spriterenderer, colorLerp, and constantrotation scripts
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         controller = GameObject.FindGameObjectWithTag("GameController").GetComponent<gameController>();
         isDead = false;
@@ -108,23 +108,27 @@ abstract public class Enemy : MonoBehaviour
             
             isDead = true;
             invincible = true;
+
+            
             
             if(GetComponent<Simple_Movement>() != null)
             {
                 GetComponent<Simple_Movement>().stopMovement();
             }
-            if(spriteObject.GetComponent<ConstantRotation>() != null)
+            foreach (GameObject spriteObject in spriteObjects)
             {
-                spriteObject.GetComponent<ConstantRotation>().setSpeed(0);
-
+                if (spriteObject.GetComponent<ConstantRotation>() != null)
+                {
+                    spriteObject.GetComponent<ConstantRotation>().setSpeed(0);
+                }
+                if (spriteObject.GetComponent<ColorLerp>() != null)
+                {
+                    ColorLerp colorLerp = spriteObject.GetComponent<ColorLerp>(); // Fade to transparent
+                    colorLerp.startColor = deathColor;
+                    colorLerp.endColor = new Color(deathColor.r, deathColor.g, deathColor.b, 0);
+                    colorLerp.startColorChange();
+                }
             }
-
-
-
-            ColorLerp colorLerp = spriteObject.GetComponent<ColorLerp>(); // Fade to transparent
-            colorLerp.startColor = deathColor;
-            colorLerp.endColor = new Color(deathColor.r, deathColor.g, deathColor.b, 0);
-            colorLerp.startColorChange();
             Destroy(gameObject, 1);
         }
 

@@ -33,57 +33,7 @@ public class Splitter : Enemy
                 splitter.GetComponent<Splitter_c>().ID = i;
             }
             HelperFunctions.playSound(ref _audioSource, splitSound);
-            die(deathColor, false);
-        }
-
-    }
-    public override void die(Color deathColor, bool byBomb)
-    {
-        if (!isDead)
-        {
-            if (!byBomb)
-            {
-                controller.addPoints((int)(points * ctrl.multiplier));
-                GameObject p = Instantiate(pointsText, canvas.transform);
-                p.GetComponent<RectTransform>().localPosition = HelperFunctions.objectCameraConvert(transform.position, canvas, cam);
-                p.GetComponent<Text>().text = ((int)(points * ctrl.multiplier)).ToString();
-            }
-
-            HelperFunctions.playSound(ref _audioSource, deathSound);
-
-            isDead = true;
-            invincible = true;
-
-            if (GetComponent<Simple_Movement>() != null)
-            {
-                GetComponent<Simple_Movement>().stopMovement();
-            }
-            GameObject spriteObject1 = transform.GetChild(0).gameObject;
-            GameObject spriteObject2 = transform.GetChild(1).gameObject;
-            if (spriteObject1.GetComponent<ConstantRotation>() != null)
-            {
-                spriteObject1.GetComponent<ConstantRotation>().setSpeed(0);
-
-            }
-            if (spriteObject2.GetComponent<ConstantRotation>() != null)
-            {
-                spriteObject2.GetComponent<ConstantRotation>().setSpeed(0);
-
-            }
-
-
-
-            ColorLerp colorLerp = spriteObject1.GetComponent<ColorLerp>();
-            colorLerp.startColor = deathColor;
-            colorLerp.endColor = new Color(deathColor.r, deathColor.g, deathColor.b, 0);
-            colorLerp.startColorChange();
-
-            colorLerp = spriteObject2.GetComponent<ColorLerp>();
-            colorLerp.startColor = deathColor;
-            colorLerp.endColor = new Color(deathColor.r, deathColor.g, deathColor.b, 0);
-            colorLerp.startColorChange();
-            Destroy(gameObject, colorLerp.initialDelay + colorLerp.duration);
-
+            Destroy(gameObject);
         }
 
     }

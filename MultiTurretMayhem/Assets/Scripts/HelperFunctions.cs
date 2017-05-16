@@ -132,5 +132,11 @@ public class HelperFunctions{
             list.Add(value);
     }
 
-    
+    public static GameObject[] getChildren (Transform o)
+    {
+        GameObject[] result = new GameObject[o.childCount];
+        for (int i = 0; i < o.childCount; ++i)
+            result[i] = o.GetChild(i).gameObject;
+        return result;
+    }
 }
