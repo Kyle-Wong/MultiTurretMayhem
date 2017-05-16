@@ -338,7 +338,7 @@ MonoBehaviour:
   deathSound: {fileID: 8300000, guid: 72e48515acb364d4cae8457158b6434d, type: 3}
   splitterChild: {fileID: 1415476018937786, guid: 8d726b9a89bce0f48b0bce49cb53d817,
     type: 2}
-  splittersToSpawn: 3
+  splittersToSpawn: 4
   splitSound: {fileID: 8300000, guid: 1c41e9752f9c7714a9093dfcd8347de7, type: 3}
 --- !u!114 &114666626278412366
 MonoBehaviour:

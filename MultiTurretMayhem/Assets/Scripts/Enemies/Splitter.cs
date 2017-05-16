@@ -6,7 +6,7 @@ public class Splitter : Enemy
 {
 
     public GameObject splitterChild;
-    public int splittersToSpawn = 3;
+    public int splittersToSpawn = 2;
     private float deltaDistance = 5;
 
     public AudioClip splitSound;
@@ -30,7 +30,7 @@ public class Splitter : Enemy
             for (int i = 0; i < splittersToSpawn; i++)
             {
                 GameObject splitter = (GameObject)Instantiate(splitterChild, gameObject.transform.position, Quaternion.identity);
-                splitter.GetComponent<Splitter_c>().ID = i;
+                splitter.GetComponent<Splitter_c>().ID = i*2;
             }
             HelperFunctions.playSound(ref _audioSource, splitSound);
             Destroy(gameObject);
