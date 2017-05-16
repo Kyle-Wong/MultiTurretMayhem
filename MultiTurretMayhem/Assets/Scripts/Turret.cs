@@ -138,6 +138,7 @@ public class Turret : MonoBehaviour
         RaycastHit2D[] toKill = Physics2D.RaycastAll(transform.position, HelperFunctions.lineVector(transform.rotation.eulerAngles.z), 20);
         int enemiesHit = 0;
         foreach (RaycastHit2D e in toKill)
+        {
             if (e.collider.CompareTag("Enemy"))
             {
                 Enemy enemy = e.collider.gameObject.GetComponent<Enemy>();
@@ -149,6 +150,11 @@ public class Turret : MonoBehaviour
                     ++enemiesHit;
                 }
             }
+            else if (e.collider.CompareTag("Pickup"))
+            {
+                e.collider.GetComponent<Pickup>().apply();
+            }
+        }
 
         if (ctrl.survival)
         {

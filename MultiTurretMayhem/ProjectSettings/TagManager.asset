@@ -10,6 +10,7 @@ TagManager:
   - UI
   - Turret
   - LevelSettings
+  - Pickup
   layers:
   - Default
   - TransparentFX

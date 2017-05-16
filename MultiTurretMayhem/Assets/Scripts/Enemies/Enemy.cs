@@ -22,6 +22,9 @@ abstract public class Enemy : MonoBehaviour
     public AudioClip deathSound;
     protected AudioSource _audioSource;
     private ParticleSystem _particleSystem;
+    public static List<GameObject> dropItems;
+    public static List<float> dropRates;
+    public static int dropPercent = 5;
 
     private void Awake()
     {
@@ -30,6 +33,14 @@ abstract public class Enemy : MonoBehaviour
         ctrl = GameObject.Find("GameController").GetComponent<gameController>();
         _audioSource = GetComponent<AudioSource>();
         _particleSystem = GetComponentInChildren<ParticleSystem>();
+
+        dropItems = new List<GameObject>(2);
+        dropItems.Add(Resources.Load<GameObject>("HealthPickup"));
+        dropItems.Add(Resources.Load<GameObject>("BombPickup"));
+
+        dropRates = new List<float>(2);
+        dropRates.Add(0.5f);
+        dropRates.Add(0.5f);
     }
 
     public void baseStart()
@@ -79,12 +90,15 @@ abstract public class Enemy : MonoBehaviour
         {
             if (!byBomb) // Die not by bomb
             {
-                if (controller.survival) // Add points
+                if (controller.survival) // Add points and drop item
                 {
                     controller.addPoints((int)(points * ctrl.multiplier));
                     GameObject p = Instantiate(pointsText, canvas.transform);
                     p.GetComponent<RectTransform>().localPosition = HelperFunctions.objectCameraConvert(transform.position, canvas, cam);
                     p.GetComponent<Text>().text = ((int)(points * ctrl.multiplier)).ToString();
+
+                    if (willDrop())
+                        Instantiate(dropItems[HelperFunctions.randomIndex(dropRates)], transform.position, Quaternion.identity);
                 }
                 
                 _particleSystem.Play();
@@ -122,5 +136,10 @@ abstract public class Enemy : MonoBehaviour
         {
             onPlayerHit();
         }
+    }
+
+    private bool willDrop()
+    {
+        return Random.Range(0, 100) < dropPercent;
     }
 }
