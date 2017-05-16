@@ -54,6 +54,7 @@ public class gameController : MonoBehaviour {
     public bool gameIsOver = false;
     public float multiplier = 1;
     public Text multiplierText;
+    public float missMultiplier;
     private EventSystem eventSystem;
     private GraphicColorLerp blackPanel;
     public AudioSource shipAudio;
@@ -509,7 +510,7 @@ public class gameController : MonoBehaviour {
     {
         if (hits == 0)
         {
-            int temp = (int)(multiplier * 2 * (2f / 3));
+            int temp = (int)(multiplier * 2 * missMultiplier);
             multiplier = (float)temp / 2;
             multiplier = (multiplier < 1 ? 1 : multiplier);
         }
