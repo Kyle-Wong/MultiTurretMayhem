@@ -504,4 +504,16 @@ public class gameController : MonoBehaviour {
     {
         hs.Sort(delegate (HighScore a, HighScore b) { return -(a.score - b.score); });
     }
+
+    public void changeMultiplier(int hits)
+    {
+        if (hits == 0)
+        {
+            int temp = (int)(multiplier * 2 * (2f / 3));
+            multiplier = (float)temp / 2;
+            multiplier = (multiplier < 1 ? 1 : multiplier);
+        }
+        else if (hits > 1)
+            multiplier += (hits - 1) * 0.5f;
+    }
 }

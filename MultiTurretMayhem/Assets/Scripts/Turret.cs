@@ -156,7 +156,7 @@ public class Turret : MonoBehaviour
                 HelperFunctions.playSound(ref _multiplierSource, lowerMultiplierSound);
             else if (enemiesHit > 1)
                 HelperFunctions.playSound(ref _multiplierSource, higherMultiplierSound);
-            changeMultiplier(ref ctrl.multiplier, enemiesHit);
+            ctrl.changeMultiplier(enemiesHit);
         }
 
         charge = 0;
@@ -171,9 +171,5 @@ public class Turret : MonoBehaviour
         restriction = (TurretRestriction)x;
     }
 
-    private void changeMultiplier(ref float multi, int hits)
-    {
-        multi += (hits - 1) * 0.5f;
-        multi = (multi < 1 ? 1 : multi);
-    }
+    
 }
