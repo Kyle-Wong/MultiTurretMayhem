@@ -271,7 +271,7 @@ MonoBehaviour:
   points: 30
   invincible: 0
   pointsText: {fileID: 1730592498059714, guid: bf1e6d18bfabc7e4d95532ba801b6b72, type: 2}
-  deathSound: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: e6562dd305a555f4b8e5a52a1d67cedb, type: 3}
   missile: {fileID: 1805722405616588, guid: 869ed7dcd6faae1409e032e522355e58, type: 2}
   orbitRadius: 4.5
   fireDelay: 3

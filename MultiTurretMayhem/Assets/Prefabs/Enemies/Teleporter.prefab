@@ -240,11 +240,11 @@ MonoBehaviour:
   points: 30
   invincible: 0
   pointsText: {fileID: 1730592498059714, guid: bf1e6d18bfabc7e4d95532ba801b6b72, type: 2}
-  deathSound: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: e6562dd305a555f4b8e5a52a1d67cedb, type: 3}
   minDistance: 5
   speedMultiplierPostTeleport: 0.5
   postTeleportColor: {r: 0.45172417, g: 0.2967828, b: 0, a: 1}
-  teleportSound: {fileID: 0}
+  teleportSound: {fileID: 8300000, guid: ae9edbd1c7e5b6d48b0493c191a71222, type: 3}
 --- !u!114 &114401220929075408
 MonoBehaviour:
   m_ObjectHideFlags: 1

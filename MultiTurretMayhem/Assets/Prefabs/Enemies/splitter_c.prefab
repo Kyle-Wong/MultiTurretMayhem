@@ -270,7 +270,7 @@ MonoBehaviour:
   points: 20
   invincible: 0
   pointsText: {fileID: 1730592498059714, guid: bf1e6d18bfabc7e4d95532ba801b6b72, type: 2}
-  deathSound: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: e6562dd305a555f4b8e5a52a1d67cedb, type: 3}
   maxDirVelocity: 1
   decelerationFactor: 0.9
   acceleration: 1
