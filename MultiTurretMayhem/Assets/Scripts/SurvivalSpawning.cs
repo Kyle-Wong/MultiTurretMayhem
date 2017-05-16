@@ -6,16 +6,22 @@ public class SurvivalSpawning : MonoBehaviour {
     public List<GameObject> objects;
     public List<float> spawnChance;
 
-    public List<GameObject> uncommonObjects;
     public List<GameObject> commonObjects;
+    public List<GameObject> uncommonObjects;
+
+    public List<float> timerList;
+    public List<float> deltaRate;
 
     private List<GameObject> tempCommonObjects;
 
-    public float uncommonSpawnRate;
     public float commonSpawnRate;
+    public float uncommonSpawnRate;
 
     public float setTimer = 60f;
     public float timer = 60f;
+
+    public int rateListCounter = 0;
+    public float deltaTimer;
 
     private int uncommonObjectIndex;
     private int uncommonObjectIndex2;
@@ -24,12 +30,19 @@ public class SurvivalSpawning : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        deltaTimer = timerList[0];
+        GetComponent<Spawning>().leftChances = spawnChance;
+        GetComponent<Spawning>().rightChances = spawnChance;
+    }
 
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update() {
         timer -= Time.deltaTime;
+        if (rateListCounter < timerList.Count)
+        {
+            deltaTimer -= Time.deltaTime;
+        }
+
         if (timer <= 0)
         {
             HelperFunctions.fillList<float>(ref spawnChance, 0);
@@ -51,6 +64,15 @@ public class SurvivalSpawning : MonoBehaviour {
             GetComponent<Spawning>().rightChances = spawnChance;
 
             timer = setTimer;
+        }
+
+        if (deltaTimer <= 0 && rateListCounter < timerList.Count)
+        {
+            GetComponent<Spawning>().deltaLeftRate = deltaRate[rateListCounter];
+            GetComponent<Spawning>().deltaRightRate = deltaRate[rateListCounter];
+
+            rateListCounter++;
+            deltaTimer = timerList[rateListCounter];
         }
 	}
 }
