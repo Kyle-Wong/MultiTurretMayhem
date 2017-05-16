@@ -5,6 +5,7 @@ using UnityEngine;
 public class BombOrbit : MonoBehaviour {
 
     // Use this for initialization
+    public bool tutorial;
     private int bombs;
     private gameController controller;
     private List<Transform> bombPips;
@@ -20,7 +21,7 @@ public class BombOrbit : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(bombs != controller.bombs)
+		if(bombs != controller.bombs && !tutorial)
         {
             bombs = controller.bombs;
             updateLocations(bombs);
@@ -63,8 +64,8 @@ public class BombOrbit : MonoBehaviour {
         float step = Mathf.PI * 2 / num;
         for (int i = 0; i < num; i++)
         {
-            float x = radius * Mathf.Cos(step * i);
-            float y = radius * Mathf.Sin(step * i);
+            float x = radius * Mathf.Cos(step * i) + transform.position.x;
+            float y = radius * Mathf.Sin(step * i) + transform.position.y;
             bombPips[i].gameObject.SetActive(true); //enable necessary bombpips
             bombPips[i].position = new Vector3(x, y, 0);
         }
