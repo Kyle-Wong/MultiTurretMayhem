@@ -14,6 +14,7 @@ public class MenuController : MonoBehaviour {
         levelSelect,
         credits
     }
+    private bool firstPass = true;
     private MenuState menuState;
     public GameObject introCanvas;
     public GameObject mainCanvas;
@@ -84,7 +85,12 @@ public class MenuController : MonoBehaviour {
                 introCanvas.GetComponent<GameIntroSequence>().playIntro();
                 break;
             case (MenuState.main):
-                HelperFunctions.playSound(ref musicSource, menuMusic);
+                if (firstPass)
+                {
+                    musicSource.volume = .2f;
+                    HelperFunctions.playSound(ref musicSource, menuMusic);
+                    firstPass = false;
+                }
                 creditsCanvas.SetActive(false);
                 levelSelectCanvas.SetActive(false);
                 introCanvas.SetActive(false);

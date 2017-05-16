@@ -290,7 +290,7 @@ MonoBehaviour:
   turretBase: {fileID: 1032014315032280}
   barrelFireOffSet: 0.35
   angleRange: {x: 0, y: 0}
-  fireSound: {fileID: 8300000, guid: 1c41e9752f9c7714a9093dfcd8347de7, type: 3}
+  fireSound: {fileID: 8300000, guid: 6eac89db93bb1b9468db97c29aa91f8d, type: 3}
   lowerMultiplierSound: {fileID: 8300000, guid: 1c41e9752f9c7714a9093dfcd8347de7,
     type: 3}
   higherMultiplierSound: {fileID: 8300000, guid: 1c41e9752f9c7714a9093dfcd8347de7,

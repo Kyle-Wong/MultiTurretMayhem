@@ -12208,7 +12208,7 @@ MonoBehaviour:
   levelSelectCanvas: {fileID: 931533595}
   creditsCanvas: {fileID: 733424929}
   eventSystem: {fileID: 1598473049}
-  menuMusic: {fileID: 0}
+  menuMusic: {fileID: 8300000, guid: 2ad440ed231daeb49b15c7e4ff170e4e, type: 3}
   soundOnMove: {fileID: 8300000, guid: 44d2b8fbd0ef0694d8c0bb47e529510a, type: 3}
   soundOnConfirm: {fileID: 8300000, guid: 1edd8f1190b3696488680708e0364e05, type: 3}
   menuEffects: {fileID: 1113927572}
@@ -12239,9 +12239,9 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

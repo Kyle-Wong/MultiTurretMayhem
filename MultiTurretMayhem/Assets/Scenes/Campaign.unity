@@ -1864,6 +1864,16 @@ Prefab:
       propertyPath: laser
       value: 
       objectReference: {fileID: 1040077310}
+    - target: {fileID: 82236456017783228, guid: 1fb12392b4cc89e4284978f28685b17b,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 82236456017783228, guid: 1fb12392b4cc89e4284978f28685b17b,
+        type: 2}
+      propertyPath: m_Pitch
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1fb12392b4cc89e4284978f28685b17b, type: 2}
   m_IsPrefabParent: 0
@@ -7389,6 +7399,11 @@ Prefab:
       propertyPath: ftlSource
       value: 
       objectReference: {fileID: 1207480667}
+    - target: {fileID: 114182925921247722, guid: 01b2486d00747d346bb0cded0501ce1a,
+        type: 2}
+      propertyPath: ftlSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 4b955c117f505cc4ca6ad37381454d3b, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01b2486d00747d346bb0cded0501ce1a, type: 2}
   m_IsPrefabParent: 0
