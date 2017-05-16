@@ -31,11 +31,20 @@ public class Turret : MonoBehaviour
     public float fireRate;                      //seconds between shots
     public float damage = 100;                  //damage per hit
     public GameObject laser;                    //laser gameobject
+    public GameObject turretBarrelL;
+    public GameObject turretBarrelR;
+    public GameObject turretBase;
+    private float leftBarrelInitial;
+    private float rightBarrelInitial;
+    private float leftBarrelAfter;
+    private float rightBarrelAfter;
+    public float barrelFireOffSet;
+    private float offSetTimer;
     public Vector2 angleRange;
     public AudioClip fireSound;
     public AudioClip lowerMultiplierSound;
     public AudioClip higherMultiplierSound;
-
+    
     private float charge;
     private SpriteRenderer laserSprite;
     private ColorLerp laserColor;               //color of laser
@@ -48,8 +57,15 @@ public class Turret : MonoBehaviour
         laserSprite = laser.GetComponent<SpriteRenderer>();
         laserColor = laser.GetComponent<ColorLerp>();
         ctrl = GameObject.Find("GameController").GetComponent<gameController>();
-        _audioSource = GetComponents<AudioSource>()[0];
-        _multiplierSource = GetComponents<AudioSource>()[1];
+        try
+        {
+            _audioSource = GetComponents<AudioSource>()[0];
+            _multiplierSource = GetComponents<AudioSource>()[1];
+        }
+        catch
+        {
+            
+        }
     }
 
     // Use this for initialization
@@ -122,14 +138,29 @@ public class Turret : MonoBehaviour
             if (Input.GetKeyDown(fire))
             {
                 if (charge >= 1 / fireRate)
+                {
                     Fire();
+                    offSetTimer = (1 / fireRate);
+                    leftBarrelInitial = turretBarrelL.transform.localPosition.y;
+                    leftBarrelAfter = turretBarrelL.transform.localPosition.y + barrelFireOffSet;
+                    rightBarrelInitial = turretBarrelR.transform.localPosition.y;
+                    rightBarrelAfter = turretBarrelR.transform.localPosition.y - barrelFireOffSet;
+                }
             }
             else if (charge < 1 / fireRate)
             {
                 charge += Time.deltaTime;
             }
         }
-        
+        if(offSetTimer > 0)
+        {
+            offSetTimer -= Time.deltaTime;
+
+            turretBarrelL.transform.localPosition = new Vector3(turretBarrelL.transform.localPosition.x,Mathf.Lerp(leftBarrelInitial,leftBarrelAfter, 
+                offSetTimer / (1/fireRate)), 0);
+            turretBarrelR.transform.localPosition = new Vector3(turretBarrelR.transform.localPosition.x, Mathf.Lerp(rightBarrelInitial, rightBarrelAfter,
+                offSetTimer / (1 / fireRate)), 0);
+        } 
     }
 
     private void Fire()
@@ -176,6 +207,11 @@ public class Turret : MonoBehaviour
     {
         restriction = (TurretRestriction)x;
     }
-
+    public void fadeTurret()
+    {
+        turretBarrelL.GetComponent<ColorLerp>().startColorChange();
+        turretBarrelR.GetComponent<ColorLerp>().startColorChange();
+        turretBase.GetComponent<ColorLerp>().startColorChange();
+    }
     
 }

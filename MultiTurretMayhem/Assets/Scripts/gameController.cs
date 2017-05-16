@@ -189,7 +189,7 @@ public class gameController : MonoBehaviour {
                     {
 
                         turrets[i].GetComponent<Turret>().inputDisabled = true;             //disable player input
-                        turrets[i].GetComponent<ColorLerp>().startColorChange();            //fade turrets to transparent
+                        turrets[i].GetComponent<Turret>().fadeTurret();            //fade turrets to transparent
                         turrets[i].transform.GetChild(0).gameObject.SetActive(false);       //disable targetting lines
                     }
                     GameObject ship = GameObject.FindWithTag("Player");
@@ -228,7 +228,7 @@ public class gameController : MonoBehaviour {
                     for(int i = 0; i < turrets.Length; i++)
                     {
                         turrets[i].GetComponent<Turret>().inputDisabled = true;             //disable player input
-                        turrets[i].GetComponent<ColorLerp>().startColorChange();            //fade turrets to transparent
+                        turrets[i].GetComponent<Turret>().fadeTurret();       //fade turrets to transparent
                         turrets[i].transform.GetChild(0).gameObject.SetActive(false);       //disable targetting lines
                     }
                     
