@@ -32,6 +32,7 @@ public class Splitter : Enemy
                 GameObject splitter = (GameObject)Instantiate(splitterChild, gameObject.transform.position, Quaternion.identity);
                 splitter.GetComponent<Splitter_c>().ID = i;
             }
+            HelperFunctions.playSound(ref _audioSource, splitSound);
             Destroy(gameObject);
         }
 
