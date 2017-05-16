@@ -107,6 +107,12 @@ public class MenuController : MonoBehaviour {
                 GameObject.Find("PlayButton").GetComponent<Button>().OnSelect(new BaseEventData(EventSystem.current));
                 break;
             case (MenuState.credits):
+                mainCanvas.SetActive(false);
+                creditsCanvas.SetActive(true);
+                creditsCanvas.GetComponentInChildren<CreditsScript>().startCredits();
+                eventSystem.SetSelectedGameObject(GameObject.Find("CreditsBackButton"));
+                GameObject.Find("CreditsBackButton").GetComponent<Button>().OnSelect(new BaseEventData(EventSystem.current));
+                
                 break;
         }
     }
@@ -131,7 +137,13 @@ public class MenuController : MonoBehaviour {
     public void creditsPress()
     {
         confirmSound();
-        menuState = MenuState.levelSelect;
+        setMenuState((int)MenuState.credits);
+    }
+    public void backPress()
+    {
+        confirmSound();
+        creditsCanvas.GetComponentInChildren<CreditsScript>().stopCredits();
+        setMenuState((int)MenuState.main);
     }
     public void quitPress()
     {
