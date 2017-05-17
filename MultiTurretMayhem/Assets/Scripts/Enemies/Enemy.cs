@@ -23,8 +23,10 @@ abstract public class Enemy : MonoBehaviour
     protected AudioSource _audioSource;
     private ParticleSystem _particleSystem;
     public static List<GameObject> dropItems;
+    public static Vector2 dropTimes;
+    private float dropTimer = 0.0f;
+    private float timeToDrop;
     public static List<float> dropRates;
-    public static int dropPercent = 5;
 
     private void Awake()
     {
@@ -41,6 +43,8 @@ abstract public class Enemy : MonoBehaviour
         dropRates = new List<float>(2);
         dropRates.Add(0.5f);
         dropRates.Add(0.5f);
+
+        dropTimes = new Vector2(30, 45);
     }
 
     public void baseStart()
@@ -51,6 +55,7 @@ abstract public class Enemy : MonoBehaviour
         controller = GameObject.FindGameObjectWithTag("GameController").GetComponent<gameController>();
         isDead = false;
         _audioSource.clip = deathSound;
+        StartCoroutine(advanceDropTimer());
     }
     public void baseUpdate()
     {
@@ -98,7 +103,7 @@ abstract public class Enemy : MonoBehaviour
                     p.GetComponent<Text>().text = ((int)(points * ctrl.multiplier)).ToString();
 
                     if (willDrop())
-                        Instantiate(dropItems[HelperFunctions.randomIndex(dropRates)], transform.position, Quaternion.identity);
+                        dropItem();
                 }
                 
                 _particleSystem.Play();
@@ -146,8 +151,28 @@ abstract public class Enemy : MonoBehaviour
         }
     }
 
-    private bool willDrop()
+    protected bool willDrop()
     {
-        return Random.Range(0, 100) < dropPercent;
+        return dropTimer >= timeToDrop;
+    }
+
+    public void dropItem()
+    {
+        Instantiate(dropItems[HelperFunctions.randomIndex(dropRates)], transform.position, Quaternion.identity);
+        dropTimer = 0.0f;
+        StartCoroutine(advanceDropTimer());
+    }
+
+    protected IEnumerator advanceDropTimer()
+    {
+        if (dropTimer == 0.0f)
+        {
+            timeToDrop = Random.Range(dropTimes.x, dropTimes.y);
+            while (dropTimer < timeToDrop)
+            {
+                yield return new WaitForEndOfFrame();
+                dropTimer += Time.deltaTime;
+            }
+        }
     }
 }

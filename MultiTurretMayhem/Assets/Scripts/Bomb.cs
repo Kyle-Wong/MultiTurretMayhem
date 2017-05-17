@@ -41,12 +41,14 @@ public class Bomb : MonoBehaviour {
         if (coll.gameObject.CompareTag("Enemy"))
         {
             Enemy enemy = coll.gameObject.GetComponent<Enemy>();
-            if(enemy.isOnScreen() || !ignoreOffScreenEnemies)
+            if (enemy.isOnScreen() || !ignoreOffScreenEnemies)
             {
                 coll.gameObject.GetComponent<Enemy>().die(color, true);       //directly kills enemies, bypassing onHit effects
             }
-            
+
         }
+        else if (coll.gameObject.CompareTag("Pickup"))
+            Destroy(coll.gameObject);
             
     }
 
