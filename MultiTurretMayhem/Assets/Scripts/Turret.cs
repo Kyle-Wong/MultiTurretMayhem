@@ -145,6 +145,25 @@ public class Turret : MonoBehaviour
                     leftBarrelAfter = turretBarrelL.transform.localPosition.y + barrelFireOffSet;
                     rightBarrelInitial = turretBarrelR.transform.localPosition.y;
                     rightBarrelAfter = turretBarrelR.transform.localPosition.y - barrelFireOffSet;
+                    GameObject projectile;
+                    switch (side)
+                    {
+                        case (turretSide.left):
+                            projectile = (GameObject)Instantiate(Resources.Load("LaserProjectileCyan"));
+                            projectile.transform.position = transform.position + HelperFunctions.lineVector(transform.rotation.eulerAngles.z,1.5f);
+                            projectile.transform.rotation = transform.rotation;
+                            projectile.GetComponent<ConstantMovement>().setVelocity(transform.rotation.eulerAngles.z, 120);
+
+
+                            break;
+                        case (turretSide.right):
+                            projectile = (GameObject)Instantiate(Resources.Load("LaserProjectileRed"));
+                            projectile.transform.position = transform.position + HelperFunctions.lineVector(transform.rotation.eulerAngles.z, 1.5f);
+                            projectile.transform.rotation = transform.rotation;
+                            projectile.GetComponent<ConstantMovement>().setVelocity(transform.rotation.eulerAngles.z, 120);
+
+                            break;
+                    }
                 }
             }
             else if (charge < 1 / fireRate)

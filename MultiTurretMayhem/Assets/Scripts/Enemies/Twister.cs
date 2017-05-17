@@ -7,6 +7,7 @@ public class Twister : Enemy
     public float tanSpeed = 10;
     private Transform player;
     private int direction;
+    private Rigidbody2D rb;
     // Use this for initialization
     void Start()
     {
@@ -17,12 +18,14 @@ public class Twister : Enemy
         direction = GetComponent<Simple_Movement>().tanVelocity > 0 ? 0 : 1;
         GetComponentInChildren<SpriteRenderer>().transform.Rotate(0,0,180 * direction);
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
         baseUpdate();
-        transform.rotation = Quaternion.LookRotation(Vector3.back, transform.position - player.position);
+        if (!isDead)
+            transform.rotation = Quaternion.LookRotation(Vector3.back, rb.velocity);
     }
 }

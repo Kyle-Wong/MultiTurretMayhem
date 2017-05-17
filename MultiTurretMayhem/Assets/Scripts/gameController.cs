@@ -67,7 +67,7 @@ public class gameController : MonoBehaviour {
         maxHealth = health;
         settingsList = getSettings();
         blackPanel = GameObject.Find("BlackPanel").GetComponent<GraphicColorLerp>();
-        
+
         if (!survival)
             levelNum = LevelNumber.getLevel();
         setLevelSettings(levelNum);
@@ -118,9 +118,28 @@ public class gameController : MonoBehaviour {
             case (GameState.beforeGame):
                 if(preGameDelay > 0)
                 {
+                    try
+                    {
+                        GameObject.FindGameObjectsWithTag("Turret")[0].GetComponent<Turret>().inputDisabled = true;
+                    }catch { }
+                    try
+                    {
+                        GameObject.FindGameObjectsWithTag("Turret")[1].GetComponent<Turret>().inputDisabled = true;
+                    }
+                    catch { }
                     preGameDelay -= Time.deltaTime;
                 } else
                 {
+                    try
+                    {
+                        GameObject.FindGameObjectsWithTag("Turret")[0].GetComponent<Turret>().inputDisabled = false;
+                    }
+                    catch { }
+                    try
+                    {
+                        GameObject.FindGameObjectsWithTag("Turret")[1].GetComponent<Turret>().inputDisabled = false;
+                    }
+                    catch { }
                     gameState = GameState.duringGame;
                 }
                 break;
@@ -180,7 +199,7 @@ public class gameController : MonoBehaviour {
                         turrets[i].transform.FindChild("TargettingLine").gameObject.SetActive(false);
                     }
                     GameObject ship = GameObject.FindWithTag("Player");
-                    ship.GetComponent<ColorLerp>().startColorChange();
+                    ship.transform.FindChild("Ship").GetComponent<ColorLerp>().startColorChange();
                     ship.GetComponent<ParticleSystem>().Play();
                     deathCanvas.SetActive(true);
                     if (survival)
