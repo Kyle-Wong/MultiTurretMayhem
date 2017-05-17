@@ -23,7 +23,6 @@ public class HighScoreList : MonoBehaviour {
         highScoreList = list;
         for(int i = 0; i < textList.Length; ++i)
         {
-            print(list[i].scoreAsString());
             textList[i].text =list[i].scoreAsString();
         }
     }

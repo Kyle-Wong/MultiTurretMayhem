@@ -5,6 +5,8 @@ using UnityEngine;
 public class Pickup : MonoBehaviour {
     public int healthAdd;
     public int bombAdd;
+    private const int MAX_HEALTH = 8;
+    private const int MAX_BOMBS = 5;
     private gameController ctrl;
 
     void Awake()
@@ -26,8 +28,10 @@ public class Pickup : MonoBehaviour {
 
     public void apply()
     {
-        ctrl.bombs += bombAdd;
-        ctrl.setHealth(ctrl.getHealth() + healthAdd);
+        if(ctrl.bombs < MAX_BOMBS)
+            ctrl.bombs += bombAdd;
+        if(ctrl.getHealth() < MAX_HEALTH)
+            ctrl.setHealth(ctrl.getHealth() + healthAdd);
         Destroy(gameObject);
     }
 }

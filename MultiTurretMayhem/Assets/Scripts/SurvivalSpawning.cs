@@ -72,7 +72,14 @@ public class SurvivalSpawning : MonoBehaviour {
             GetComponent<Spawning>().deltaRightRate = deltaRate[rateListCounter];
 
             rateListCounter++;
-            deltaTimer = timerList[rateListCounter];
+            if (rateListCounter < timerList.Count)
+            {
+                deltaTimer = timerList[rateListCounter];
+            } else
+            {
+                deltaTimer = int.MaxValue;  //no more changes to spawn rate growth
+            }
+     
         }
 	}
 }

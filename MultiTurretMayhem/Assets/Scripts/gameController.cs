@@ -482,7 +482,6 @@ public class gameController : MonoBehaviour {
 
         for (int i = 0; i < highScores.Count; ++i)
         {
-            print(highScores[i].score);
             string s = "highScore" + i.ToString();
             PlayerPrefs.SetInt(s, highScores[i].score);
         }

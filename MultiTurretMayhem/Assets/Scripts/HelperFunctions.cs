@@ -93,8 +93,15 @@ public class HelperFunctions{
 
     public static void playSound(ref AudioSource source, AudioClip clip)
     {
-        source.clip = clip;
-        source.Play();
+        try
+        {
+            source.clip = clip;
+            source.Play();
+        }
+        catch
+        {
+            Debug.Log("playSound error");
+        }
     }
 
     public static IEnumerator interpolateSound (AudioSource source, float duration)
