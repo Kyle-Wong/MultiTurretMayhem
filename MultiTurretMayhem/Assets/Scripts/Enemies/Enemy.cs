@@ -128,6 +128,10 @@ abstract public class Enemy : MonoBehaviour
                     colorLerp.endColor = new Color(deathColor.r, deathColor.g, deathColor.b, 0);
                     colorLerp.startColorChange();
                 }
+                if (spriteObject.GetComponent<ColorOscillationWithSprites>() != null)
+                {
+                    spriteObject.GetComponent<ColorOscillationWithSprites>().stopColorChange();
+                }
             }
             Destroy(gameObject, 1);
         }
