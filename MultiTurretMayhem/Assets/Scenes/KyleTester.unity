@@ -14847,6 +14847,39 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 212394496009600388, guid: bfa7403f9ff511b4494a684e9b4bd911,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c93a25433a874e34d8c1a2dec36892ca,
+        type: 3}
+    - target: {fileID: 4383567448467166, guid: bfa7403f9ff511b4494a684e9b4bd911, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4383567448467166, guid: bfa7403f9ff511b4494a684e9b4bd911, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 212394496009600388, guid: bfa7403f9ff511b4494a684e9b4bd911,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212394496009600388, guid: bfa7403f9ff511b4494a684e9b4bd911,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212394496009600388, guid: bfa7403f9ff511b4494a684e9b4bd911,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102343802183206, guid: bfa7403f9ff511b4494a684e9b4bd911, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -26.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bfa7403f9ff511b4494a684e9b4bd911, type: 2}
   m_IsPrefabParent: 0
@@ -18568,6 +18601,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   bombs: 3
+  bombUsed: 0
+  setBombCooldown: 0
+  bombCooldown: 0
   pointsText: {fileID: 0}
   chargeBar: {fileID: 898937461}
   chargeText: {fileID: 1032109958}
