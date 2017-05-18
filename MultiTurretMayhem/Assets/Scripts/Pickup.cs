@@ -11,10 +11,13 @@ public class Pickup : MonoBehaviour {
     private gameController ctrl;
     private float pulseTime = 2;
     private float pulseTimer = 0.0f;
+    private AudioSource _audioSource;
+    public AudioClip pickUpSound;
 
     void Awake()
     {
         ctrl = GameObject.Find("GameController").GetComponent<gameController>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     // Use this for initialization
@@ -53,7 +56,9 @@ public class Pickup : MonoBehaviour {
             ctrl.bombs += bombAdd;
         if(ctrl.getHealth() < MAX_HEALTH)
             ctrl.setHealth(ctrl.getHealth() + healthAdd);
-        Destroy(gameObject);
+        HelperFunctions.playSound(ref _audioSource, pickUpSound);
+        GetComponent<SpriteRenderer>().color = Color.clear;
+        Destroy(gameObject, 2);
     }
 
     private IEnumerator advancePulserTimer()
