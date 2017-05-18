@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 4252298752131478}
   - component: {fileID: 212773991899253600}
   - component: {fileID: 114667997057748286}
-  - component: {fileID: 114846152484718836}
+  - component: {fileID: 114161814611883564}
   m_Layer: 0
   m_Name: Square (1)
   m_TagString: Untagged
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 4665579295362586}
   - component: {fileID: 212061225089197032}
   - component: {fileID: 114426057162977656}
-  - component: {fileID: 114042262301643932}
+  - component: {fileID: 114698331600152680}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -152,22 +152,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 7, y: 7}
   m_EdgeRadius: 0
---- !u!114 &114042262301643932
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1590070707788992}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7384339cad96534ea457038cac528ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playOnStartUp: 0
-  startColor: {r: 1, g: 1, b: 0, a: 0.5019608}
-  endColor: {r: 1, g: 1, b: 0, a: 0}
-  duration: 1
-  initialDelay: 0
 --- !u!114 &114079835785932566
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -181,6 +165,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playOnStartUp: 1
   lifeTime: 5
+--- !u!114 &114161814611883564
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1442625533079596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61976acd6d986a4458db3a64dfe49a2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOnStartUp: 1
+  spriteRenderer: {fileID: 212773991899253600}
+  startColor: {r: 1, g: 1, b: 0, a: 1}
+  endColor: {r: 1, g: 1, b: 0, a: 0.5019608}
+  transitionTime: 0.5
+  timer: 0
+  stopped: 0
 --- !u!114 &114426057162977656
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -209,6 +211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthAdd: 0
   bombAdd: 1
+  effectColor: {r: 1, g: 1, b: 0, a: 1}
 --- !u!114 &114667997057748286
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -224,22 +227,24 @@ MonoBehaviour:
   rotSpeed: -150
   deltaRotSpeed: 0
   randomDirection: 0
---- !u!114 &114846152484718836
+--- !u!114 &114698331600152680
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1442625533079596}
+  m_GameObject: {fileID: 1590070707788992}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7384339cad96534ea457038cac528ed, type: 3}
+  m_Script: {fileID: 11500000, guid: 61976acd6d986a4458db3a64dfe49a2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playOnStartUp: 0
-  startColor: {r: 1, g: 1, b: 0, a: 0.5019608}
-  endColor: {r: 1, g: 1, b: 0, a: 0}
-  duration: 1
-  initialDelay: 0
+  playOnStartUp: 1
+  spriteRenderer: {fileID: 212061225089197032}
+  startColor: {r: 1, g: 1, b: 0, a: 1}
+  endColor: {r: 1, g: 1, b: 0, a: 0.5019608}
+  transitionTime: 0.5
+  timer: 0
+  stopped: 0
 --- !u!212 &212061225089197032
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -273,7 +278,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5ebfa64212988f941a9fb97a7f81eb4a, type: 3}
-  m_Color: {r: 1, g: 1, b: 0, a: 0.5019608}
+  m_Color: {r: 1, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -313,7 +318,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5ebfa64212988f941a9fb97a7f81eb4a, type: 3}
-  m_Color: {r: 1, g: 1, b: 0, a: 0.5019608}
+  m_Color: {r: 1, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
