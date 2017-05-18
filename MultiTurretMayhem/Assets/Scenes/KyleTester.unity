@@ -13634,6 +13634,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 82795963858490816, guid: 4a17361fd557b90478b1896d8001bbf1,
+        type: 2}
+      propertyPath: panLevelCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82795963858490816, guid: 4a17361fd557b90478b1896d8001bbf1,
+        type: 2}
+      propertyPath: reverbZoneMixCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a17361fd557b90478b1896d8001bbf1, type: 2}
   m_IsPrefabParent: 0
@@ -14846,39 +14856,6 @@ Prefab:
     - target: {fileID: 4192579585893564, guid: bfa7403f9ff511b4494a684e9b4bd911, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 212394496009600388, guid: bfa7403f9ff511b4494a684e9b4bd911,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: c93a25433a874e34d8c1a2dec36892ca,
-        type: 3}
-    - target: {fileID: 4383567448467166, guid: bfa7403f9ff511b4494a684e9b4bd911, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4383567448467166, guid: bfa7403f9ff511b4494a684e9b4bd911, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 212394496009600388, guid: bfa7403f9ff511b4494a684e9b4bd911,
-        type: 2}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 212394496009600388, guid: bfa7403f9ff511b4494a684e9b4bd911,
-        type: 2}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 212394496009600388, guid: bfa7403f9ff511b4494a684e9b4bd911,
-        type: 2}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4102343802183206, guid: bfa7403f9ff511b4494a684e9b4bd911, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -26.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bfa7403f9ff511b4494a684e9b4bd911, type: 2}
