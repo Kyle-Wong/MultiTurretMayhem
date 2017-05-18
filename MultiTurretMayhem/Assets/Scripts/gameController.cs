@@ -36,6 +36,7 @@ public class gameController : MonoBehaviour {
     public GameObject pauseCanvas;
     public GameObject highScoreCanvas;
     public Transform cam;
+    public UIOutline outline;
     public float screenShakeDuration;
     public float screenShakeMagnitude;
     public int levelNum;
@@ -67,6 +68,8 @@ public class gameController : MonoBehaviour {
     public AudioClip bombSound;
     private List<HighScore> highScores;
     private GameObject[] targetList;
+    private bool tutorialRunning = false;
+    
 	void Awake () {
         maxHealth = health;
         settingsList = getSettings();
@@ -130,60 +133,8 @@ public class gameController : MonoBehaviour {
         switch (gameState)
         {
             case (GameState.beforeGame):
-                settingsList[levelNum].SetActive(false);
-                if (preGameDelay > 0)
-                {
-                    
-                    try
-                    {
-                        GameObject.FindGameObjectsWithTag("Turret")[0].GetComponent<Turret>().inputDisabled = true;
-                    }catch { }
-                    try
-                    {
-                        GameObject.FindGameObjectsWithTag("Turret")[1].GetComponent<Turret>().inputDisabled = true;
-                    }
-                    catch { }
-                    preGameDelay -= Time.deltaTime;
-                } else
-                {
-                    try
-                    {
-                        GameObject.FindGameObjectsWithTag("Turret")[0].GetComponent<Turret>().inputDisabled = false;
-                    }
-                    catch { }
-                    try
-                    {
-                        GameObject.FindGameObjectsWithTag("Turret")[1].GetComponent<Turret>().inputDisabled = false;
-                    }
-                    catch { }
-
-                    targetList = GameObject.FindGameObjectsWithTag("Target");
-                    bool startGame = true;
-                    for(int i = 0; i < targetList.Length; i++)
-                    {
-                        if (!targetList[i].GetComponent<Target>().activated)
-                        {
-                            startGame = false;
-                        }
-                    }
-                    if (startGame)
-                    {
-                        gameState = GameState.duringGame;
-                        settingsList[levelNum].SetActive(true);
-                        for(int i = 0; i < targetList.Length; ++i)
-                        {
-                            targetList[i].GetComponent<ColorLerp>().startColorChange();
-                            targetList[i].GetComponent<DelAfterTime>().startTimer();
-                        }
-                        for (int i = 0; i < currentSettings.enabledUI.Length; i++)
-                        {
-                            if(!currentSettings.enabledUI[i].CompareTag("Target") && !currentSettings.enabledUI[i].name.Equals("ScreenDivider"))
-                                currentSettings.enabledUI[i].SetActive(false);
-                        }
-
-                    }
-
-                }
+                
+                runPreGame();  //level tutorial logic is in here.  Also handles levels without tutorials
                 break;
             case (GameState.duringGame):
                 if (timeRemaining > 0)
@@ -264,15 +215,8 @@ public class gameController : MonoBehaviour {
                     lowHealthText.enabled = false;
                     gameIsOver = true;
                     for(int i = 0; i < currentSettings.enabledUI.Length; i++)
-                    {
-                        try
-                        {
-                            if (!currentSettings.enabledUI[i].CompareTag("Target"))
-                            {
-                                currentSettings.enabledUI[i].SetActive(false);
-                            }
-                        }
-                        catch { }
+                    {    
+                        currentSettings.enabledUI[i].SetActive(false);
                     }
                     chargeBar.setProgress(1);              
                     dropFTLBomb();                                      //kill all enemies
@@ -456,7 +400,219 @@ public class gameController : MonoBehaviour {
         GameObject FTLBomb = (GameObject)Instantiate(Resources.Load("FTLBomb"));
         FTLBomb.transform.position = Vector3.zero;
     }
+    public void runPreGame()
+    {
+        if (!tutorialRunning)
+        {
+            StartCoroutine(levelTutorial(levelNum));
+        }
+    }
+    public IEnumerator levelTutorial(int level)
+    {
+        
+        tutorialRunning = true;
+        settingsList[level].SetActive(false);
+        for(int i = 0; i < currentSettings.targets.Length; ++i)
+        {
+            currentSettings.targets[i].SetActive(false);
+        }
+        for (int i = 0; i < currentSettings.tutorialUI.Length; ++i)
+        {
+            currentSettings.tutorialUI[i].SetActive(false);
+        }
+        if (currentSettings.tutorialUI.Length > 0)
+        {
+            currentSettings.tutorialUI[0].SetActive(true);
+            outline.setPosition(currentSettings.tutorialUI[0].GetComponent<RectTransform>());
+        }
+        try
+        {
+            GameObject.FindGameObjectsWithTag("Turret")[0].GetComponent<Turret>().inputDisabled = true;
+        }
+        catch { }
+        try
+        {
+            GameObject.FindGameObjectsWithTag("Turret")[1].GetComponent<Turret>().inputDisabled = true;
+        }
+        catch { }
 
+        yield return new WaitForSeconds(preGameDelay);
+
+        try
+        {
+            GameObject.FindGameObjectsWithTag("Turret")[0].GetComponent<Turret>().inputDisabled = false;
+        }
+        catch { }
+        try
+        {
+            GameObject.FindGameObjectsWithTag("Turret")[1].GetComponent<Turret>().inputDisabled = false;
+        }
+        catch { }
+
+
+
+
+        if (!survival)
+        {
+            //This switch is for levels that have tutorials
+            switch (level)              //This is hard-coded into oblivion, I'm sorry
+            {
+                case (0):
+
+                    for (int i = 0; i < currentSettings.tutorialUI.Length - 1; ++i)       //the last one (target tutorial) is a special case
+                    {
+                        currentSettings.tutorialUI[i].SetActive(true);
+                        outline.setTarget(currentSettings.tutorialUI[i].GetComponent<RectTransform>()); //UI *MUST* be in precise order  
+                        if (i != 0)
+                            yield return new WaitForSeconds((float)(1 / 1.8));  //wait for turret cooldown
+                        while (true)                                    //wait for player input
+                        {
+                            if (Input.GetKeyDown(KeyCode.UpArrow))      //advance after shot
+                                break;
+                            yield return null;
+                        }
+                        currentSettings.tutorialUI[i].SetActive(false);
+
+                    }
+                    currentSettings.tutorialUI[currentSettings.tutorialUI.Length - 1].SetActive(true);
+                    outline.setTarget(currentSettings.tutorialUI[currentSettings.tutorialUI.Length - 1].GetComponent<RectTransform>());
+                    currentSettings.targets[0].SetActive(true);
+                    while (!currentSettings.targets[0].GetComponent<Target>().activated)
+                    {
+                        yield return null;
+                    }    //wait for player input
+                    currentSettings.tutorialUI[currentSettings.tutorialUI.Length - 1].SetActive(false);
+                    outline.gameObject.SetActive(false);
+                    break;
+                case (1):
+                    for (int i = 0; i < currentSettings.tutorialUI.Length - 2; ++i)       //the last one (target tutorial) is a special case
+                    {
+                        if (i == 1)
+                            currentSettings.tutorialUI[2].SetActive(true);
+                        currentSettings.tutorialUI[i].SetActive(true);
+                        outline.setTarget(currentSettings.tutorialUI[i].GetComponent<RectTransform>()); //UI *MUST* be in precise order  
+                        if (i != 0)
+                            yield return new WaitForSeconds((float)(1 / 1.8));  //wait for turret cooldown
+                        while (true)                                    //wait for player input
+                        {
+                            if (Input.GetKeyDown(KeyCode.W))      //advance after shot
+                                break;
+                            if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+                                dropBomb();
+                            if (bombUsed)
+                            {
+                                bombCooldown -= Time.deltaTime;
+
+                                if (bombCooldown <= 0)
+                                {
+                                    bombUsed = false;
+                                    bombCooldown = setBombCooldown;
+                                }
+                            }
+                            yield return null;
+                        }
+                        if (i == 1)
+                            currentSettings.tutorialUI[2].SetActive(false);
+                        currentSettings.tutorialUI[i].SetActive(false);
+
+
+                    }
+                    currentSettings.tutorialUI[currentSettings.tutorialUI.Length - 1].SetActive(true);
+                    outline.setTarget(currentSettings.tutorialUI[currentSettings.tutorialUI.Length - 1].GetComponent<RectTransform>());
+                    currentSettings.targets[0].SetActive(true);
+                    while (!currentSettings.targets[0].GetComponent<Target>().activated)
+                    {
+                        yield return null;
+                    }    //wait for player input
+                    currentSettings.tutorialUI[currentSettings.tutorialUI.Length - 1].SetActive(false);
+                    outline.gameObject.SetActive(false);
+                    bombs = 3;                                      //reset bombs if the player used any
+                    break;
+                case (2):
+                    currentSettings.tutorialUI[0].SetActive(true);
+                    while (true)                                    //wait for player input
+                    {
+                        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))      //advance after shot
+                            break;
+                        yield return null;
+                    }
+                    currentSettings.tutorialUI[0].SetActive(false);
+                    currentSettings.tutorialUI[1].SetActive(true);
+                    currentSettings.tutorialUI[2].SetActive(true);
+                    outline.setTarget(currentSettings.tutorialUI[1].GetComponent<RectTransform>());
+                    GameObject.Find("DynamicOutline2").GetComponent<UIOutline>().setPosition(currentSettings.tutorialUI[0].GetComponent<RectTransform>());
+                    GameObject.Find("DynamicOutline2").GetComponent<UIOutline>().setTarget(currentSettings.tutorialUI[2].GetComponent<RectTransform>());
+
+
+
+                    for (int i = 0; i < currentSettings.targets.Length; ++i)
+                    {
+                        currentSettings.targets[i].SetActive(true);
+                    }
+                    while (true)
+                    {
+                        bool startGame = true;
+                        for (int i = 0; i < currentSettings.targets.Length; ++i)
+                        {
+                            if (!currentSettings.targets[i].GetComponent<Target>().activated)
+                                startGame = false;
+                        }
+                        if (startGame)
+                            break;
+                        yield return null;
+                    }
+                    currentSettings.tutorialUI[1].SetActive(false);
+                    currentSettings.tutorialUI[2].SetActive(false);
+                    GameObject.Find("DynamicOutline2").GetComponent<UIOutline>().setPosition(
+                        new Vector3(1000, 1000, 0), new Vector3(1000, 1000, 0));
+
+                    break;
+                default:
+                    for (int i = 0; i < currentSettings.targets.Length; ++i)
+                    {
+                        currentSettings.targets[i].SetActive(true);
+                    }
+                    while (true)
+                    {
+                        bool startGame = true;
+                        for (int i = 0; i < currentSettings.targets.Length; ++i)
+                        {
+                            if (!currentSettings.targets[i].GetComponent<Target>().activated)
+                                startGame = false;
+                        }
+                        if (startGame)
+                            break;
+                        yield return null;
+                    }
+
+                    break;
+            }
+        }
+        tutorialRunning = false;
+        startLevel();
+        yield return null;
+    }
+    public void startLevel()
+    {
+        gameState = GameState.duringGame;
+        settingsList[levelNum].SetActive(true);
+        for (int i = 0; i < currentSettings.targets.Length; ++i)
+        {
+            currentSettings.targets[i].GetComponent<ColorLerp>().startColorChange();
+            currentSettings.targets[i].GetComponent<DelAfterTime>().startTimer();
+        }
+        for (int i = 0; i < currentSettings.enabledUI.Length; i++)
+        {
+            try
+            {
+                currentSettings.tutorialUI[i].SetActive(false);
+            }
+            catch { };  //this will trigger if an object was deleted, but that's fine
+        }
+        if(outline != null)
+            outline.setPosition(new Vector3(1000, 1000, 0), new Vector3(1000, 1000, 0));
+
+    }
     public IEnumerator cameraShake (float duration, float magnitude)
     {
         Vector3 originalPos = cam.position;
