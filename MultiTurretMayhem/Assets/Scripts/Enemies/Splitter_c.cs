@@ -10,6 +10,9 @@ public class Splitter_c : Enemy
     private bool goingIn;
     private int frameInvincibility = 5; //so small dudes don't die from the original shot
     public float maxDirVelocity;
+    public float closeInitialDirVelocity;
+    public float farInitialDirVelocity;
+    public float distanceThreshold;
     public float decelerationFactor;
     public float acceleration;
     public AudioClip splitSound;
@@ -73,7 +76,13 @@ public class Splitter_c : Enemy
     private void launchAway()
     {
         Vector3 launch = launchDir();
-        GetComponent<Rigidbody2D>().velocity = launch * 8f;
+        if(Vector3.Distance(transform.position,playerTransform.position) < distanceThreshold)
+        {
+            GetComponent<Rigidbody2D>().velocity = launch * closeInitialDirVelocity;
+        } else
+        {
+            GetComponent<Rigidbody2D>().velocity = launch * farInitialDirVelocity;
+        }
     }
 
     private Vector3 launchDir()

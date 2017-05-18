@@ -272,6 +272,9 @@ MonoBehaviour:
   pointsText: {fileID: 1730592498059714, guid: bf1e6d18bfabc7e4d95532ba801b6b72, type: 2}
   deathSound: {fileID: 8300000, guid: e6562dd305a555f4b8e5a52a1d67cedb, type: 3}
   maxDirVelocity: 0.75
+  closeInitialDirVelocity: 16
+  farInitialDirVelocity: 8
+  distanceThreshold: 3.5
   decelerationFactor: 0.9
   acceleration: 0.9
   splitSound: {fileID: 8300000, guid: 1c41e9752f9c7714a9093dfcd8347de7, type: 3}
