@@ -21,6 +21,9 @@ public class gameController : MonoBehaviour {
     public int health = 8;
     private int maxHealth;
     public int bombs = 3;
+    public bool bombUsed = false;
+    public float setBombCooldown;
+    public float bombCooldown;
     public Text pointsText;
     public ProgressBar chargeBar;
     public FTLText chargeText;
@@ -97,10 +100,20 @@ public class gameController : MonoBehaviour {
         LevelNumber.setSkipIntro(true);     //main menu intro should no longer be played when returning to it
         shipAudio.clip = shipHit;
         highScores = getHighScores();
+        bombCooldown = setBombCooldown;
     }
     // Update is called once per frame
     void Update() {
-
+        if (bombUsed)
+        {
+            bombCooldown -= Time.deltaTime;
+            
+            if (bombCooldown <= 0)
+            {
+                bombUsed = false;
+                bombCooldown = setBombCooldown;
+            }
+        }
         
         if (Input.GetKeyDown(KeyCode.L))
         {
@@ -178,7 +191,7 @@ public class gameController : MonoBehaviour {
                     multiplierText.text = multiplier.ToString("n1") + " x";
                     multiplierText.color = HelperFunctions.colorInterpolation(Color.red, Color.white, (multiplier - 1) / 9);
                 }
-                if(Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+                if((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) && !bombUsed)
                 {
                     dropBomb();
                 }
@@ -394,6 +407,7 @@ public class gameController : MonoBehaviour {
     {
         if(bombs > 0)
         {
+            bombUsed = true;
             bombs--;
             GameObject bomb = (GameObject)Instantiate(Resources.Load("Bomb"));
             bomb.transform.position = Vector3.zero;
