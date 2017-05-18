@@ -3414,6 +3414,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 8
   bombs: 3
+  bombUsed: 0
+  setBombCooldown: 0
+  bombCooldown: 0
   pointsText: {fileID: 468343272}
   chargeBar: {fileID: 0}
   chargeText: {fileID: 0}
@@ -3426,6 +3429,7 @@ MonoBehaviour:
   pauseCanvas: {fileID: 1637477313}
   highScoreCanvas: {fileID: 58289248}
   cam: {fileID: 271810602}
+  outline: {fileID: 0}
   screenShakeDuration: 0.25
   screenShakeMagnitude: 0.4
   levelNum: 0
@@ -3445,6 +3449,14 @@ MonoBehaviour:
   shipDanger: {fileID: 8300000, guid: 1c41e9752f9c7714a9093dfcd8347de7, type: 3}
   shipDeath: {fileID: 8300000, guid: 1c41e9752f9c7714a9093dfcd8347de7, type: 3}
   bombSound: {fileID: 8300000, guid: c62867fe1d713ca4388837d38a74cc82, type: 3}
+  dropItems:
+  - {fileID: 1087308557876510, guid: 4a17361fd557b90478b1896d8001bbf1, type: 2}
+  - {fileID: 1299124937497782, guid: 3d88417f08c8d694d97fca8a11b7d982, type: 2}
+  dropTimes: {x: 5, y: 10}
+  dropTimer: 0
+  dropRates:
+  - 0.5
+  - 0.5
 --- !u!4 &1196438735
 Transform:
   m_ObjectHideFlags: 0
@@ -3645,6 +3657,8 @@ MonoBehaviour:
   rightTurretRestr: 0
   startingBombs: 3
   enabledUI: []
+  targets: []
+  tutorialUI: []
 --- !u!1 &1299050039
 GameObject:
   m_ObjectHideFlags: 0
@@ -3867,6 +3881,8 @@ MonoBehaviour:
   rightTurretRestr: 0
   startingBombs: 3
   enabledUI: []
+  targets: []
+  tutorialUI: []
 --- !u!1001 &1369163154
 Prefab:
   m_ObjectHideFlags: 0

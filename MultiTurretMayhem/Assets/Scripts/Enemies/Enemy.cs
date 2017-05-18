@@ -22,11 +22,6 @@ abstract public class Enemy : MonoBehaviour
     public AudioClip deathSound;
     protected AudioSource _audioSource;
     private ParticleSystem _particleSystem;
-    public static List<GameObject> dropItems;
-    public static Vector2 dropTimes;
-    private float dropTimer = 0.0f;
-    private float timeToDrop;
-    public static List<float> dropRates;
 
     private void Awake()
     {
@@ -35,16 +30,6 @@ abstract public class Enemy : MonoBehaviour
         ctrl = GameObject.Find("GameController").GetComponent<gameController>();
         _audioSource = GetComponent<AudioSource>();
         _particleSystem = GetComponentInChildren<ParticleSystem>();
-
-        dropItems = new List<GameObject>(2);
-        dropItems.Add(Resources.Load<GameObject>("HealthPickup"));
-        dropItems.Add(Resources.Load<GameObject>("BombPickup"));
-
-        dropRates = new List<float>(2);
-        dropRates.Add(0.5f);
-        dropRates.Add(0.5f);
-
-        dropTimes = new Vector2(30, 45);
     }
 
     public void baseStart()
@@ -55,7 +40,6 @@ abstract public class Enemy : MonoBehaviour
         controller = GameObject.FindGameObjectWithTag("GameController").GetComponent<gameController>();
         isDead = false;
         _audioSource.clip = deathSound;
-        StartCoroutine(advanceDropTimer());
     }
     public void baseUpdate()
     {
@@ -102,7 +86,7 @@ abstract public class Enemy : MonoBehaviour
                     p.GetComponent<RectTransform>().localPosition = HelperFunctions.objectCameraConvert(transform.position, canvas, cam);
                     p.GetComponent<Text>().text = ((int)(points * ctrl.multiplier)).ToString();
 
-                    if (willDrop())
+                    if (ctrl.willDrop())
                         dropItem();
                 }
                 
@@ -151,28 +135,9 @@ abstract public class Enemy : MonoBehaviour
         }
     }
 
-    protected bool willDrop()
-    {
-        return dropTimer >= timeToDrop;
-    }
-
     public void dropItem()
     {
-        Instantiate(dropItems[HelperFunctions.randomIndex(dropRates)], transform.position, Quaternion.identity);
-        dropTimer = 0.0f;
-        StartCoroutine(advanceDropTimer());
-    }
-
-    protected IEnumerator advanceDropTimer()
-    {
-        if (dropTimer == 0.0f)
-        {
-            timeToDrop = Random.Range(dropTimes.x, dropTimes.y);
-            while (dropTimer < timeToDrop)
-            {
-                yield return new WaitForEndOfFrame();
-                dropTimer += Time.deltaTime;
-            }
-        }
+        Instantiate(ctrl.dropItems[HelperFunctions.randomIndex(ctrl.dropRates)], transform.position, Quaternion.identity);
+        ctrl.dropTimer = 0.0f;
     }
 }

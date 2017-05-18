@@ -13,6 +13,7 @@ public class Pickup : MonoBehaviour {
     private float pulseTimer = 0.0f;
     private AudioSource _audioSource;
     public AudioClip pickUpSound;
+    public bool pickedUp = false;
 
     void Awake()
     {
@@ -29,7 +30,7 @@ public class Pickup : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-		if (pulseTimer >= pulseTime)
+		if (pulseTimer >= pulseTime && !pickedUp)
         {
             pulseTimer = 0;
             Pulse();
@@ -57,7 +58,10 @@ public class Pickup : MonoBehaviour {
         if(ctrl.getHealth() < MAX_HEALTH)
             ctrl.setHealth(ctrl.getHealth() + healthAdd);
         HelperFunctions.playSound(ref _audioSource, pickUpSound);
-        GetComponent<SpriteRenderer>().color = Color.clear;
+        foreach (GameObject g in HelperFunctions.getChildren(gameObject.transform))
+            if (g.GetComponent<SpriteRenderer>() != null)
+                g.GetComponent<SpriteRenderer>().color = Color.clear;
+        pickedUp = true;
         Destroy(gameObject, 2);
     }
 

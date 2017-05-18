@@ -69,8 +69,13 @@ public class gameController : MonoBehaviour {
     private List<HighScore> highScores;
     private GameObject[] targetList;
     private bool tutorialRunning = false;
-    
-	void Awake () {
+    public List<GameObject> dropItems;
+    public Vector2 dropTimes;
+    public float dropTimer = 0.0f;
+    private float timeToDrop;
+    public List<float> dropRates;
+
+    void Awake () {
         maxHealth = health;
         settingsList = getSettings();
         blackPanel = GameObject.Find("BlackPanel").GetComponent<GraphicColorLerp>();
@@ -108,6 +113,8 @@ public class gameController : MonoBehaviour {
     }
     // Update is called once per frame
     void Update() {
+        //Debug.Log(dropTimer);
+        Debug.Log(timeToDrop);
         if (bombUsed)
         {
             bombCooldown -= Time.deltaTime;
@@ -137,6 +144,10 @@ public class gameController : MonoBehaviour {
                 runPreGame();  //level tutorial logic is in here.  Also handles levels without tutorials
                 break;
             case (GameState.duringGame):
+                if (survival)
+                {
+                    StartCoroutine(advanceDropTimer());
+                }
                 if (timeRemaining > 0)
                 {
                     timeRemaining -= Time.deltaTime;
@@ -285,7 +296,7 @@ public class gameController : MonoBehaviour {
                 
                 break;
             case (GameState.survivalDeathState):
-
+                dropTimer = 0.0f;
                 break;
             case (GameState.paused):
                 if (Input.GetKeyDown(KeyCode.Escape))
@@ -728,5 +739,23 @@ public class gameController : MonoBehaviour {
         }
         else if (hits > 1)
             multiplier += (hits - 1) * 0.5f;
+    }
+
+    public bool willDrop()
+    {
+        return dropTimer >= timeToDrop;
+    }
+
+    public IEnumerator advanceDropTimer()
+    {
+        if (dropTimer == 0.0f)
+        {
+            timeToDrop = Random.Range(dropTimes.x, dropTimes.y);
+            while (dropTimer < timeToDrop)
+            {
+                yield return new WaitForEndOfFrame();
+                dropTimer += Time.deltaTime;
+            }
+        }
     }
 }
