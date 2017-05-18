@@ -1115,7 +1115,7 @@ MonoBehaviour:
   levelNum: 0
   lowHealthThreshold: 0.3
   survival: 0
-  preGameDelay: 2
+  preGameDelay: 4
   delayBeforeJump: 1.8
   jumpDuration: 7
   delayAfterJump: 1.5
@@ -3319,7 +3319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbb02924798ace349a5098d78b755d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelDuration: 50
+  levelDuration: 40
   turretsAvailable: 1
   leftTurretRestr: 0
   rightTurretRestr: 0

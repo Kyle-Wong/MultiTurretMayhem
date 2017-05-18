@@ -261,6 +261,13 @@ public class gameController : MonoBehaviour {
                 
                 if (!survival && timeRemaining <= 0)                    //survival game mode never leaves this state
                 {
+                    GameObject[] oldUI = currentSettings.enabledUI; //Next 7 lines are for tutorial target cleanup
+                    currentSettings.enabledUI = new GameObject[oldUI.Length - 1];
+                    for (int i = 0; i < currentSettings.enabledUI.Length; i++)
+                    {
+                        currentSettings.enabledUI[i] = oldUI[i];
+                    }
+                    
                     lowHealthText.enabled = false;
                     gameIsOver = true;
                     for(int i = 0; i < currentSettings.enabledUI.Length; i++)
