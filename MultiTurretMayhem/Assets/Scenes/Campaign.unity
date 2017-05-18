@@ -1095,6 +1095,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 8
   bombs: 3
+  bombUsed: 0
+  setBombCooldown: 0.75
+  bombCooldown: 0
   pointsText: {fileID: 0}
   chargeBar: {fileID: 750076560}
   chargeText: {fileID: 1794033028}
@@ -2932,6 +2935,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 82542170568507936, guid: bfa7403f9ff511b4494a684e9b4bd911,
+        type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bfa7403f9ff511b4494a684e9b4bd911, type: 2}
   m_IsPrefabParent: 0
@@ -4192,7 +4200,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
