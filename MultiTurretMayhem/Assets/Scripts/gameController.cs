@@ -63,6 +63,7 @@ public class gameController : MonoBehaviour {
     public AudioClip shipDeath;
     public AudioClip bombSound;
     private List<HighScore> highScores;
+    private GameObject[] targetList;
 	void Awake () {
         maxHealth = health;
         settingsList = getSettings();
@@ -116,8 +117,10 @@ public class gameController : MonoBehaviour {
         switch (gameState)
         {
             case (GameState.beforeGame):
-                if(preGameDelay > 0)
+                settingsList[levelNum].SetActive(false);
+                if (preGameDelay > 0)
                 {
+                    
                     try
                     {
                         GameObject.FindGameObjectsWithTag("Turret")[0].GetComponent<Turret>().inputDisabled = true;
@@ -140,7 +143,33 @@ public class gameController : MonoBehaviour {
                         GameObject.FindGameObjectsWithTag("Turret")[1].GetComponent<Turret>().inputDisabled = false;
                     }
                     catch { }
-                    gameState = GameState.duringGame;
+
+                    targetList = GameObject.FindGameObjectsWithTag("Target");
+                    bool startGame = true;
+                    for(int i = 0; i < targetList.Length; i++)
+                    {
+                        if (!targetList[i].GetComponent<Target>().activated)
+                        {
+                            startGame = false;
+                        }
+                    }
+                    if (startGame)
+                    {
+                        gameState = GameState.duringGame;
+                        settingsList[levelNum].SetActive(true);
+                        for(int i = 0; i < targetList.Length; ++i)
+                        {
+                            targetList[i].GetComponent<ColorLerp>().startColorChange();
+                            targetList[i].GetComponent<DelAfterTime>().startTimer();
+                        }
+                        for (int i = 0; i < currentSettings.enabledUI.Length; i++)
+                        {
+                            if(!currentSettings.enabledUI[i].CompareTag("Target"))
+                                currentSettings.enabledUI[i].SetActive(false);
+                        }
+
+                    }
+
                 }
                 break;
             case (GameState.duringGame):

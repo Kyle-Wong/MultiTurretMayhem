@@ -27,7 +27,7 @@ public class DelAfterTime : MonoBehaviour {
         }
         Destroy(gameObject);   
     }
-    void startTimer()
+    public void startTimer()
     {
         StartCoroutine(destroyAfterTime());
     }

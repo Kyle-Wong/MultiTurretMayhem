@@ -203,6 +203,9 @@ public class Turret : MonoBehaviour
             else if (e.collider.CompareTag("Pickup"))
             {
                 e.collider.GetComponent<Pickup>().apply();
+            } else if (e.collider.CompareTag("Target"))
+            {
+                e.collider.GetComponent<Target>().activate();
             }
         }
 
