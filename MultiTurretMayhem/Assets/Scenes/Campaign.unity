@@ -3319,7 +3319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbb02924798ace349a5098d78b755d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelDuration: 40
+  levelDuration: 50
   turretsAvailable: 1
   leftTurretRestr: 0
   rightTurretRestr: 0
@@ -8411,7 +8411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbb02924798ace349a5098d78b755d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelDuration: 50
+  levelDuration: 40
   turretsAvailable: 0
   leftTurretRestr: 0
   rightTurretRestr: 0
