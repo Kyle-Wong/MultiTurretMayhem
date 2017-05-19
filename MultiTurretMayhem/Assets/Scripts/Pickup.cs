@@ -53,16 +53,18 @@ public class Pickup : MonoBehaviour {
         bombColor.startColor = effectColor;
         bombColor.endColor = new Color(effectColor.r, effectColor.g, effectColor.b, 0);
 
-        if(ctrl.bombs < MAX_BOMBS)
+        if (ctrl.bombs < MAX_BOMBS)
             ctrl.bombs += bombAdd;
-        if(ctrl.getHealth() < MAX_HEALTH)
+        if (ctrl.getHealth() < MAX_HEALTH)
             ctrl.setHealth(ctrl.getHealth() + healthAdd);
         HelperFunctions.playSound(ref _audioSource, pickUpSound);
-        foreach (GameObject g in HelperFunctions.getChildren(gameObject.transform))
+        foreach (GameObject g in HelperFunctions.getChildren(gameObject.transform)) {
             if (g.GetComponent<SpriteRenderer>() != null)
                 g.GetComponent<SpriteRenderer>().color = Color.clear;
+            
+        }
         pickedUp = true;
-        Destroy(gameObject, 2);
+        Destroy(gameObject, 0);
     }
 
     private IEnumerator advancePulserTimer()

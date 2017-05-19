@@ -186,6 +186,7 @@ public class Turret : MonoBehaviour
     {
         HelperFunctions.playSound(ref _audioSource, fireSound);
         RaycastHit2D[] toKill = Physics2D.RaycastAll(transform.position, HelperFunctions.lineVector(transform.rotation.eulerAngles.z), 20);
+        bool miss = true;
         int enemiesHit = 0;
         foreach (RaycastHit2D e in toKill)
         {
@@ -198,11 +199,13 @@ public class Turret : MonoBehaviour
                     ParticleSystem.MainModule enemyParticles = enemy.GetComponentInChildren<ParticleSystem>().main;
                     enemyParticles.startColor = particleColor;
                     ++enemiesHit;
+                    miss = false;
                 }
             }
             else if (e.collider.CompareTag("Pickup"))
             {
                 e.collider.GetComponent<Pickup>().apply();
+                miss = false;
             } else if (e.collider.CompareTag("Target"))
             {
                 e.collider.GetComponent<Target>().activate();
@@ -211,11 +214,13 @@ public class Turret : MonoBehaviour
 
         if (ctrl.survival)
         {
-            if (enemiesHit == 0)
+            if (miss)
                 HelperFunctions.playSound(ref _multiplierSource, lowerMultiplierSound);
-            else if (enemiesHit > 1)
+            else if (!miss && enemiesHit > 1)
+            {
                 HelperFunctions.playSound(ref _multiplierSource, higherMultiplierSound);
-            ctrl.changeMultiplier(enemiesHit);
+                ctrl.changeMultiplier(enemiesHit);
+            }
         }
 
         charge = 0;

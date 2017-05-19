@@ -174,7 +174,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -198,7 +198,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!114 &114757813792315240
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -214,6 +214,7 @@ MonoBehaviour:
   bombAdd: 0
   effectColor: {r: 1, g: 0, b: 0, a: 1}
   pickUpSound: {fileID: 0}
+  pickedUp: 0
 --- !u!114 &114943179673390088
 MonoBehaviour:
   m_ObjectHideFlags: 1

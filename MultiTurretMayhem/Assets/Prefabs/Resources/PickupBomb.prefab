@@ -85,7 +85,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playOnStartUp: 1
-  lifeTime: 2
+  lifeTime: 1
 --- !u!114 &114190214871084910
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a73c294829e8bbc49b025aa22736cf41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  growthRate: 30
+  growthRate: 10
   growthAcceleration: 0
   initialDelay: 0
   color: {r: 1, g: 1, b: 1, a: 1}
