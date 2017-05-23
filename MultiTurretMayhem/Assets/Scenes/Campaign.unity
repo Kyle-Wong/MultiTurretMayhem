@@ -157,8 +157,6 @@ MonoBehaviour:
   rightTurretRestr: 2
   startingBombs: 3
   enabledUI:
-  - {fileID: 97050560}
-  - {fileID: 1034414208}
   - {fileID: 702710027}
   targets:
   - {fileID: 97050560}
@@ -452,7 +450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activated: 0
-  activeDuration: 1
+  activeDuration: 0.5
 --- !u!58 &97050563
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1309,6 +1307,10 @@ MonoBehaviour:
   shipDanger: {fileID: 8300000, guid: 1c41e9752f9c7714a9093dfcd8347de7, type: 3}
   shipDeath: {fileID: 8300000, guid: 1c41e9752f9c7714a9093dfcd8347de7, type: 3}
   bombSound: {fileID: 8300000, guid: c62867fe1d713ca4388837d38a74cc82, type: 3}
+  dropItems: []
+  dropTimes: {x: 0, y: 0}
+  dropTimer: 0
+  dropRates: []
 --- !u!4 &250599231
 Transform:
   m_ObjectHideFlags: 0
@@ -1973,9 +1975,7 @@ MonoBehaviour:
   leftTurretRestr: 0
   rightTurretRestr: 0
   startingBombs: 3
-  enabledUI:
-  - {fileID: 97050560}
-  - {fileID: 1034414208}
+  enabledUI: []
   targets:
   - {fileID: 97050560}
   - {fileID: 1034414208}
@@ -3004,8 +3004,6 @@ MonoBehaviour:
   startingBombs: 3
   enabledUI:
   - {fileID: 702710027}
-  - {fileID: 97050560}
-  - {fileID: 1034414208}
   targets:
   - {fileID: 97050560}
   - {fileID: 1034414208}
@@ -3145,7 +3143,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1039614299938132, guid: bfa7403f9ff511b4494a684e9b4bd911, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bfa7403f9ff511b4494a684e9b4bd911, type: 2}
@@ -3809,7 +3807,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activated: 0
-  activeDuration: 1
+  activeDuration: 0.5
 --- !u!58 &1034414211
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5087,9 +5085,7 @@ MonoBehaviour:
   leftTurretRestr: 0
   rightTurretRestr: 0
   startingBombs: 3
-  enabledUI:
-  - {fileID: 97050560}
-  - {fileID: 1034414208}
+  enabledUI: []
   targets:
   - {fileID: 97050560}
   - {fileID: 1034414208}
@@ -6084,11 +6080,9 @@ MonoBehaviour:
   turretsAvailable: 2
   leftTurretRestr: 1
   rightTurretRestr: 2
-  startingBombs: 0
+  startingBombs: 3
   enabledUI:
-  - {fileID: 1034414208}
   - {fileID: 702710027}
-  - {fileID: 97050560}
   targets:
   - {fileID: 97050560}
   - {fileID: 1034414208}
@@ -6664,9 +6658,7 @@ MonoBehaviour:
   leftTurretRestr: 0
   rightTurretRestr: 0
   startingBombs: 3
-  enabledUI:
-  - {fileID: 97050560}
-  - {fileID: 1034414208}
+  enabledUI: []
   targets: []
   tutorialUI: []
 --- !u!1 &1720848400

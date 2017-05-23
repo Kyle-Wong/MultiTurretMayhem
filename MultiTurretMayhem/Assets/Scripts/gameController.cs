@@ -140,6 +140,14 @@ public class gameController : MonoBehaviour {
             case (GameState.beforeGame):
                 
                 runPreGame();  //level tutorial logic is in here.  Also handles levels without tutorials
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    gameState = GameState.paused;
+                    pauseCanvas.SetActive(true);
+                    eventSystem.SetSelectedGameObject(GameObject.Find("ResumeButton"));                               //set default button
+                    GameObject.Find("ResumeButton").GetComponent<Button>().OnSelect(new BaseEventData(EventSystem.current));  //force highlight button
+                    Time.timeScale = 0;
+                }
                 break;
             case (GameState.duringGame):
                 if (survival)
@@ -297,12 +305,27 @@ public class gameController : MonoBehaviour {
                 dropTimer = 0.0f;
                 break;
             case (GameState.paused):
+                GameObject[] turretList = GameObject.FindGameObjectsWithTag("Turret");
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
-                    gameState = GameState.duringGame;
+                    if (!tutorialRunning)
+                    {
+                        gameState = GameState.duringGame;
+                    } else
+                    {
+                        gameState = GameState.beforeGame;
+                    }
                     pauseCanvas.SetActive(false);
                     eventSystem.SetSelectedGameObject(null);
                     Time.timeScale = 1;
+                    for (int i = 0; i < turretList.Length; ++i)
+                    {
+                        turretList[i].GetComponent<Turret>().inputDisabled = false;
+                    }
+                }
+                for (int i = 0; i < turretList.Length; ++i)
+                {
+                    turretList[i].GetComponent<Turret>().inputDisabled = true;
                 }
                 break;
         }
@@ -476,7 +499,7 @@ public class gameController : MonoBehaviour {
                             yield return new WaitForSeconds((float)(1 / 1.8));  //wait for turret cooldown
                         while (true)                                    //wait for player input
                         {
-                            if (Input.GetKeyDown(KeyCode.UpArrow))      //advance after shot
+                            if (Input.GetKeyDown(KeyCode.UpArrow) && gameState != GameState.paused)      //advance after shot
                                 break;
                             yield return null;
                         }
@@ -504,10 +527,13 @@ public class gameController : MonoBehaviour {
                             yield return new WaitForSeconds((float)(1 / 1.8));  //wait for turret cooldown
                         while (true)                                    //wait for player input
                         {
-                            if (Input.GetKeyDown(KeyCode.W))      //advance after shot
+                            if (Input.GetKeyDown(KeyCode.W) && gameState != GameState.paused)      //advance after shot
                                 break;
-                            if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+                            if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) && gameState != GameState.paused)
+                            {
                                 dropBomb();
+                                break;
+                            }
                             if (bombUsed)
                             {
                                 bombCooldown -= Time.deltaTime;
@@ -541,7 +567,7 @@ public class gameController : MonoBehaviour {
                     currentSettings.tutorialUI[0].SetActive(true);
                     while (true)                                    //wait for player input
                     {
-                        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))      //advance after shot
+                        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && gameState != GameState.paused)      //advance after shot
                             break;
                         yield return null;
                     }

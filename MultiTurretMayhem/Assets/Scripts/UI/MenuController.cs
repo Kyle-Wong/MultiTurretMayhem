@@ -95,8 +95,8 @@ public class MenuController : MonoBehaviour {
                 levelSelectCanvas.SetActive(false);
                 introCanvas.SetActive(false);
                 mainCanvas.SetActive(true);
-                eventSystem.SetSelectedGameObject(GameObject.Find("Campaign"));
-                GameObject.Find("Campaign").GetComponent<Button>().OnSelect(new BaseEventData(EventSystem.current));
+                eventSystem.SetSelectedGameObject(GameObject.Find("CampaignButton"));
+                GameObject.Find("CampaignButton").GetComponent<Button>().OnSelect(new BaseEventData(EventSystem.current));
                 break;
             case (MenuState.levelSelect):
                 mainCanvas.SetActive(false);
