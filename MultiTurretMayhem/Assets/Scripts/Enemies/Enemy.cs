@@ -21,7 +21,7 @@ abstract public class Enemy : MonoBehaviour
     protected gameController ctrl;
     public AudioClip deathSound;
     protected AudioSource _audioSource;
-    private ParticleSystem _particleSystem;
+    protected ParticleSystem _particleSystem;
 
     private void Awake()
     {

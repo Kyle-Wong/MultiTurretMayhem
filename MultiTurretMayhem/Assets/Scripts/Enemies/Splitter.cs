@@ -33,10 +33,62 @@ public class Splitter : Enemy
                 splitter.GetComponent<Splitter_c>().ID = i*2;
             }
             HelperFunctions.playSound(ref _audioSource, splitSound);
-            Destroy(gameObject);
+            die(Color.clear, false);
         }
 
     }
+
+    public override void die(Color deathColor, bool byBomb)
+    {
+        if (!isDead)
+        {
+            if (!byBomb) // Die not by bomb
+            {
+                if (controller.survival) // Add points and drop item
+                {
+                    controller.addPoints((int)(points * ctrl.multiplier));
+                    GameObject p = Instantiate(pointsText, canvas.transform);
+                    p.GetComponent<RectTransform>().localPosition = HelperFunctions.objectCameraConvert(transform.position, canvas, cam);
+                    p.GetComponent<Text>().text = ((int)(points * ctrl.multiplier)).ToString();
+                }
+
+                _particleSystem.Play();
+            }
+            _audioSource.pitch = Random.Range(-0.25f, 2.5f);
+            HelperFunctions.playSound(ref _audioSource, deathSound); //i think popping sound because the enemy dies before sound finishes
+
+            isDead = true;
+            invincible = true;
+
+
+
+            if (GetComponent<Simple_Movement>() != null)
+            {
+                GetComponent<Simple_Movement>().stopMovement();
+            }
+            foreach (GameObject spriteObject in spriteObjects)
+            {
+                if (spriteObject.GetComponent<ConstantRotation>() != null)
+                {
+                    spriteObject.GetComponent<ConstantRotation>().setSpeed(0);
+                }
+                if (spriteObject.GetComponent<ColorLerp>() != null)
+                {
+                    ColorLerp colorLerp = spriteObject.GetComponent<ColorLerp>(); // Fade to transparent
+                    colorLerp.startColor = deathColor;
+                    colorLerp.endColor = new Color(deathColor.r, deathColor.g, deathColor.b, 0);
+                    colorLerp.startColorChange();
+                }
+                if (spriteObject.GetComponent<ColorOscillationWithSprites>() != null)
+                {
+                    spriteObject.GetComponent<ColorOscillationWithSprites>().stopColorChange();
+                }
+            }
+            Destroy(gameObject, 1);
+        }
+
+    }
+
     Vector3 generateRandomDistance()
     {
         Vector3 toPlayer = GetComponent<Simple_Movement>().getPlayerDir();
