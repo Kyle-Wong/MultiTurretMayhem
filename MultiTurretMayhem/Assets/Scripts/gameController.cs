@@ -113,8 +113,6 @@ public class gameController : MonoBehaviour {
     }
     // Update is called once per frame
     void Update() {
-        //Debug.Log(dropTimer);
-        Debug.Log(timeToDrop);
         if (bombUsed)
         {
             bombCooldown -= Time.deltaTime;
