@@ -45,6 +45,7 @@ public class Teleporter : Enemy {
     {
         dropEffect(new Color(0.7f,0.7f,0.7f), new Color(0,0,0,0));
         HelperFunctions.playSound(ref _audioSource, teleportSound);
+        EmitParticles(true);
 
         float distance = Vector3.Distance(target.position, transform.position);
 
@@ -56,11 +57,20 @@ public class Teleporter : Enemy {
         transform.Rotate(0, 0, 180);
 
         dropEffect(new Color(0,0,0,0),new Color(0.7f,0.7f,0.7f,0.7f));
+        EmitParticles(false);
     }
     private void dropEffect(Color startColor, Color endColor)
     {
         GameObject effect = (GameObject)Instantiate(Resources.Load("TeleportEffect"));
         effect.transform.position = transform.position;
         effect.GetComponent<ColorLerp>().setColors(startColor, endColor);
+    }
+    private void EmitParticles (bool fromCenter)
+    {
+        GameObject particles = (GameObject)Instantiate(Resources.Load("TeleportParticles"), transform.position, Quaternion.identity);
+        ParticleDirection pd = particles.GetComponent<ParticleDirection>();
+        pd.direction = HelperFunctions.directionBetween(transform.position, target.position);
+        pd.fromCenter = fromCenter;
+        pd.Emit();
     }
 }
