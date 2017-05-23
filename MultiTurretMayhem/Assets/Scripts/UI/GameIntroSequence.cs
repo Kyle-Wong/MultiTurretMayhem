@@ -16,6 +16,7 @@ public class GameIntroSequence : MonoBehaviour {
     public float delayUntilInput;
     public bool allowInput = false;
     public AudioClip introMusic;
+    public AudioClip boosterSound;
     public AudioSource musicSource;
 
     void Start () {
@@ -30,7 +31,7 @@ public class GameIntroSequence : MonoBehaviour {
         {
             if (Input.anyKeyDown)
             {
-                menuController.setMenuState(1);     //go to main state
+                StartCoroutine(outro());
             }
         }
 	}
@@ -41,7 +42,7 @@ public class GameIntroSequence : MonoBehaviour {
     private IEnumerator intro()
     {
         FTLJump.startAllStars();
-        HelperFunctions.playSound(ref musicSource, introMusic);
+        HelperFunctions.playSound(ref musicSource, boosterSound);
         StartCoroutine(HelperFunctions.interpolateSound(musicSource, 2));
         yield return new WaitForSeconds(FTLDuration);
         FTLJump.stopAllStars();
@@ -50,6 +51,19 @@ public class GameIntroSequence : MonoBehaviour {
         prompt.startMovement();
         boost.enabled = false;
         yield return new WaitForSeconds(delayUntilInput);
+        HelperFunctions.playSound(ref musicSource, introMusic);
+        StartCoroutine(HelperFunctions.interpolateSound(musicSource, 2));
         allowInput = true;                                      //once this intro is done, allow input
+    }
+    private IEnumerator outro()
+    {
+        StartCoroutine(HelperFunctions.negInterpolateSound(musicSource, 2));
+        for (byte color = 255; color > 0; color -= 5)
+        {
+            prompt.gameObject.gameObject.GetComponent<Text>().color = new Color32(0, 255, 255, color);
+            yield return new WaitForEndOfFrame();
+        }
+        yield return new WaitForSeconds(.8f);
+        menuController.setMenuState(1);     //go to main state
     }
 }

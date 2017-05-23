@@ -113,6 +113,15 @@ public class HelperFunctions{
         }
     }
 
+    public static IEnumerator negInterpolateSound(AudioSource source, float duration)
+    {
+        for (float elapsed = 0; elapsed < duration; elapsed += Time.deltaTime)
+        {
+            source.volume = 1 - elapsed / duration;
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
     public static int getMinScore (List<HighScore> list)
     {
         if (list.Count < 1)
