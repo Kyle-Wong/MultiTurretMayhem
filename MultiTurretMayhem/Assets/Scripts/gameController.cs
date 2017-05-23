@@ -308,27 +308,15 @@ public class gameController : MonoBehaviour {
                 break;
             case (GameState.paused):
                 GameObject[] turretList = GameObject.FindGameObjectsWithTag("Turret");
-                if (Input.GetKeyDown(KeyCode.Escape))
-                {
-                    if (!tutorialRunning)
-                    {
-                        gameState = GameState.duringGame;
-                    } else
-                    {
-                        gameState = GameState.beforeGame;
-                    }
-                    pauseCanvas.SetActive(false);
-                    eventSystem.SetSelectedGameObject(null);
-                    Time.timeScale = 1;
-                    for (int i = 0; i < turretList.Length; ++i)
-                    {
-                        turretList[i].GetComponent<Turret>().inputDisabled = false;
-                    }
-                }
                 for (int i = 0; i < turretList.Length; ++i)
                 {
                     turretList[i].GetComponent<Turret>().inputDisabled = true;
                 }
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    resumeButton();
+                }
+                
                 break;
         }
 	}
@@ -711,10 +699,23 @@ public class gameController : MonoBehaviour {
     }
     public void resumeButton()
     {
-        gameState = GameState.duringGame;
+        GameObject[] turretList = GameObject.FindGameObjectsWithTag("Turret");
+
+        if (!tutorialRunning)
+        {
+            gameState = GameState.duringGame;
+        }
+        else
+        {
+            gameState = GameState.beforeGame;
+        }
         pauseCanvas.SetActive(false);
         eventSystem.SetSelectedGameObject(null);
         Time.timeScale = 1;
+        for (int i = 0; i < turretList.Length; ++i)
+        {
+            turretList[i].GetComponent<Turret>().inputDisabled = false;
+        }
     }
     
     public List<HighScore> getHighScores()
