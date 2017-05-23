@@ -152,7 +152,7 @@ public class MenuController : MonoBehaviour {
     public void navigateSound()
     {
         menuEffects.clip = soundOnMove;
-        menuEffects.PlayDelayed(.1f);
+        menuEffects.Play();
     }
     public void confirmSound()
     {
