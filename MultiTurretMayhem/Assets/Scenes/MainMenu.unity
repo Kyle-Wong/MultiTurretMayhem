@@ -1815,10 +1815,11 @@ MonoBehaviour:
   prompt: {fileID: 660857366}
   boost: {fileID: 1126718113}
   FTLJump: {fileID: 870541599}
-  FTLDuration: 4
-  delayUntilInput: 2
+  FTLDuration: 3
+  delayUntilInput: 1.7
   allowInput: 0
-  introMusic: {fileID: 8300000, guid: 1c41e9752f9c7714a9093dfcd8347de7, type: 3}
+  introMusic: {fileID: 8300000, guid: 261d78363e80ee340b6273024bbb5e98, type: 3}
+  boosterSound: {fileID: 8300000, guid: 6428bae9788809246bab987d5402d21f, type: 3}
   musicSource: {fileID: 1113927571}
 --- !u!114 &170283981
 MonoBehaviour:
