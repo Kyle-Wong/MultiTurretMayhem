@@ -5,6 +5,7 @@ using UnityEngine;
 public class ParticleDirection : MonoBehaviour {
     public bool fromCenter = true;
     public float range;
+    public float minSpeed;
     public float width;
     public float duration;
     public float direction;
@@ -35,12 +36,12 @@ public class ParticleDirection : MonoBehaviour {
 
         if (fromCenter)
         {
-            main.startSpeed = new ParticleSystem.MinMaxCurve(0, range / duration);
+            main.startSpeed = new ParticleSystem.MinMaxCurve(minSpeed, range / duration);
         }
         else
         {
             transform.position += HelperFunctions.lineVector(direction, range);
-            main.startSpeed = new ParticleSystem.MinMaxCurve(-range / duration, 0);
+            main.startSpeed = new ParticleSystem.MinMaxCurve(-range / duration, -minSpeed);
         }
 
         _particleSystem.Play();

@@ -55,7 +55,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playOnStartUp: 1
-  lifeTime: 0.3
+  lifeTime: 0.4
 --- !u!114 &114519665701541506
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -71,7 +71,7 @@ MonoBehaviour:
   startColor: {r: 1, g: 1, b: 1, a: 1}
   endColor: {r: 1, g: 1, b: 1, a: 0}
   duration: 0.3
-  initialDelay: 0
+  initialDelay: 0.1
 --- !u!114 &114773322585625492
 MonoBehaviour:
   m_ObjectHideFlags: 1
