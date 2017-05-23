@@ -134,9 +134,11 @@ public class UIScroller : MonoBehaviour {
         {
             transform.localPosition = hiddenPositionBefore;
         }
+        moving = false;
     }
     public void hideImmediately()
     {
+        moving = false;
         transform.localPosition = hiddenPositionBefore;
     }
 
