@@ -66,7 +66,7 @@ public class GameIntroSequence : MonoBehaviour {
             prompt.gameObject.gameObject.GetComponent<Text>().color = new Color32(0, 255, 255, color);
             yield return new WaitForEndOfFrame();
         }
-        yield return new WaitForSeconds(.8f);
+        yield return new WaitForSeconds(.3f);
         menuController.setMenuState(1);     //go to main state
     }
 }
