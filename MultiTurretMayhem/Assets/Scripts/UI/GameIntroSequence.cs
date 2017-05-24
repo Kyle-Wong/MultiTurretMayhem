@@ -57,6 +57,7 @@ public class GameIntroSequence : MonoBehaviour {
     }
     private IEnumerator outro()
     {
+        allowInput = false;
         StartCoroutine(HelperFunctions.negInterpolateSound(musicSource, 2));
         for (byte color = 255; color > 0; color -= 5)
         {

@@ -12,6 +12,9 @@ public class LevelSelectController : MonoBehaviour {
     private MenuController menuController;
     private GraphicColorLerp blackPanel;
     public int levelIndex;
+    public AudioClip soundOnMoveFail;
+    public AudioClip soundOnMove;
+
     private EventSystem eventSystem;
 	void Start () {
         menuController = GameObject.Find("MainMenuController").GetComponent<MenuController>();
@@ -41,7 +44,13 @@ public class LevelSelectController : MonoBehaviour {
         {
             levels[levelIndex--].hideUI(-1);
             levels[levelIndex].revealUI(-1);
-        } 
+            menuController.menuEffects.clip = soundOnMove;
+        }
+        else
+        {
+            menuController.menuEffects.clip = soundOnMoveFail;
+        }
+        menuController.menuEffects.Play();
     }
     public void scrollRight()
     {
@@ -49,7 +58,13 @@ public class LevelSelectController : MonoBehaviour {
         {
             levels[levelIndex++].hideUI(1);
             levels[levelIndex].revealUI(1);
-        } 
+            menuController.menuEffects.clip = soundOnMove;
+        }
+        else
+        {
+            menuController.menuEffects.clip = soundOnMoveFail;
+        }
+        menuController.menuEffects.Play();
     }
     public void playPress()
     {
@@ -69,5 +84,12 @@ public class LevelSelectController : MonoBehaviour {
         levels[levelIndex].hideImmediately();
         menuController.setMenuState(1);
     }
+    /*
+    public void navigateSound()
+    {
+        menuController.menuEffects.clip = soundOnMove;
+        menuController.menuEffects.Play();
+    }
+    */
 
 }
