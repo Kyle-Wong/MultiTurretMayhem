@@ -240,7 +240,7 @@ MonoBehaviour:
   points: 30
   invincible: 0
   pointsText: {fileID: 1730592498059714, guid: bf1e6d18bfabc7e4d95532ba801b6b72, type: 2}
-  deathSound: {fileID: 8300000, guid: e6562dd305a555f4b8e5a52a1d67cedb, type: 3}
+  deathSound: {fileID: 8300000, guid: 4447730b007aa294a9998e7d28a86859, type: 3}
   minDistance: 5
   speedMultiplierPostTeleport: 0.5
   postTeleportColor: {r: 0.56896555, g: 0.37381038, b: 0, a: 1}
