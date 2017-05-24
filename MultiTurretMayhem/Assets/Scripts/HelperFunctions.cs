@@ -115,9 +115,10 @@ public class HelperFunctions{
 
     public static IEnumerator negInterpolateSound(AudioSource source, float duration)
     {
+        float startVol = source.volume;
         for (float elapsed = 0; elapsed < duration; elapsed += Time.deltaTime)
         {
-            source.volume = 1 - elapsed / duration;
+            source.volume = startVol - (elapsed / duration) * startVol;
             yield return new WaitForEndOfFrame();
         }
     }

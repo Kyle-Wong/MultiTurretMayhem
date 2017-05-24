@@ -302,7 +302,7 @@ MonoBehaviour:
   points: 1
   invincible: 0
   pointsText: {fileID: 1730592498059714, guid: bf1e6d18bfabc7e4d95532ba801b6b72, type: 2}
-  deathSound: {fileID: 8300000, guid: e6562dd305a555f4b8e5a52a1d67cedb, type: 3}
+  deathSound: {fileID: 8300000, guid: 72e48515acb364d4cae8457158b6434d, type: 3}
 --- !u!114 &114074182834165970
 MonoBehaviour:
   m_ObjectHideFlags: 1

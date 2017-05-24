@@ -68,8 +68,10 @@ public class LevelSelectController : MonoBehaviour {
     }
     public void playPress()
     {
+        StartCoroutine(HelperFunctions.negInterpolateSound(menuController.musicSource, 2f));
         StartCoroutine(loadLevel());
         eventSystem.SetSelectedGameObject(null);
+
     }
     private IEnumerator loadLevel()
     {

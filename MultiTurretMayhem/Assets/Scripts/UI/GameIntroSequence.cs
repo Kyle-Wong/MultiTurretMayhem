@@ -50,9 +50,11 @@ public class GameIntroSequence : MonoBehaviour {
         title.startMovement();
         prompt.startMovement();
         boost.enabled = false;
+        StartCoroutine(HelperFunctions.negInterpolateSound(musicSource, 1.25f));
         yield return new WaitForSeconds(delayUntilInput);
         HelperFunctions.playSound(ref musicSource, introMusic);
-        StartCoroutine(HelperFunctions.interpolateSound(musicSource, 2));
+        StartCoroutine(HelperFunctions.interpolateSound(musicSource, .5f));
+
         allowInput = true;                                      //once this intro is done, allow input
     }
     private IEnumerator outro()

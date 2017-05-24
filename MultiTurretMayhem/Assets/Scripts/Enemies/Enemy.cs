@@ -92,7 +92,7 @@ abstract public class Enemy : MonoBehaviour
                 
                 _particleSystem.Play();
             }
-            _audioSource.pitch = Random.Range(-0.25f, 2.5f);
+            _audioSource.pitch = Random.Range(.5f, 1.5f);
             HelperFunctions.playSound(ref _audioSource, deathSound); //i think popping sound because the enemy dies before sound finishes
             
             isDead = true;
