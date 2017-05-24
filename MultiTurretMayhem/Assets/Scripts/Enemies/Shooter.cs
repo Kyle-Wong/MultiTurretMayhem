@@ -20,7 +20,7 @@ public class Shooter : Enemy {
 	// Use this for initialization
 	void Start () {
         baseStart();
-        spriteTransform = transform.FindChild("ShipSprite");
+        spriteTransform = transform.Find("ShipSprite");
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         movement = GetComponent<Simple_Movement>();
         direction = Random.Range(0.0f,1.0f) < 0.5 ? 1 : -1;

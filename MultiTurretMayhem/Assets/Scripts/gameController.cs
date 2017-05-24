@@ -206,10 +206,10 @@ public class gameController : MonoBehaviour {
 
                         turrets[i].GetComponent<Turret>().inputDisabled = true;             //disable player input
                         turrets[i].GetComponent<Turret>().fadeTurret();            //fade turrets to transparent
-                        turrets[i].transform.FindChild("TargettingLine").gameObject.SetActive(false);
+                        turrets[i].transform.Find("TargettingLine").gameObject.SetActive(false);
                     }
                     GameObject ship = GameObject.FindWithTag("Player");
-                    ship.transform.FindChild("Ship").GetComponent<ColorLerp>().startColorChange();
+                    ship.transform.Find("Ship").GetComponent<ColorLerp>().startColorChange();
                     ship.GetComponent<ParticleSystem>().Play();
                     deathCanvas.SetActive(true);
                     if (survival)
@@ -245,7 +245,7 @@ public class gameController : MonoBehaviour {
                     {
                         turrets[i].GetComponent<Turret>().inputDisabled = true;             //disable player input
                         turrets[i].GetComponent<Turret>().fadeTurret();       //fade turrets to transparent
-                        turrets[i].transform.FindChild("TargettingLine").gameObject.SetActive(false);
+                        turrets[i].transform.Find("TargettingLine").gameObject.SetActive(false);
                         //disable targetting lines
                     }
 
