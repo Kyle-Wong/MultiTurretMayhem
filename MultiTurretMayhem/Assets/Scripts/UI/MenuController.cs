@@ -87,7 +87,7 @@ public class MenuController : MonoBehaviour {
             case (MenuState.main):
                 if (firstPass)
                 {
-                    musicSource.volume = .2f;
+                    musicSource.volume = .3f;
                     HelperFunctions.playSound(ref musicSource, menuMusic);
                     firstPass = false;
                 }
@@ -124,6 +124,7 @@ public class MenuController : MonoBehaviour {
     public void survivalPress()
     {
         confirmSound();
+        StartCoroutine(HelperFunctions.negInterpolateSound(musicSource, 2f));
         StartCoroutine(loadSurvival());
         eventSystem.SetSelectedGameObject(null);
     }

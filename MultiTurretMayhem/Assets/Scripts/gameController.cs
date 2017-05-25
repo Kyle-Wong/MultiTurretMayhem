@@ -21,9 +21,9 @@ public class gameController : MonoBehaviour {
     public int health = 8;
     private int maxHealth;
     public int bombs = 3;
-    public bool bombUsed = false;
+    private bool bombUsed = false;
     public float setBombCooldown;
-    public float bombCooldown;
+    private float bombCooldown;
     public Text pointsText;
     public ProgressBar chargeBar;
     public FTLText chargeText;
@@ -194,12 +194,13 @@ public class gameController : MonoBehaviour {
                 }
                 if (playerIsDead)
                 {
+                    lowHealthText.enabled = false;
+                    gameIsOver = true;
                     for (int i = 0; i < currentSettings.enabledUI.Length; i++)
                     {
                         currentSettings.enabledUI[i].SetActive(false);
                     }
-                    lowHealthText.enabled = false;
-                    gameIsOver = true;
+                    settingsList[levelNum].SetActive(false);            //turn off enemySpawner
                     GameObject[] turrets = GameObject.FindGameObjectsWithTag("Turret");
                     for (int i = 0; i < turrets.Length; i++)
                     {
@@ -371,6 +372,11 @@ public class gameController : MonoBehaviour {
     public void setHealth(int x)
     {
         health = x;
+
+        if (health * 1f / maxHealth >= lowHealthThreshold)
+        {
+            lowHealthText.enabled = false;
+        }
     }
     public void damagePlayer(int x)
     {
