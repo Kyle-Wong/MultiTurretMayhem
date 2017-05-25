@@ -51,8 +51,6 @@ public class Splitter : Enemy
                     p.GetComponent<RectTransform>().localPosition = HelperFunctions.objectCameraConvert(transform.position, canvas, cam);
                     p.GetComponent<Text>().text = ((int)(points * ctrl.multiplier)).ToString();
                 }
-
-                _particleSystem.Play();
             }
             HelperFunctions.playSound(ref _audioSource, deathSound); //i think popping sound because the enemy dies before sound finishes
 
