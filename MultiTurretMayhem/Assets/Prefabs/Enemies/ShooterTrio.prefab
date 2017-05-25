@@ -319,7 +319,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1974592424723530}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 492.421, y: 265.28235, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4724429860523282}
@@ -684,7 +684,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7384339cad96534ea457038cac528ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playOnStartUp: 0
+  playOn: 3
   startColor: {r: 1, g: 1, b: 1, a: 1}
   endColor: {r: 1, g: 1, b: 1, a: 0}
   duration: 0.3
@@ -776,7 +776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7384339cad96534ea457038cac528ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playOnStartUp: 0
+  playOn: 3
   startColor: {r: 1, g: 1, b: 1, a: 1}
   endColor: {r: 1, g: 1, b: 1, a: 0}
   duration: 0.3
@@ -792,7 +792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7384339cad96534ea457038cac528ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playOnStartUp: 0
+  playOn: 3
   startColor: {r: 1, g: 1, b: 1, a: 1}
   endColor: {r: 1, g: 1, b: 1, a: 0}
   duration: 0.3

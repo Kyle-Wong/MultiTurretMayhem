@@ -7,6 +7,7 @@ public class LevelNumber : MonoBehaviour {
     // Use this for initialization
     static int level = 0;
     static bool skipIntro = false;
+    static bool loadedFromMenu = true;
 	void Start () {
 		
 	}
@@ -30,5 +31,13 @@ public class LevelNumber : MonoBehaviour {
     public static bool getSkipIntro()
     {
         return skipIntro;
+    }
+    public static void setLoadedFromMenu(bool x)
+    {
+        loadedFromMenu = x;
+    }
+    public static bool getLoadedFromMenu()
+    {
+        return loadedFromMenu;
     }
 }

@@ -29,6 +29,8 @@ public class ProgressBar : MonoBehaviour {
 	}
     public void setProgress(float frac)
     {
+        if(rect == null)
+            rect = GetComponent<RectTransform>();
         percent = frac;
         rect.anchorMax = new Vector2(frac, 1);
     }

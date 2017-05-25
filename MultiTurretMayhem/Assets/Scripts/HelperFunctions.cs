@@ -12,7 +12,6 @@ public struct HighScore
         string result = "";
         int tempScore = score;
         int DIGITS = 5;
-        Debug.Log(tempScore);
         for (int i = 0; i < DIGITS; ++i)
         {
 

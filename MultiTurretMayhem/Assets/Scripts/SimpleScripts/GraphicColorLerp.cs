@@ -6,7 +6,14 @@ public class GraphicColorLerp : MonoBehaviour
 {
 
     // Use this for initialization
-    public bool playOnStartUp = true;
+    public enum PlayTrigger
+    {
+        Awake,
+        Enable,
+        Start,
+        None
+    }
+    public PlayTrigger playOn = PlayTrigger.Awake;
     public Color startColor = Color.white;
     public Color endColor = Color.white;
     public float duration = 0;
@@ -17,10 +24,20 @@ public class GraphicColorLerp : MonoBehaviour
     {
         graphicRenderer = GetComponent<Graphic>();
         colorCoroutine = colorChange();
-        if (playOnStartUp)
+        if (playOn == PlayTrigger.Awake)
         {
             startColorChange();
         }
+    }
+    void OnEnable()
+    {
+        if (playOn == PlayTrigger.Enable)
+            startColorChange();
+    }
+    void Start()
+    {
+        if (playOn == PlayTrigger.Start)
+            startColorChange();
     }
 
     // Update is called once per frame

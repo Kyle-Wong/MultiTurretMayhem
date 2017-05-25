@@ -12,6 +12,9 @@ TagManager:
   - LevelSettings
   - Pickup
   - Target
+  - StarList
+  - Star
+  - SoundObject
   layers:
   - Default
   - TransparentFX

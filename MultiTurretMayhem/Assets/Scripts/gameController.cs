@@ -28,7 +28,7 @@ public class gameController : MonoBehaviour {
     public ProgressBar chargeBar;
     public FTLText chargeText;
     public ColorLerp shield;
-    public FTLJump ftlJump;
+    private FTLJump ftlJump;
     public Text lowHealthText;
     public GameObject tutorialCanvas;
     public GameObject deathCanvas;
@@ -96,20 +96,25 @@ public class gameController : MonoBehaviour {
     }
     void Start()
     {
-        if (!LevelNumber.getSkipIntro())
-        {
-            blackPanel.gameObject.GetComponent<Image>().enabled = true;
-            blackPanel.startColorChange();
-        }
-        else
-        {
-            blackPanel.gameObject.SetActive(false);
-            preGameDelay = 0;
-        }
+       
         LevelNumber.setSkipIntro(true);     //main menu intro should no longer be played when returning to it
+        ftlJump = GameObject.FindGameObjectWithTag("StarList").GetComponent<FTLJump>();
+        ftlJump.stopAllStars();
+        blackPanel.gameObject.GetComponent<Image>().enabled = true;
+        if (LevelNumber.getLoadedFromMenu())
+        {
+            blackPanel.setColors(new Color(0, 0, 0, 1), new Color(0,0,0,0));
+        } else
+        {
+            blackPanel.setColors(new Color(0, 0, 0, 0), new Color(0, 0, 0, 0));
+            StartCoroutine(drainFTLBar(0.5f));
+        }
+        blackPanel.startColorChange();
+        LevelNumber.setLoadedFromMenu(false);
         shipAudio.clip = shipHit;
         highScores = getHighScores();
         bombCooldown = setBombCooldown;
+        
     }
     // Update is called once per frame
     void Update() {
@@ -138,7 +143,6 @@ public class gameController : MonoBehaviour {
         switch (gameState)
         {
             case (GameState.beforeGame):
-                
                 runPreGame();  //level tutorial logic is in here.  Also handles levels without tutorials
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
@@ -257,6 +261,7 @@ public class gameController : MonoBehaviour {
                 if (delayBeforeJump > 0)
                 {
                     delayBeforeJump -= Time.deltaTime;                  //delay before FTL jump
+                    
                 }
                 else
                 {
@@ -270,27 +275,23 @@ public class gameController : MonoBehaviour {
                     if (jumpTimer < jumpDuration)
                     {
                         jumpTimer += Time.deltaTime;
-                        chargeBar.gameObject.GetComponent<RectTransform>().anchorMax = new Vector2(1 - (jumpTimer / jumpDuration), 1);
                         //Decrease progress bar during jump
+                        if(Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
+                        {
+                            jumpTimer = jumpDuration;
+                        }
                     }
                     else
                     {
-                        ftlJump.stopAllStars();                         //stop FTL jump
-                        chargeText.GetComponent<Text>().text = "Jump Complete";
-                        if(delayAfterJump > 0)
+                        gameState = GameState.transitionOver;           //State Transition
+                        levelCompletionCanvas.SetActive(true);
+                        eventSystem.SetSelectedGameObject(GameObject.Find("ContinueButton"));                               //set default button
+                        GameObject.Find("ContinueButton").GetComponent<Button>().OnSelect(new BaseEventData(EventSystem.current));  //force highlight button
+                        if (levelNum >= settingsList.Count)
                         {
-                            delayAfterJump -= Time.deltaTime;
-                        } else
-                        {
-                            gameState = GameState.transitionOver;           //State Transition
-                            levelCompletionCanvas.SetActive(true);
-                            eventSystem.SetSelectedGameObject(GameObject.Find("ContinueButton"));                               //set default button
-                            GameObject.Find("ContinueButton").GetComponent<Button>().OnSelect(new BaseEventData(EventSystem.current));  //force highlight button
-                            if (levelNum >= settingsList.Count)
-                            {
-                                GameObject.Find("ContinueButton").GetComponent<Button>().interactable = false;      //if on last level, grey out continueButton
-                            }
+                            GameObject.Find("ContinueButton").GetComponent<Button>().interactable = false;      //if on last level, grey out continueButton
                         }
+                        
                     }
                 }
                 
@@ -627,7 +628,8 @@ public class gameController : MonoBehaviour {
         settingsList[levelNum].SetActive(true);
         for (int i = 0; i < currentSettings.targets.Length; ++i)
         {
-            currentSettings.targets[i].GetComponent<ColorLerp>().startColorChange();
+            
+            currentSettings.targets[i].GetComponent<Target>().startColorChange();
             currentSettings.targets[i].GetComponent<DelAfterTime>().startTimer();
         }
         for (int i = 0; i < currentSettings.enabledUI.Length; i++)
@@ -662,12 +664,16 @@ public class gameController : MonoBehaviour {
     public void mainMenuButton()
     {
         Time.timeScale = 1;     //in case of returning to main menu from pause screen
-        SceneManager.LoadScene("MainMenu");
+        LevelNumber.setLoadedFromMenu(true);
+        eventSystem.SetSelectedGameObject(null);
+        StartCoroutine(transitionIntoSceneLoad(0.5f, "MainMenu"));
     }
     public void continueButton()
     {
         StartCoroutine(loadNextLevel());
         eventSystem.SetSelectedGameObject(null);
+        levelCompletionCanvas.SetActive(false);
+        
     }
     public void backButton()
     {
@@ -695,6 +701,7 @@ public class gameController : MonoBehaviour {
     }
     public void restartLevelButton()
     {
+        Destroy(GameObject.FindGameObjectWithTag("StarList"));
         SceneManager.LoadScene("Campaign");
     }
     public void restartSurvival()
@@ -788,5 +795,31 @@ public class gameController : MonoBehaviour {
                 dropTimer += Time.deltaTime;
             }
         }
+    }
+    public IEnumerator drainFTLBar(float rate)
+    {
+        float frac = 1f;
+        while(chargeBar.percent >= 0)
+        {
+            if (gameState == GameState.beforeGame)
+            {
+                frac -= rate * Time.deltaTime;
+                chargeBar.setProgress(frac);
+            } else
+            {
+                chargeBar.setProgress(0f);
+                break;
+            }
+            yield return null;
+        }
+    }
+    public IEnumerator transitionIntoSceneLoad(float transitionTime, string sceneName)
+    {
+        blackPanel.initialDelay = 0;
+        blackPanel.duration = transitionTime;
+        blackPanel.setColors(new Color(0, 0, 0, 0), new Color(0, 0, 0, 1));
+        blackPanel.startColorChange();
+        yield return new WaitForSeconds(blackPanel.duration);
+        SceneManager.LoadScene(sceneName);
     }
 }

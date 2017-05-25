@@ -47,7 +47,7 @@ public class MenuController : MonoBehaviour {
         if (skipIntro)
         {
             setMenuState((int)MenuState.main);
-            GameObject.Find("StarList").GetComponent<FTLJumpWithImage>().stopAllStars();
+            GameObject.Find("MenuStarList").GetComponent<FTLJumpWithImage>().stopAllStars();
             LevelNumber.setSkipIntro(false);
         } else
         {

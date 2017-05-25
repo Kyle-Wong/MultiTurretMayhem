@@ -32,6 +32,7 @@ public class HealthBar : MonoBehaviour {
                 if (healthPips[i].activeSelf)
                 {
                     healthPips[i].GetComponent<ColorLerp>().startColorChange();
+                    healthPips[i].transform.GetChild(0).gameObject.GetComponent<ColorLerp>().startColorChange();
                 }
             }
         }
@@ -54,11 +55,14 @@ public class HealthBar : MonoBehaviour {
         for (int i = 0; i < healthPips.Count; i++)
         {
             healthPips[i].SetActive(false);
-            //turn off all bomb pips
+            healthPips[i].transform.GetChild(0).gameObject.SetActive(false);
+
+            //turn off all health pips
         }
-        for(int i = 0; i < hp; i++)
+        for (int i = 0; i < hp; i++)
         {
             healthPips[i].SetActive(true);
+            healthPips[i].transform.GetChild(0).gameObject.SetActive(true);
         }
         
     }

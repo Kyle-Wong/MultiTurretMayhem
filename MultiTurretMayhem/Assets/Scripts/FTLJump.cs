@@ -1,16 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class FTLJump : MonoBehaviour {
 
     // Use this for initialization
     private List<Star> starList;
-    public SpriteRenderer boostSprite;
+    private SpriteRenderer boostSprite;
     private ConstantRotation myRotator;
     public AudioSource ftlSource;
     public AudioClip ftlSound;
-    void Start () {
+    void Awake () {
+        boostSprite = GameObject.Find("Boost").GetComponent<SpriteRenderer>();
         boostSprite.enabled = false;
         myRotator = GetComponent<ConstantRotation>();
         starList = getStarList();
@@ -69,7 +70,28 @@ public class FTLJump : MonoBehaviour {
         {
             starList[i].stopMoving();
         }
+
         boostSprite.enabled = false;
 
+    }
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name.Equals("MainMenu"))
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            boostSprite = GameObject.Find("Boost").GetComponent<SpriteRenderer>();
+            boostSprite.enabled = false;
+        }
     }
 }

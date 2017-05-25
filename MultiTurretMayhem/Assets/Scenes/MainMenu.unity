@@ -9298,7 +9298,7 @@ GameObject:
   - component: {fileID: 870541599}
   - component: {fileID: 870541600}
   m_Layer: 0
-  m_Name: StarList
+  m_Name: MenuStarList
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

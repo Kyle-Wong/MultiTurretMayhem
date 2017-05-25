@@ -233,6 +233,11 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 0.20000017
       objectReference: {fileID: 0}
+    - target: {fileID: 114560993398990306, guid: 020a5b9ef3e8a034b95e976ff1ed7e24,
+        type: 2}
+      propertyPath: playOn
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 020a5b9ef3e8a034b95e976ff1ed7e24, type: 2}
   m_IsPrefabParent: 0
@@ -1152,6 +1157,16 @@ Prefab:
     - target: {fileID: 4192579585893564, guid: bfa7403f9ff511b4494a684e9b4bd911, type: 2}
       propertyPath: m_RootOrder
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114441133908728318, guid: bfa7403f9ff511b4494a684e9b4bd911,
+        type: 2}
+      propertyPath: playOn
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114354200262519984, guid: bfa7403f9ff511b4494a684e9b4bd911,
+        type: 2}
+      propertyPath: playOn
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bfa7403f9ff511b4494a684e9b4bd911, type: 2}
@@ -3253,6 +3268,21 @@ Prefab:
       propertyPath: laser
       value: 
       objectReference: {fileID: 972507110}
+    - target: {fileID: 114514386997041184, guid: bbae93b690cc1b348a24550e4da3f89d,
+        type: 2}
+      propertyPath: playOn
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114886994523111792, guid: bbae93b690cc1b348a24550e4da3f89d,
+        type: 2}
+      propertyPath: playOn
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114033471767729020, guid: bbae93b690cc1b348a24550e4da3f89d,
+        type: 2}
+      propertyPath: playOn
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bbae93b690cc1b348a24550e4da3f89d, type: 2}
   m_IsPrefabParent: 0
@@ -3419,7 +3449,6 @@ MonoBehaviour:
   chargeBar: {fileID: 0}
   chargeText: {fileID: 0}
   shield: {fileID: 304075934}
-  ftlJump: {fileID: 0}
   lowHealthText: {fileID: 740768906}
   tutorialCanvas: {fileID: 0}
   deathCanvas: {fileID: 893826920}
@@ -3535,6 +3564,21 @@ Prefab:
       propertyPath: laser
       value: 
       objectReference: {fileID: 1540831598}
+    - target: {fileID: 114829891772913722, guid: 1fb12392b4cc89e4284978f28685b17b,
+        type: 2}
+      propertyPath: playOn
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114187694446196726, guid: 1fb12392b4cc89e4284978f28685b17b,
+        type: 2}
+      propertyPath: playOn
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114748995204205594, guid: 1fb12392b4cc89e4284978f28685b17b,
+        type: 2}
+      propertyPath: playOn
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1fb12392b4cc89e4284978f28685b17b, type: 2}
   m_IsPrefabParent: 0
@@ -3742,6 +3786,10 @@ Prefab:
       propertyPath: ftlSource
       value: 
       objectReference: {fileID: 1320857351}
+    - target: {fileID: 1352613444478026, guid: 01b2486d00747d346bb0cded0501ce1a, type: 2}
+      propertyPath: m_TagString
+      value: StarList
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01b2486d00747d346bb0cded0501ce1a, type: 2}
   m_IsPrefabParent: 0
@@ -3992,6 +4040,11 @@ Prefab:
         type: 2}
       propertyPath: m_Color.b
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114560993398990306, guid: 020a5b9ef3e8a034b95e976ff1ed7e24,
+        type: 2}
+      propertyPath: playOn
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 020a5b9ef3e8a034b95e976ff1ed7e24, type: 2}
@@ -4393,7 +4446,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!224 &1551431073
 RectTransform:
