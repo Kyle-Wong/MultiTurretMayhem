@@ -155,4 +155,14 @@ public class HelperFunctions{
             result[i] = o.GetChild(i).gameObject;
         return result;
     }
+
+    public static List<GameObject> getDescendents (Transform o)
+    {
+        List<GameObject> result = new List<GameObject>();
+        result.Add(o.gameObject);
+        for (int i = 0; i < result.Count; ++i)
+            result.AddRange(getChildren(result[i].transform));
+        result.Remove(o.gameObject);
+        return result;
+    }
 }
