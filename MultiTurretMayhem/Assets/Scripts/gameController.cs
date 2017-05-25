@@ -194,12 +194,13 @@ public class gameController : MonoBehaviour {
                 }
                 if (playerIsDead)
                 {
+                    lowHealthText.enabled = false;
+                    gameIsOver = true;
                     for (int i = 0; i < currentSettings.enabledUI.Length; i++)
                     {
                         currentSettings.enabledUI[i].SetActive(false);
                     }
-                    lowHealthText.enabled = false;
-                    gameIsOver = true;
+                    settingsList[levelNum].SetActive(false);            //turn off enemySpawner
                     GameObject[] turrets = GameObject.FindGameObjectsWithTag("Turret");
                     for (int i = 0; i < turrets.Length; i++)
                     {
