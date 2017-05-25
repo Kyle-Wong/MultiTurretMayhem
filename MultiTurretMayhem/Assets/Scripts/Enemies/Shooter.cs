@@ -17,13 +17,20 @@ public class Shooter : Enemy {
     private Rigidbody2D rb;
     private bool shootPhase;
     private int direction;
+    public bool randomDirection = true;
 	// Use this for initialization
 	void Start () {
         baseStart();
         spriteTransform = transform.Find("ShipSprite");
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         movement = GetComponent<Simple_Movement>();
-        direction = Random.Range(0.0f,1.0f) < 0.5 ? 1 : -1;
+        if (randomDirection)
+        {
+            direction = Random.Range(0.0f, 1.0f) < 0.5 ? 1 : -1;
+        } else
+        {
+            direction = 1;
+        }
         movement.tanVelocity = direction * movement.tanVelocity;
         rb = GetComponent<Rigidbody2D>();
         fireTimer = 0;

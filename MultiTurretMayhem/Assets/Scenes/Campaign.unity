@@ -1272,9 +1272,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 8
   bombs: 3
-  bombUsed: 0
   setBombCooldown: 0.75
-  bombCooldown: 0
   pointsText: {fileID: 0}
   chargeBar: {fileID: 750076560}
   chargeText: {fileID: 1794033028}
@@ -4644,18 +4642,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objects:
-  - {fileID: 1793194082606136, guid: ec86bbdcb50db4d4bb0e9dee47978e4f, type: 2}
+  - {fileID: 1100908909280672, guid: 73e1eeb34cdd1ba46b8e57e3c2d4969f, type: 2}
+  - {fileID: 1289427453672480, guid: f66dad86b018eaa41ae121a09a28c39b, type: 2}
+  - {fileID: 1974592424723530, guid: a4cf10dfee074d541ae6a0903fcc9c5d, type: 2}
+  - {fileID: 1319653643353124, guid: 674d1573daeddee499f1005fd2716528, type: 2}
+  - {fileID: 1977460145073922, guid: e27bb8488a7c03944ad8c930725139f2, type: 2}
+  - {fileID: 1556577431847448, guid: 464fa62b4b4f0e34193e2cbf83ea2a4e, type: 2}
   leftChances:
   - 1
+  - 1
+  - 0.05
+  - 0.05
+  - 0.05
+  - 0.08
   rightChances:
   - 1
-  leftRate: 60
-  deltaLeftRate: 60
-  deltaLeftAngle: 0
-  rightRate: 20
-  deltaRightRate: 120
-  deltaRightAngle: 0
-  distance: 10
+  - 1
+  - 0.05
+  - 0.05
+  - 0.05
+  - 0.08
+  leftRate: 50
+  deltaLeftRate: 0
+  deltaLeftAngle: 180
+  rightRate: 50
+  deltaRightRate: 0
+  deltaRightAngle: 180
+  distance: 12
 --- !u!1 &1254271011
 GameObject:
   m_ObjectHideFlags: 0
@@ -6659,7 +6672,9 @@ MonoBehaviour:
   rightTurretRestr: 0
   startingBombs: 3
   enabledUI: []
-  targets: []
+  targets:
+  - {fileID: 97050560}
+  - {fileID: 1034414208}
   tutorialUI: []
 --- !u!1 &1720848400
 GameObject:
