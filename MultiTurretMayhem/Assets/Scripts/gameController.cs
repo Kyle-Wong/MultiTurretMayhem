@@ -285,8 +285,21 @@ public class gameController : MonoBehaviour {
                     {
                         gameState = GameState.transitionOver;           //State Transition
                         levelCompletionCanvas.SetActive(true);
-                        eventSystem.SetSelectedGameObject(GameObject.Find("ContinueButton"));                               //set default button
-                        GameObject.Find("ContinueButton").GetComponent<Button>().OnSelect(new BaseEventData(EventSystem.current));  //force highlight button
+                        if (levelNum < 7)
+                        {
+                            eventSystem.SetSelectedGameObject(GameObject.Find("ContinueButton"));                               //set default button
+                            GameObject.Find("ContinueButton").GetComponent<Button>().OnSelect(new BaseEventData(EventSystem.current));  //force highlight button
+                        } else
+                        {
+                            eventSystem.SetSelectedGameObject(GameObject.Find("MainMenuButton"));                               //set default button
+                            GameObject.Find("ContinueButton").SetActive(false);
+                            GameObject.Find("MainMenuButton").GetComponent<Button>().OnSelect(new BaseEventData(EventSystem.current));  //force highlight button
+                            GameObject.Find("MainMenuButton").GetComponent<RectTransform>().anchorMin = new Vector2(0.3f,0);
+                            GameObject.Find("MainMenuButton").GetComponent<RectTransform>().anchorMax = new Vector2(0.7f, 1);
+
+
+
+                        }
                         if (levelNum >= settingsList.Count)
                         {
                             GameObject.Find("ContinueButton").GetComponent<Button>().interactable = false;      //if on last level, grey out continueButton
