@@ -13,7 +13,7 @@ public class LevelSelectController : MonoBehaviour {
     private GraphicColorLerp blackPanel;
     public int levelIndex;
     public AudioClip soundOnMoveFail;
-    public AudioClip soundOnMove;
+    public AudioClip soundOnMoveOK;
 
     private EventSystem eventSystem;
 	void Start () {
@@ -44,7 +44,7 @@ public class LevelSelectController : MonoBehaviour {
         {
             levels[levelIndex--].hideUI(-1);
             levels[levelIndex].revealUI(-1);
-            menuController.menuEffects.clip = soundOnMove;
+            menuController.menuEffects.clip = soundOnMoveOK;
         }
         else
         {
@@ -58,7 +58,7 @@ public class LevelSelectController : MonoBehaviour {
         {
             levels[levelIndex++].hideUI(1);
             levels[levelIndex].revealUI(1);
-            menuController.menuEffects.clip = soundOnMove;
+            menuController.menuEffects.clip = soundOnMoveOK;
         }
         else
         {
