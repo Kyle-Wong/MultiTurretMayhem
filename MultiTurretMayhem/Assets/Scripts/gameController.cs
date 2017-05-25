@@ -21,9 +21,9 @@ public class gameController : MonoBehaviour {
     public int health = 8;
     private int maxHealth;
     public int bombs = 3;
-    public bool bombUsed = false;
+    private bool bombUsed = false;
     public float setBombCooldown;
-    public float bombCooldown;
+    private float bombCooldown;
     public Text pointsText;
     public ProgressBar chargeBar;
     public FTLText chargeText;
@@ -371,6 +371,11 @@ public class gameController : MonoBehaviour {
     public void setHealth(int x)
     {
         health = x;
+
+        if (health * 1f / maxHealth >= lowHealthThreshold)
+        {
+            lowHealthText.enabled = false;
+        }
     }
     public void damagePlayer(int x)
     {
