@@ -216,6 +216,7 @@ public class gameController : MonoBehaviour {
                     GameObject ship = GameObject.FindWithTag("Player");
                     ship.transform.Find("Ship").GetComponent<ColorLerp>().startColorChange();
                     ship.GetComponent<ParticleSystem>().Play();
+                    Instantiate(Resources.Load("ClearExplosion"), ship.transform.position, Quaternion.identity);
                     deathCanvas.SetActive(true);
                     if (survival)
                     {
