@@ -107,7 +107,8 @@ public class gameController : MonoBehaviour {
         } else
         {
             blackPanel.setColors(new Color(0, 0, 0, 0), new Color(0, 0, 0, 0));
-            StartCoroutine(drainFTLBar(0.5f));
+            chargeBar.setProgress(0);
+            chargeText.setPercent(0);
         }
         blackPanel.startColorChange();
         LevelNumber.setLoadedFromMenu(false);
@@ -272,6 +273,10 @@ public class gameController : MonoBehaviour {
                         chargeBar.enabled = false;                      //disable automatic color/text changes
                         ftlJump.startAllStars();                        //start FTL jump
                         chargeText.GetComponent<Text>().text = "Jumping...";
+
+                        GameObject sound = (GameObject)Instantiate(Resources.Load("FTLSound"));
+                        AudioSource source = sound.GetComponent<AudioSource>();
+                        HelperFunctions.playSound(ref source, source.clip);
                     }
                     if (jumpTimer < jumpDuration)
                     {
