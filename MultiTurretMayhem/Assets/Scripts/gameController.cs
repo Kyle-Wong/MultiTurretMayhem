@@ -273,10 +273,6 @@ public class gameController : MonoBehaviour {
                         chargeBar.enabled = false;                      //disable automatic color/text changes
                         ftlJump.startAllStars();                        //start FTL jump
                         chargeText.GetComponent<Text>().text = "Jumping...";
-
-                        GameObject sound = (GameObject)Instantiate(Resources.Load("FTLSound"));
-                        AudioSource source = sound.GetComponent<AudioSource>();
-                        HelperFunctions.playSound(ref source, source.clip);
                     }
                     if (jumpTimer < jumpDuration)
                     {
