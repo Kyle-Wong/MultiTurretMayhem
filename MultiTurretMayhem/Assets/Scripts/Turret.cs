@@ -184,6 +184,8 @@ public class Turret : MonoBehaviour
 
     private void Fire()
     {
+        _audioSource.pitch = Random.Range(.4f, 1f);
+        _audioSource.volume = Random.Range(.3f, .6f);
         HelperFunctions.playSound(ref _audioSource, fireSound);
         RaycastHit2D[] toKill = Physics2D.RaycastAll(transform.position, HelperFunctions.lineVector(transform.rotation.eulerAngles.z), 20);
         bool miss = true;
