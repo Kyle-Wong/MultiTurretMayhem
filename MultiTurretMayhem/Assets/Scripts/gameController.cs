@@ -649,6 +649,8 @@ public class gameController : MonoBehaviour {
             
             currentSettings.targets[i].GetComponent<Target>().startColorChange();
             currentSettings.targets[i].GetComponent<DelAfterTime>().startTimer();
+            currentSettings.targets[i].GetComponent<PositionOscillation>().stopOscillation();
+            currentSettings.targets[i].GetComponent<ConstantRotation>().stopRotation();
         }
         for (int i = 0; i < currentSettings.enabledUI.Length; i++)
         {

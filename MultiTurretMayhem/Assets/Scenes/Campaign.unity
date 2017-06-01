@@ -553,6 +553,8 @@ GameObject:
   - component: {fileID: 97050562}
   - component: {fileID: 97050566}
   - component: {fileID: 97050565}
+  - component: {fileID: 97050567}
+  - component: {fileID: 97050568}
   m_Layer: 8
   m_Name: LeftTarget
   m_TagString: Target
@@ -633,7 +635,7 @@ SpriteRenderer:
   m_SortingLayerID: -1910939237
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b1461afed9d2aec4390a10bc08582021, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2bcb2f845eac9e34db3d94a1e0b9ac60, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -670,6 +672,35 @@ MonoBehaviour:
   endColor: {r: 1, g: 0, b: 0, a: 1}
   duration: 0.75
   initialDelay: 0
+--- !u!114 &97050567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 97050560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 490f5fa9db58bb64e8c5944dce152fed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOnStartUp: 1
+  rotSpeed: 100
+  deltaRotSpeed: 0
+  randomDirection: 1
+--- !u!114 &97050568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 97050560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8907b58f57dc10e438e73c6c26f0eeb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOn: 0
+  magnitude: 0.2
+  period: 1.5
 --- !u!1 &100891029
 GameObject:
   m_ObjectHideFlags: 0
@@ -5972,6 +6003,8 @@ GameObject:
   - component: {fileID: 1034414210}
   - component: {fileID: 1034414214}
   - component: {fileID: 1034414213}
+  - component: {fileID: 1034414215}
+  - component: {fileID: 1034414216}
   m_Layer: 8
   m_Name: RightTarget
   m_TagString: Target
@@ -6052,7 +6085,7 @@ SpriteRenderer:
   m_SortingLayerID: -1910939237
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b1461afed9d2aec4390a10bc08582021, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2bcb2f845eac9e34db3d94a1e0b9ac60, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6089,6 +6122,35 @@ MonoBehaviour:
   endColor: {r: 1, g: 0, b: 0, a: 1}
   duration: 0.75
   initialDelay: 0
+--- !u!114 &1034414215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1034414208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 490f5fa9db58bb64e8c5944dce152fed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOnStartUp: 1
+  rotSpeed: 100
+  deltaRotSpeed: 0
+  randomDirection: 1
+--- !u!114 &1034414216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1034414208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8907b58f57dc10e438e73c6c26f0eeb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOn: 0
+  magnitude: 0.2
+  period: 1.5
 --- !u!1 &1036504853 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1354959066019424, guid: 01b2486d00747d346bb0cded0501ce1a,
