@@ -671,7 +671,7 @@ public class gameController : MonoBehaviour {
             float x = Random.Range(-magnitude, magnitude) * (1 - elapsed / duration);
             float y = Random.Range(-magnitude, magnitude) * (1 - elapsed / duration);
             cam.position = originalPos + new Vector3(x, y, 0);
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForSeconds(Time.deltaTime);
         }
         cam.position = originalPos;
     }
