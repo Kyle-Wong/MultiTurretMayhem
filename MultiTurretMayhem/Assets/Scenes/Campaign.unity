@@ -1802,8 +1802,9 @@ MonoBehaviour:
   multiplierText: {fileID: 0}
   missMultiplier: 0
   shipAudio: {fileID: 818739512}
-  shipHit: {fileID: 8300000, guid: 1c41e9752f9c7714a9093dfcd8347de7, type: 3}
-  shipDanger: {fileID: 8300000, guid: 1c41e9752f9c7714a9093dfcd8347de7, type: 3}
+  shipDangerAudio: {fileID: 1335184122}
+  shipHit: {fileID: 8300000, guid: d62a20e7375f734409afcfe763c32c4a, type: 3}
+  shipDanger: {fileID: 8300000, guid: f7e2940fd5350cd408d471f23c5fc866, type: 3}
   shipDeath: {fileID: 8300000, guid: 1c41e9752f9c7714a9093dfcd8347de7, type: 3}
   bombSound: {fileID: 8300000, guid: c62867fe1d713ca4388837d38a74cc82, type: 3}
   dropItems: []
@@ -1847,7 +1848,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 8c6f2aa0ea6148740a26b95cf1bf423d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1c41e9752f9c7714a9093dfcd8347de7, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.6
   m_Pitch: 1
@@ -7851,6 +7852,11 @@ MonoBehaviour:
   sceneBlackList:
   - MainMenu
   - Survival
+--- !u!82 &1335184122 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82409505114561772, guid: bfa7403f9ff511b4494a684e9b4bd911,
+    type: 2}
+  m_PrefabInternal: {fileID: 818739511}
 --- !u!1 &1337175011 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1348260213632376, guid: 01b2486d00747d346bb0cded0501ce1a,
