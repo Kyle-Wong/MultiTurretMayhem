@@ -110,7 +110,7 @@ public class Turret : MonoBehaviour
                 }
                 transform.position = HelperFunctions.lineVector(transform.rotation.eulerAngles.z, radius);
             }
-            else if (Input.GetKey(moveRight))
+            if (Input.GetKey(moveRight))
             {
                 if(accelTimer < accelerationDuration)
                     accelTimer += Time.deltaTime;
@@ -130,7 +130,9 @@ public class Turret : MonoBehaviour
                         break;
                 }
                 transform.position = HelperFunctions.lineVector(transform.rotation.eulerAngles.z, radius);
-            } else
+            }
+
+            if (!Input.GetKey(moveLeft) || !Input.GetKey(moveRight))
             {
                 accelTimer = 0;
             }
