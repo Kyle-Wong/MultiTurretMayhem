@@ -32,10 +32,8 @@ public class Splitter : Enemy
                 GameObject splitter = (GameObject)Instantiate(splitterChild, gameObject.transform.position, Quaternion.identity);
                 splitter.GetComponent<Splitter_c>().ID = i*2;
             }
-            HelperFunctions.playSound(ref _audioSource, splitSound);
             die(Color.clear, false);
         }
-
     }
 
     public override void die(Color deathColor, bool byBomb)
@@ -51,8 +49,13 @@ public class Splitter : Enemy
                     p.GetComponent<RectTransform>().localPosition = HelperFunctions.objectCameraConvert(transform.position, canvas, cam);
                     p.GetComponent<Text>().text = ((int)(points * ctrl.multiplier)).ToString();
                 }
+                HelperFunctions.playSound(ref _audioSource, splitSound);
             }
-            HelperFunctions.playSound(ref _audioSource, deathSound); //i think popping sound because the enemy dies before sound finishes
+            else
+            {
+                HelperFunctions.playSound(ref _audioSource, deathSound); //i think popping sound because the enemy dies before sound finishes
+            }
+            
 
             isDead = true;
             invincible = true;

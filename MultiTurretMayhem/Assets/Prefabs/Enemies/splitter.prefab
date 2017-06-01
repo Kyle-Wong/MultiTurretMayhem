@@ -335,11 +335,11 @@ MonoBehaviour:
   points: 10
   invincible: 0
   pointsText: {fileID: 1730592498059714, guid: bf1e6d18bfabc7e4d95532ba801b6b72, type: 2}
-  deathSound: {fileID: 8300000, guid: 4ab284e16285f40448d18cb15f7e3aeb, type: 3}
+  deathSound: {fileID: 8300000, guid: 4447730b007aa294a9998e7d28a86859, type: 3}
   splitterChild: {fileID: 1415476018937786, guid: 8d726b9a89bce0f48b0bce49cb53d817,
     type: 2}
   splittersToSpawn: 2
-  splitSound: {fileID: 8300000, guid: 1c41e9752f9c7714a9093dfcd8347de7, type: 3}
+  splitSound: {fileID: 8300000, guid: 4ab284e16285f40448d18cb15f7e3aeb, type: 3}
 --- !u!114 &114666626278412366
 MonoBehaviour:
   m_ObjectHideFlags: 1
