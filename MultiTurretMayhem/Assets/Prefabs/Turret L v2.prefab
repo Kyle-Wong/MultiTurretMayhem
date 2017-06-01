@@ -255,7 +255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7384339cad96534ea457038cac528ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playOnStartUp: 0
+  playOn: 3
   startColor: {r: 0, g: 1, b: 1, a: 1}
   endColor: {r: 0, g: 1, b: 1, a: 0}
   duration: 1
@@ -291,9 +291,9 @@ MonoBehaviour:
   barrelFireOffSet: 0.35
   angleRange: {x: 0, y: 0}
   fireSound: {fileID: 8300000, guid: 6eac89db93bb1b9468db97c29aa91f8d, type: 3}
-  lowerMultiplierSound: {fileID: 8300000, guid: 1c41e9752f9c7714a9093dfcd8347de7,
+  lowerMultiplierSound: {fileID: 8300000, guid: 639afdeb11b4c8446ab1949142379872,
     type: 3}
-  higherMultiplierSound: {fileID: 8300000, guid: 1c41e9752f9c7714a9093dfcd8347de7,
+  higherMultiplierSound: {fileID: 8300000, guid: 458359edfdd69c54d805733f6b0142f4,
     type: 3}
   inputDisabled: 0
 --- !u!114 &114514386997041184
@@ -307,7 +307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7384339cad96534ea457038cac528ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playOnStartUp: 0
+  playOn: 3
   startColor: {r: 0, g: 1, b: 1, a: 1}
   endColor: {r: 0, g: 1, b: 1, a: 0}
   duration: 1
@@ -323,7 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7384339cad96534ea457038cac528ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playOnStartUp: 0
+  playOn: 3
   startColor: {r: 0, g: 1, b: 1, a: 1}
   endColor: {r: 0, g: 1, b: 1, a: 0}
   duration: 1
