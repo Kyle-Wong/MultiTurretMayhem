@@ -685,6 +685,8 @@ public class gameController : MonoBehaviour {
         LevelNumber.setLoadedFromMenu(true);
         eventSystem.SetSelectedGameObject(null);
         StartCoroutine(transitionIntoSceneLoad(0.5f, "MainMenu"));
+        if (survival)
+            setHighScore(points);
     }
     public void continueButton()
     {
