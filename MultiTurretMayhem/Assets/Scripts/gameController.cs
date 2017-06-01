@@ -62,6 +62,7 @@ public class gameController : MonoBehaviour {
     private EventSystem eventSystem;
     private GraphicColorLerp blackPanel;
     public AudioSource shipAudio;
+    public AudioSource shipDangerAudio;
     public AudioClip shipHit;
     public AudioClip shipDanger;
     public AudioClip shipDeath;
@@ -203,6 +204,7 @@ public class gameController : MonoBehaviour {
                 if (playerIsDead)
                 {
                     lowHealthText.enabled = false;
+                    shipDangerAudio.enabled = false;
                     gameIsOver = true;
                     for (int i = 0; i < currentSettings.enabledUI.Length; i++)
                     {
@@ -240,6 +242,7 @@ public class gameController : MonoBehaviour {
                 if (!survival && timeRemaining <= 0)                    //survival game mode never leaves this state
                 {
                     lowHealthText.enabled = false;
+                    shipDangerAudio.enabled = false;
                     gameIsOver = true;
                     for(int i = 0; i < currentSettings.enabledUI.Length; i++)
                     {    
@@ -395,6 +398,7 @@ public class gameController : MonoBehaviour {
         if (health * 1f / maxHealth >= lowHealthThreshold)
         {
             lowHealthText.enabled = false;
+            shipDangerAudio.enabled = false;
         }
     }
     public void damagePlayer(int x)
@@ -408,8 +412,12 @@ public class gameController : MonoBehaviour {
         shield.startColorChange();
         if(health*1f/maxHealth < lowHealthThreshold)
         {
-            lowHealthText.enabled = true;
-            HelperFunctions.playSound(ref shipAudio, shipDanger);
+            if (!lowHealthText.enabled)
+            {
+                lowHealthText.enabled = true;
+                shipDangerAudio.enabled = true;
+                HelperFunctions.playSound(ref shipDangerAudio, shipDanger);
+            }
         }
         else if (health * 1f / maxHealth >= lowHealthThreshold)
         {
@@ -419,6 +427,7 @@ public class gameController : MonoBehaviour {
         {
             playerIsDead = true;
             lowHealthText.enabled = false;
+            shipDangerAudio.enabled = false;
             health = 0;
             HelperFunctions.playSound(ref shipAudio, shipDeath);
         }
