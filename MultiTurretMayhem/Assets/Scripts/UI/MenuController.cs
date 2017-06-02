@@ -30,6 +30,7 @@ public class MenuController : MonoBehaviour {
     public AudioSource musicSource;
     public bool skipIntro = false;
     public bool hideMouse = true;
+    private bool clickedLevel = false;
 
     private void Awake()
     {
@@ -69,8 +70,12 @@ public class MenuController : MonoBehaviour {
             case (MenuState.main):
                 break;
             case (MenuState.levelSelect):
+                if (Input.GetKeyDown(KeyCode.Escape))
+                    setMenuState((int)MenuState.main);
                 break;
             case (MenuState.credits):
+                if (Input.GetKeyDown(KeyCode.Escape))
+                    setMenuState((int)MenuState.main);
                 break;
         }
 	}
@@ -80,7 +85,8 @@ public class MenuController : MonoBehaviour {
         switch (menuState)
         {
             case (MenuState.intro):
-                if(introCanvas.activeSelf == false)
+                
+                if (introCanvas.activeSelf == false)
                     introCanvas.SetActive(true);
                 introCanvas.GetComponent<GameIntroSequence>().playIntro();
                 break;
@@ -91,6 +97,7 @@ public class MenuController : MonoBehaviour {
                     HelperFunctions.playSound(ref musicSource, menuMusic);
                     firstPass = false;
                 }
+                clickedLevel = false;
                 creditsCanvas.SetActive(false);
                 levelSelectCanvas.SetActive(false);
                 introCanvas.SetActive(false);

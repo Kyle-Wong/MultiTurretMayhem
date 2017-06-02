@@ -75,8 +75,7 @@ public class gameController : MonoBehaviour {
     public float dropTimer = 0.0f;
     private float timeToDrop;
     public List<float> dropRates;
-    private AudioSource musicSource;
-    public List<AudioClip> musicList;
+    
 
     void Awake () {
         maxHealth = health;
@@ -96,11 +95,9 @@ public class gameController : MonoBehaviour {
         eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
         if (hideMouse)
             Cursor.visible = false;
-        musicSource = GetComponent<AudioSource>();
     }
     void Start()
     {
-        StartCoroutine(playSongs());
         LevelNumber.setSkipIntro(true);     //main menu intro should no longer be played when returning to it
         ftlJump = GameObject.FindGameObjectWithTag("StarList").GetComponent<FTLJump>();
         ftlJump.stopAllStars();
@@ -852,15 +849,5 @@ public class gameController : MonoBehaviour {
         blackPanel.startColorChange();
         yield return new WaitForSeconds(blackPanel.duration);
         SceneManager.LoadScene(sceneName);
-    }
-
-    private IEnumerator playSongs ()
-    {
-        while (true)
-        {
-            AudioClip song = musicList[Random.Range(0, musicList.Count)];
-            HelperFunctions.playSound(ref musicSource, song);
-            yield return new WaitForSeconds(song.length);
-        }
     }
 }
