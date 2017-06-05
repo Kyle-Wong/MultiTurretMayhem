@@ -132,7 +132,7 @@ public class Turret : MonoBehaviour
                 transform.position = HelperFunctions.lineVector(transform.rotation.eulerAngles.z, radius);
             }
 
-            if (!Input.GetKey(moveLeft) || !Input.GetKey(moveRight))
+            if (!Input.GetKey(moveLeft) && !Input.GetKey(moveRight))
             {
                 accelTimer = 0;
             }

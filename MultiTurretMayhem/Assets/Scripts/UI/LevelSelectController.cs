@@ -12,6 +12,8 @@ public class LevelSelectController : MonoBehaviour {
     private MenuController menuController;
     private GraphicColorLerp blackPanel;
     public int levelIndex;
+    public GraphicColorLerp leftArrow;
+    public GraphicColorLerp rightArrow;
     public AudioClip soundOnMoveFail;
     public AudioClip soundOnMoveOK;
 
@@ -26,7 +28,14 @@ public class LevelSelectController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        if(Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+        {
+            scrollLeft();
+        }
+        else if(Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+        {
+            scrollRight();
+        }
 	}
     private List<UIScroller> getScollers(GameObject obj)
     {
@@ -44,6 +53,7 @@ public class LevelSelectController : MonoBehaviour {
         {
             levels[levelIndex--].hideUI(-1);
             levels[levelIndex].revealUI(-1);
+            leftArrow.startColorChange();
             menuController.menuEffects.clip = soundOnMoveOK;
         }
         else
@@ -58,6 +68,7 @@ public class LevelSelectController : MonoBehaviour {
         {
             levels[levelIndex++].hideUI(1);
             levels[levelIndex].revealUI(1);
+            rightArrow.startColorChange();
             menuController.menuEffects.clip = soundOnMoveOK;
         }
         else
