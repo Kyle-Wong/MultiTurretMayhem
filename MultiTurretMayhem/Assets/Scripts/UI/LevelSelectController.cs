@@ -19,6 +19,7 @@ public class LevelSelectController : MonoBehaviour {
     private float inputDisabledTimer = 0;
     public float delayAfterInput;       //After pressing left or right, disable additional input to allow text to scroll
     private EventSystem eventSystem;
+    private bool levelTransition = false;
 	void Start () {
         menuController = GameObject.Find("MainMenuController").GetComponent<MenuController>();
         blackPanel = GameObject.Find("BlackPanel").GetComponent<GraphicColorLerp>();
@@ -44,7 +45,9 @@ public class LevelSelectController : MonoBehaviour {
                 scrollRight();
             }
         }
-	}
+        if (!levelTransition && Input.GetKeyDown(KeyCode.Escape))
+            backPress();
+    }
     private List<UIScroller> getScollers(GameObject obj)
     {
         List<UIScroller> children = new List<UIScroller>();         //get all children of this gameobject
@@ -61,15 +64,16 @@ public class LevelSelectController : MonoBehaviour {
         {
             levels[levelIndex--].hideUI(-1);
             levels[levelIndex].revealUI(-1);
-            leftArrow.startColorChange();
             menuController.menuEffects.clip = soundOnMoveOK;
-            inputDisabledTimer = delayAfterInput;
-
         }
         else
         {
             menuController.menuEffects.clip = soundOnMoveFail;
         }
+        leftArrow.startColorChange();
+
+        inputDisabledTimer = delayAfterInput;
+
         menuController.menuEffects.Play();
     }
     public void scrollRight()
@@ -78,14 +82,15 @@ public class LevelSelectController : MonoBehaviour {
         {
             levels[levelIndex++].hideUI(1);
             levels[levelIndex].revealUI(1);
-            rightArrow.startColorChange();
             menuController.menuEffects.clip = soundOnMoveOK;
-            inputDisabledTimer = delayAfterInput;
         }
         else
         {
             menuController.menuEffects.clip = soundOnMoveFail;
         }
+        rightArrow.startColorChange();
+
+        inputDisabledTimer = delayAfterInput;
         menuController.menuEffects.Play();
     }
     public void playPress()
@@ -97,6 +102,7 @@ public class LevelSelectController : MonoBehaviour {
     }
     private IEnumerator loadLevel()
     {
+        levelTransition = true;
         LevelNumber.setLevel(levelIndex);
         blackPanel.gameObject.GetComponent<Image>().enabled = true;
         blackPanel.startColorChange();

@@ -154,7 +154,7 @@ public class Turret : MonoBehaviour
                             projectile = (GameObject)Instantiate(Resources.Load("LaserProjectileCyan"));
                             projectile.transform.position = transform.position + HelperFunctions.lineVector(transform.rotation.eulerAngles.z,3f);
                             projectile.transform.rotation = transform.rotation;
-                            projectile.GetComponent<ConstantMovement>().setVelocity(transform.rotation.eulerAngles.z, 70);
+                            projectile.GetComponent<ConstantMovement>().setVelocity(transform.rotation.eulerAngles.z, 50);
 
 
                             break;
@@ -162,7 +162,7 @@ public class Turret : MonoBehaviour
                             projectile = (GameObject)Instantiate(Resources.Load("LaserProjectileRed"));
                             projectile.transform.position = transform.position + HelperFunctions.lineVector(transform.rotation.eulerAngles.z, 3f);
                             projectile.transform.rotation = transform.rotation;
-                            projectile.GetComponent<ConstantMovement>().setVelocity(transform.rotation.eulerAngles.z, 70);
+                            projectile.GetComponent<ConstantMovement>().setVelocity(transform.rotation.eulerAngles.z, 50);
 
                             break;
                     }

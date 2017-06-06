@@ -75,9 +75,9 @@ public class gameController : MonoBehaviour {
     public float dropTimer = 0.0f;
     private float timeToDrop;
     public List<float> dropRates;
-    
+    private float preventPauseTimer = 0;
     private bool dangerPlaying;
-    
+    private bool transitioning = false;
 
     void Awake () {
         maxHealth = health;
@@ -107,6 +107,7 @@ public class gameController : MonoBehaviour {
         if (LevelNumber.getLoadedFromMenu())
         {
             blackPanel.setColors(new Color(0, 0, 0, 1), new Color(0,0,0,0));
+            preventPauseTimer = 2.5f;
         } else
         {
             blackPanel.setColors(new Color(0, 0, 0, 0), new Color(0, 0, 0, 0));
@@ -148,7 +149,10 @@ public class gameController : MonoBehaviour {
         {
             case (GameState.beforeGame):
                 runPreGame();  //level tutorial logic is in here.  Also handles levels without tutorials
-                if (Input.GetKeyDown(KeyCode.Escape))
+                if(preventPauseTimer > 0)
+                {
+                    preventPauseTimer -= Time.deltaTime;
+                } else if (Input.GetKeyDown(KeyCode.Escape))
                 {
                     gameState = GameState.paused;
                     pauseCanvas.SetActive(true);
@@ -176,7 +180,11 @@ public class gameController : MonoBehaviour {
                     timeRemaining = 0f;                                             //Ensure values sent to progress bar
                                                                                     //and progress text do not exceed 100%
                 }
-                if (Input.GetKeyDown(KeyCode.Escape))
+                if (preventPauseTimer > 1.5)    //survival has a shorter transition
+                {
+                    preventPauseTimer -= Time.deltaTime;
+                }
+                else if (Input.GetKeyDown(KeyCode.Escape))
                 {
                     gameState = GameState.paused;
                     pauseCanvas.SetActive(true);
@@ -342,7 +350,7 @@ public class gameController : MonoBehaviour {
                 {
                     turretList[i].GetComponent<Turret>().inputDisabled = true;
                 }
-                if (Input.GetKeyDown(KeyCode.Escape))
+                if (Input.GetKeyDown(KeyCode.Escape) )
                 {
                     resumeButton();
                 }
@@ -760,26 +768,29 @@ public class gameController : MonoBehaviour {
     }
     public void resumeButton()
     {
-        GameObject[] turretList = GameObject.FindGameObjectsWithTag("Turret");
+        if (!transitioning)
+        {
+            GameObject[] turretList = GameObject.FindGameObjectsWithTag("Turret");
 
-        if (!tutorialRunning)
-        {
-            gameState = GameState.duringGame;
-        }
-        else
-        {
-            gameState = GameState.beforeGame;
-        }
-        pauseCanvas.SetActive(false);
-        if (dangerPlaying)
-        {
-            shipDangerAudio.UnPause();
-        }
-        eventSystem.SetSelectedGameObject(null);
-        Time.timeScale = 1;
-        for (int i = 0; i < turretList.Length; ++i)
-        {
-            turretList[i].GetComponent<Turret>().inputDisabled = false;
+            if (!tutorialRunning)
+            {
+                gameState = GameState.duringGame;
+            }
+            else
+            {
+                gameState = GameState.beforeGame;
+            }
+            pauseCanvas.SetActive(false);
+            if (dangerPlaying)
+            {
+                shipDangerAudio.UnPause();
+            }
+            eventSystem.SetSelectedGameObject(null);
+            Time.timeScale = 1;
+            for (int i = 0; i < turretList.Length; ++i)
+            {
+                turretList[i].GetComponent<Turret>().inputDisabled = false;
+            }
         }
     }
     
@@ -890,6 +901,7 @@ public class gameController : MonoBehaviour {
     }
     public IEnumerator transitionIntoSceneLoad(float transitionTime, string sceneName)
     {
+        transitioning = true;
         blackPanel.initialDelay = 0;
         blackPanel.duration = transitionTime;
         blackPanel.setColors(new Color(0, 0, 0, 0), new Color(0, 0, 0, 1));

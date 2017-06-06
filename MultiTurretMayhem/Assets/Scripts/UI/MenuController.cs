@@ -70,8 +70,7 @@ public class MenuController : MonoBehaviour {
             case (MenuState.main):
                 break;
             case (MenuState.levelSelect):
-                if (Input.GetKeyDown(KeyCode.Escape))
-                    setMenuState((int)MenuState.main);
+                
                 break;
             case (MenuState.credits):
                 if (Input.GetKeyDown(KeyCode.Escape))
