@@ -55,8 +55,13 @@ public class Pickup : MonoBehaviour {
 
         if (ctrl.bombs < MAX_BOMBS)
             ctrl.bombs += bombAdd;
+        else if (ctrl.bombs >= MAX_BOMBS && bombAdd > 0)
+            ctrl.changeMultiplier(3);   //increment multiplier by 1
         if (ctrl.getHealth() < MAX_HEALTH)
             ctrl.setHealth(ctrl.getHealth() + healthAdd);
+        else if (ctrl.getHealth() >= MAX_HEALTH && healthAdd > 0)
+            ctrl.changeMultiplier(3);   //increment mulitiplier by 1
+        
         HelperFunctions.playSound(ref _audioSource, pickUpSound);
         foreach (GameObject g in HelperFunctions.getChildren(gameObject.transform)) {
             if (g.GetComponent<SpriteRenderer>() != null)
