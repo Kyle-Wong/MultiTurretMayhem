@@ -78,7 +78,7 @@ public class gameController : MonoBehaviour {
     private float preventPauseTimer = 0;
     private bool dangerPlaying;
     private bool transitioning = false;
-
+    public bool debug = false;
     void Awake () {
         maxHealth = health;
         settingsList = getSettings();
@@ -111,8 +111,14 @@ public class gameController : MonoBehaviour {
         } else
         {
             blackPanel.setColors(new Color(0, 0, 0, 0), new Color(0, 0, 0, 0));
-            chargeBar.setProgress(0);
-            chargeText.setPercent(0);
+            try
+            {
+                chargeBar.setProgress(0);
+                chargeText.setPercent(0);
+            } catch
+            {
+
+            }
         }
         blackPanel.startColorChange();
         LevelNumber.setLoadedFromMenu(false);
@@ -133,18 +139,19 @@ public class gameController : MonoBehaviour {
                 bombCooldown = setBombCooldown;
             }
         }
-        
-        if (Input.GetKeyDown(KeyCode.L))
+        if (debug)
         {
-            LevelNumber.setLevel(levelNum + 1);
-            SceneManager.LoadScene("Campaign");
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                LevelNumber.setLevel(levelNum + 1);
+                SceneManager.LoadScene("Campaign");
+            }
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                LevelNumber.setLevel(levelNum - 1);
+                SceneManager.LoadScene("Campaign");
+            }
         }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            LevelNumber.setLevel(levelNum - 1);
-            SceneManager.LoadScene("Campaign");
-        }
-        
         switch (gameState)
         {
             case (GameState.beforeGame):
@@ -738,14 +745,15 @@ public class gameController : MonoBehaviour {
         gameState = GameState.survivalDeathState;
         deathCanvas.SetActive(true);
         highScoreCanvas.SetActive(false);
-        eventSystem.SetSelectedGameObject(GameObject.Find("HighScoreButton"));                               //set default button
-        GameObject.Find("HighScoreButton").GetComponent<Button>().OnSelect(new BaseEventData(EventSystem.current));  //force highlight button
+        eventSystem.SetSelectedGameObject(GameObject.Find("RestartButton"));                               //set default button
+        GameObject.Find("RestartButton").GetComponent<Button>().OnSelect(new BaseEventData(EventSystem.current));  //force highlight button
     }
     public void highScoreButton()
     {
         gameState = GameState.highScore;
         highScoreCanvas.SetActive(true);
         deathCanvas.SetActive(false);
+        eventSystem.currentSelectedGameObject.GetComponent<EventTrigger>().OnDeselect(new BaseEventData(EventSystem.current));  //graphically deselects current button
         eventSystem.SetSelectedGameObject(GameObject.Find("BackButton"));                               //set default button
         GameObject.Find("BackButton").GetComponent<Button>().OnSelect(new BaseEventData(EventSystem.current));  //force highlight button
     }
@@ -764,7 +772,8 @@ public class gameController : MonoBehaviour {
     }
     public void restartSurvival()
     {
-        SceneManager.LoadScene("Survival");
+        
+        StartCoroutine(loadSceneAfterDelay("Survival", 0f));
     }
     public void resumeButton()
     {
@@ -785,6 +794,7 @@ public class gameController : MonoBehaviour {
             {
                 shipDangerAudio.UnPause();
             }
+            eventSystem.currentSelectedGameObject.GetComponent<EventTrigger>().OnDeselect(new BaseEventData(EventSystem.current));
             eventSystem.SetSelectedGameObject(null);
             Time.timeScale = 1;
             for (int i = 0; i < turretList.Length; ++i)
@@ -811,14 +821,11 @@ public class gameController : MonoBehaviour {
 
     public void setHighScore(int score)
     {
-        if (score < highScores[highScores.Count-1].score)
-            return;
-
+        
         HighScore temp = highScores[highScores.Count - 1];
         temp.score = score;
         highScores[highScores.Count - 1] = temp;
         sortHighScores(ref highScores);
-
         for (int i = 0; i < highScores.Count; ++i)
         {
             string s = "highScore" + i.ToString();
@@ -908,5 +915,11 @@ public class gameController : MonoBehaviour {
         blackPanel.startColorChange();
         yield return new WaitForSeconds(blackPanel.duration);
         SceneManager.LoadScene(sceneName);
+    }
+    public IEnumerator loadSceneAfterDelay(string sceneName, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene(sceneName);
+
     }
 }

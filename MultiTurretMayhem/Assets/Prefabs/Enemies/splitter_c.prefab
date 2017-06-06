@@ -267,7 +267,7 @@ MonoBehaviour:
   baseHP: 1
   curHP: 1
   damage: 1
-  points: 20
+  points: 10
   invincible: 0
   pointsText: {fileID: 1730592498059714, guid: bf1e6d18bfabc7e4d95532ba801b6b72, type: 2}
   deathSound: {fileID: 8300000, guid: 72e48515acb364d4cae8457158b6434d, type: 3}

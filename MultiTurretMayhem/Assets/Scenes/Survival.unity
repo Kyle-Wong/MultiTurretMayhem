@@ -1585,7 +1585,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 1327659861}
+        - m_Target: {fileID: 1196438737}
           m_MethodName: playSelectSound
           m_Mode: 1
           m_Arguments:
@@ -1677,7 +1677,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1327659861}
+      - m_Target: {fileID: 1196438737}
         m_MethodName: playConfirmSound
         m_Mode: 1
         m_Arguments:
@@ -3525,7 +3525,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1327659861}
+      - m_Target: {fileID: 1196438737}
         m_MethodName: playConfirmSound
         m_Mode: 1
         m_Arguments:
@@ -3592,7 +3592,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 1327659861}
+        - m_Target: {fileID: 1196438737}
           m_MethodName: playSelectSound
           m_Mode: 1
           m_Arguments:
@@ -3713,6 +3713,7 @@ GameObject:
   - component: {fileID: 1196438735}
   - component: {fileID: 1196438734}
   - component: {fileID: 1196438736}
+  - component: {fileID: 1196438737}
   m_Layer: 0
   m_Name: GameController
   m_TagString: GameController
@@ -3774,6 +3775,7 @@ MonoBehaviour:
   dropRates:
   - 0.25
   - 0.75
+  debug: 0
 --- !u!4 &1196438735
 Transform:
   m_ObjectHideFlags: 0
@@ -3869,6 +3871,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &1196438737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1196438733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced47ac9018cb3b49a5d968e6b243f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!82 &1238021550 stripped
 AudioSource:
   m_PrefabParentObject: {fileID: 82542170568507936, guid: bfa7403f9ff511b4494a684e9b4bd911,
@@ -4974,7 +4987,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1327659861}
+      - m_Target: {fileID: 1196438737}
         m_MethodName: playConfirmSound
         m_Mode: 1
         m_Arguments:
@@ -5025,7 +5038,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 1327659861}
+        - m_Target: {fileID: 1196438737}
           m_MethodName: playSelectSound
           m_Mode: 1
           m_Arguments:
@@ -5150,7 +5163,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 1327659861}
+        - m_Target: {fileID: 1196438737}
           m_MethodName: playSelectSound
           m_Mode: 1
           m_Arguments:
@@ -5248,7 +5261,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1327659861}
+      - m_Target: {fileID: 1196438737}
         m_MethodName: playConfirmSound
         m_Mode: 1
         m_Arguments:
@@ -6051,7 +6064,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 1327659861}
+        - m_Target: {fileID: 1196438737}
           m_MethodName: playSelectSound
           m_Mode: 1
           m_Arguments:
@@ -6133,7 +6146,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1327659861}
+      - m_Target: {fileID: 1196438737}
         m_MethodName: playConfirmSound
         m_Mode: 1
         m_Arguments:
@@ -6827,7 +6840,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1327659861}
+      - m_Target: {fileID: 1196438737}
         m_MethodName: playConfirmSound
         m_Mode: 1
         m_Arguments:

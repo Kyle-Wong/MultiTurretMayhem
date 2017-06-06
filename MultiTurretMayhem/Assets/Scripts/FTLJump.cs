@@ -19,14 +19,7 @@ public class FTLJump : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            startAllStars();
-        }
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            stopAllStars();
-        }
+        
         if (starList.Count > 0)
         {
             if (starList[0].GetComponent<Star>().getSpeed() > 0)
