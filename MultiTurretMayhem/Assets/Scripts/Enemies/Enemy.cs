@@ -55,7 +55,6 @@ abstract public class Enemy : MonoBehaviour
     {
         //ToDo: do damage to player, value passed in by child enemy
         controller.damagePlayer(damage);
-        ctrl.multiplier = 1;
     }
     public virtual void takeDamage(int damage, Color deathColor)
     {
