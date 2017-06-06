@@ -1815,10 +1815,10 @@ MonoBehaviour:
   prompt: {fileID: 660857366}
   boost: {fileID: 1126718113}
   FTLJump: {fileID: 870541599}
-  FTLDuration: 3
+  FTLDuration: 5
   delayUntilInput: 2.5
   allowInput: 0
-  introMusic: {fileID: 8300000, guid: 261d78363e80ee340b6273024bbb5e98, type: 3}
+  introMusic: {fileID: 8300000, guid: 4b955c117f505cc4ca6ad37381454d3b, type: 3}
   boosterSound: {fileID: 8300000, guid: 6428bae9788809246bab987d5402d21f, type: 3}
   musicSource: {fileID: 1113927571}
 --- !u!114 &170283981
@@ -12716,7 +12716,7 @@ MonoBehaviour:
   levelSelectCanvas: {fileID: 931533595}
   creditsCanvas: {fileID: 1209585402}
   eventSystem: {fileID: 1598473049}
-  menuMusic: {fileID: 8300000, guid: 2ad440ed231daeb49b15c7e4ff170e4e, type: 3}
+  menuMusic: {fileID: 8300000, guid: 31a7bf077264804468c8bde0539cbb3f, type: 3}
   soundOnMove: {fileID: 8300000, guid: 06d402dee5fe3434aab408f2e296e8ad, type: 3}
   soundOnConfirm: {fileID: 8300000, guid: 1edd8f1190b3696488680708e0364e05, type: 3}
   menuEffects: {fileID: 1113927572}
