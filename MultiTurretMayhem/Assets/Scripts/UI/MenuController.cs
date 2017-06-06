@@ -14,7 +14,6 @@ public class MenuController : MonoBehaviour {
         levelSelect,
         credits
     }
-    private bool firstPass = true;
     private MenuState menuState;
     public GameObject introCanvas;
     public GameObject mainCanvas;
@@ -31,6 +30,7 @@ public class MenuController : MonoBehaviour {
     public bool skipIntro = false;
     public bool hideMouse = true;
     private bool clickedLevel = false;
+    public bool firstPass = true;
 
     private void Awake()
     {
@@ -93,7 +93,7 @@ public class MenuController : MonoBehaviour {
             case (MenuState.main):
                 if (firstPass)
                 {
-                    musicSource.volume = .3f;
+                    musicSource.volume = .75f;
                     HelperFunctions.playSound(ref musicSource, menuMusic);
                     firstPass = false;
                 }
