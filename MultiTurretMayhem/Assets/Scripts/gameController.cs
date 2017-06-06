@@ -76,6 +76,8 @@ public class gameController : MonoBehaviour {
     private float timeToDrop;
     public List<float> dropRates;
     
+    private bool dangerPlaying;
+    
 
     void Awake () {
         maxHealth = health;
@@ -150,6 +152,11 @@ public class gameController : MonoBehaviour {
                 {
                     gameState = GameState.paused;
                     pauseCanvas.SetActive(true);
+                    dangerPlaying = shipDangerAudio.isPlaying;
+                    if (dangerPlaying)
+                    {
+                        shipDangerAudio.Pause();
+                    }
                     eventSystem.SetSelectedGameObject(GameObject.Find("ResumeButton"));                               //set default button
                     GameObject.Find("ResumeButton").GetComponent<Button>().OnSelect(new BaseEventData(EventSystem.current));  //force highlight button
                     Time.timeScale = 0;
@@ -173,6 +180,11 @@ public class gameController : MonoBehaviour {
                 {
                     gameState = GameState.paused;
                     pauseCanvas.SetActive(true);
+                    dangerPlaying = shipDangerAudio.isPlaying;
+                    if (dangerPlaying)
+                    {
+                        shipDangerAudio.Pause();
+                    }
                     eventSystem.SetSelectedGameObject(GameObject.Find("ResumeButton"));                               //set default button
                     GameObject.Find("ResumeButton").GetComponent<Button>().OnSelect(new BaseEventData(EventSystem.current));  //force highlight button
                     Time.timeScale = 0;
@@ -759,6 +771,10 @@ public class gameController : MonoBehaviour {
             gameState = GameState.beforeGame;
         }
         pauseCanvas.SetActive(false);
+        if (dangerPlaying)
+        {
+            shipDangerAudio.UnPause();
+        }
         eventSystem.SetSelectedGameObject(null);
         Time.timeScale = 1;
         for (int i = 0; i < turretList.Length; ++i)
