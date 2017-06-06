@@ -8610,7 +8610,6 @@ MonoBehaviour:
   legalDuplicateCount: 1
   sceneBlackList:
   - MainMenu
-  - Survival
 --- !u!82 &1479448875
 AudioSource:
   m_ObjectHideFlags: 0
