@@ -3678,11 +3678,11 @@ MonoBehaviour:
   dropItems:
   - {fileID: 1087308557876510, guid: 4a17361fd557b90478b1896d8001bbf1, type: 2}
   - {fileID: 1299124937497782, guid: 3d88417f08c8d694d97fca8a11b7d982, type: 2}
-  dropTimes: {x: 30, y: 45}
+  dropTimes: {x: 20, y: 30}
   dropTimer: 0
   dropRates:
-  - 0.5
-  - 0.5
+  - 0.25
+  - 0.75
 --- !u!4 &1196438735
 Transform:
   m_ObjectHideFlags: 0
@@ -5222,12 +5222,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicList:
-  - {fileID: 8300000, guid: 1b37624572ee29345aa44bf79556adb3, type: 3}
+  - {fileID: 8300000, guid: a214e9dcfa2fedd41be58a3b83843c29, type: 3}
   - {fileID: 8300000, guid: 483e4001a4986874a994b8cfa041b3e9, type: 3}
   - {fileID: 8300000, guid: 1e5ecce855c82664e8a878c6791991f6, type: 3}
   - {fileID: 8300000, guid: 7876f9c5819fc82458ddba5e11dcd86b, type: 3}
   - {fileID: 8300000, guid: 8c6f2aa0ea6148740a26b95cf1bf423d, type: 3}
-  - {fileID: 8300000, guid: a214e9dcfa2fedd41be58a3b83843c29, type: 3}
 --- !u!114 &1926389856
 MonoBehaviour:
   m_ObjectHideFlags: 0
