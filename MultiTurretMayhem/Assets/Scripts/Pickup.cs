@@ -9,8 +9,8 @@ public class Pickup : MonoBehaviour {
     private const int MAX_HEALTH = 8;
     private const int MAX_BOMBS = 5;
     private gameController ctrl;
-    private float pulseTime = 2;
-    private float pulseTimer = 0.0f;
+    private float pulseTime = 3.3333f;
+    private float pulseTimer;
     private AudioSource _audioSource;
     public AudioClip pickUpSound;
     public bool pickedUp = false;
@@ -24,7 +24,7 @@ public class Pickup : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        StartCoroutine(advancePulserTimer());
+        pulseTimer = pulseTime;
 	}
 	
 	// Update is called once per frame
