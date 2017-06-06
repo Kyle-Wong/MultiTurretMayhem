@@ -11,7 +11,7 @@ public struct HighScore
     {
         string result = "";
         int tempScore = score;
-        int DIGITS = 5;
+        int DIGITS = 7;
         for (int i = 0; i < DIGITS; ++i)
         {
 

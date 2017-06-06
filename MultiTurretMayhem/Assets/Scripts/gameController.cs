@@ -392,7 +392,7 @@ public class gameController : MonoBehaviour {
     {
         string result = "";
         int length = score.ToString().Length;
-        for (int i = length; i < 5; i++)
+        for (int i = length; i < 7; i++)
         {
             result += 0;
         }
