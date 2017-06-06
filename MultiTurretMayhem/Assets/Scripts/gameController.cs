@@ -401,14 +401,15 @@ public class gameController : MonoBehaviour {
     public void damagePlayer(int x)
     {
         multiplier = 1;
-        foreach (GameObject g in HelperFunctions.getChildren(GameObject.Find("MultiplierIndicator").transform))
-        {
-            g.transform.rotation = Quaternion.Euler(0, 0, 180);
-            GraphicColorLerp gLerp = g.GetComponent<GraphicColorLerp>();
-            gLerp.startColor = new Color(1, 0, 0, 1);
-            gLerp.endColor = new Color(1, 0, 0, 0);
-            gLerp.startColorChange();
-        }
+        if (survival)
+            foreach (GameObject g in HelperFunctions.getChildren(GameObject.Find("MultiplierIndicator").transform))
+            {
+                g.transform.rotation = Quaternion.Euler(0, 0, 180);
+                GraphicColorLerp gLerp = g.GetComponent<GraphicColorLerp>();
+                gLerp.startColor = new Color(1, 0, 0, 1);
+                gLerp.endColor = new Color(1, 0, 0, 0);
+                gLerp.startColorChange();
+            }
         if (!playerIsDead)
         {
             health -= x;
