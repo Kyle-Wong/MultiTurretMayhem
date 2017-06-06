@@ -245,7 +245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playOnStartUp: 1
-  lifeTime: 10
+  lifeTime: 8
 --- !u!114 &114161814611883564
 MonoBehaviour:
   m_ObjectHideFlags: 1
