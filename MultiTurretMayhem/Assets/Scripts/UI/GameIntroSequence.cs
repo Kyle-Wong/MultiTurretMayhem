@@ -60,13 +60,13 @@ public class GameIntroSequence : MonoBehaviour {
     private IEnumerator outro()
     {
         allowInput = false;
-        StartCoroutine(HelperFunctions.negInterpolateSound(musicSource, 2));
         for (byte color = 255; color > 0; color -= 5)
         {
             prompt.gameObject.gameObject.GetComponent<Text>().color = new Color32(0, 255, 255, color);
             yield return new WaitForEndOfFrame();
         }
         yield return new WaitForSeconds(.3f);
+        menuController.firstPass = false;
         menuController.setMenuState(1);     //go to main state
     }
 }
