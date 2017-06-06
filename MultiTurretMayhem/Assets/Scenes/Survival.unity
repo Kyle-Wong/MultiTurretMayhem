@@ -3678,7 +3678,7 @@ MonoBehaviour:
   dropItems:
   - {fileID: 1087308557876510, guid: 4a17361fd557b90478b1896d8001bbf1, type: 2}
   - {fileID: 1299124937497782, guid: 3d88417f08c8d694d97fca8a11b7d982, type: 2}
-  dropTimes: {x: 90, y: 120}
+  dropTimes: {x: 30, y: 45}
   dropTimer: 0
   dropRates:
   - 0.5
