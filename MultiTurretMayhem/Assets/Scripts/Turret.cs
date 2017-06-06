@@ -217,7 +217,14 @@ public class Turret : MonoBehaviour
         }
 
         if (ctrl.survival)
-            ctrl.changeMultiplier(enemiesHit);
+        {
+            //There are three cases: no hits, some hits, and only pickups hit
+            //no hits should call change multiplier
+            //some hits should call change multiplier
+            //only pickups hit (!miss && enemiesHit == 0) should not call changeMultiplier
+            if((miss) || (!miss && enemiesHit > 0))
+                ctrl.changeMultiplier(enemiesHit);          
+        }
 
         charge = 0;
         

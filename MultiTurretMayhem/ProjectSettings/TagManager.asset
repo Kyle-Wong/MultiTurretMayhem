@@ -15,6 +15,7 @@ TagManager:
   - StarList
   - Star
   - SoundObject
+  - UISoundObject
   layers:
   - Default
   - TransparentFX

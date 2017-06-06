@@ -730,8 +730,8 @@ public class gameController : MonoBehaviour {
         gameState = GameState.survivalDeathState;
         deathCanvas.SetActive(true);
         highScoreCanvas.SetActive(false);
-        eventSystem.SetSelectedGameObject(GameObject.Find("RestartButton"));                               //set default button
-        GameObject.Find("RestartButton").GetComponent<Button>().OnSelect(new BaseEventData(EventSystem.current));  //force highlight button
+        eventSystem.SetSelectedGameObject(GameObject.Find("HighScoreButton"));                               //set default button
+        GameObject.Find("HighScoreButton").GetComponent<Button>().OnSelect(new BaseEventData(EventSystem.current));  //force highlight button
     }
     public void highScoreButton()
     {
@@ -825,16 +825,19 @@ public class gameController : MonoBehaviour {
     {
         if (hits == 0)
         {
-            int temp = (int)(multiplier * 2 * missMultiplier);
-            multiplier = (float)temp / 2;
-            multiplier = (multiplier < 1 ? 1 : multiplier);
-            foreach (GameObject g in HelperFunctions.getChildren(GameObject.Find("MultiplierIndicator").transform))
+            if (multiplier != 1)    //do not display arrows if multiplier is already at 1.0x and player misses
             {
-                g.transform.rotation = Quaternion.Euler(0, 0, 180);
-                GraphicColorLerp gLerp = g.GetComponent<GraphicColorLerp>();
-                gLerp.startColor = new Color(1, 0, 0, 1);
-                gLerp.endColor = new Color(1, 0, 0, 0);
-                gLerp.startColorChange();
+                int temp = (int)(multiplier * 2 * missMultiplier);
+                multiplier = (float)temp / 2;
+                multiplier = (multiplier < 1 ? 1 : multiplier);
+                foreach (GameObject g in HelperFunctions.getChildren(GameObject.Find("MultiplierIndicator").transform))
+                {
+                    g.transform.rotation = Quaternion.Euler(0, 0, 180);
+                    GraphicColorLerp gLerp = g.GetComponent<GraphicColorLerp>();
+                    gLerp.startColor = new Color(1, 0, 0, 1);
+                    gLerp.endColor = new Color(1, 0, 0, 0);
+                    gLerp.startColorChange();
+                }
             }
         }
         else if (hits > 1)
