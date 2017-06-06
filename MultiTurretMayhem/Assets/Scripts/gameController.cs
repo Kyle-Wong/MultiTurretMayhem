@@ -802,9 +802,27 @@ public class gameController : MonoBehaviour {
             int temp = (int)(multiplier * 2 * missMultiplier);
             multiplier = (float)temp / 2;
             multiplier = (multiplier < 1 ? 1 : multiplier);
+            foreach (GameObject g in HelperFunctions.getChildren(GameObject.Find("MultiplierIndicator").transform))
+            {
+                g.transform.rotation = Quaternion.Euler(0, 0, 180);
+                GraphicColorLerp gLerp = g.GetComponent<GraphicColorLerp>();
+                gLerp.startColor = new Color(1, 0, 0, 1);
+                gLerp.endColor = new Color(1, 0, 0, 0);
+                gLerp.startColorChange();
+            }
         }
         else if (hits > 1)
+        {
             multiplier += (hits - 1) * 0.5f;
+            foreach (GameObject g in HelperFunctions.getChildren(GameObject.Find("MultiplierIndicator").transform))
+            {
+                g.transform.rotation = Quaternion.Euler(0, 0, 0);
+                GraphicColorLerp gLerp = g.GetComponent<GraphicColorLerp>();
+                gLerp.startColor = new Color(0, 1, 0, 1);
+                gLerp.endColor = new Color(0, 1, 0, 0);
+                gLerp.startColorChange();
+            }  
+        }
     }
 
     public bool willDrop()

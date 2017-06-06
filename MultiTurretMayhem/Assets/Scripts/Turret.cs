@@ -217,15 +217,7 @@ public class Turret : MonoBehaviour
         }
 
         if (ctrl.survival)
-        {
-            if (miss)
-                HelperFunctions.playSound(ref _multiplierSource, lowerMultiplierSound);
-            else if (!miss && enemiesHit > 1)
-            {
-                HelperFunctions.playSound(ref _multiplierSource, higherMultiplierSound);
-                ctrl.changeMultiplier(enemiesHit);
-            }
-        }
+            ctrl.changeMultiplier(enemiesHit);
 
         charge = 0;
         
