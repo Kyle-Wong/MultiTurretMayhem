@@ -11097,6 +11097,7 @@ MonoBehaviour:
   rightArrow: {fileID: 1430281388}
   soundOnMoveFail: {fileID: 8300000, guid: 27abd2069ddd6244fa5edc28472c6153, type: 3}
   soundOnMoveOK: {fileID: 8300000, guid: 2c11569e278a7d247b448f4cddf4aac0, type: 3}
+  delayAfterInput: 0.2
 --- !u!1 &937643493
 GameObject:
   m_ObjectHideFlags: 0

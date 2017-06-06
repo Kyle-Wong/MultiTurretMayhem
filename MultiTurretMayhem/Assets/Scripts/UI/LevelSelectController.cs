@@ -16,7 +16,8 @@ public class LevelSelectController : MonoBehaviour {
     public GraphicColorLerp rightArrow;
     public AudioClip soundOnMoveFail;
     public AudioClip soundOnMoveOK;
-
+    private float inputDisabledTimer = 0;
+    public float delayAfterInput;       //After pressing left or right, disable additional input to allow text to scroll
     private EventSystem eventSystem;
 	void Start () {
         menuController = GameObject.Find("MainMenuController").GetComponent<MenuController>();
@@ -28,13 +29,20 @@ public class LevelSelectController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+        if (inputDisabledTimer > 0)
         {
-            scrollLeft();
+            inputDisabledTimer -= Time.deltaTime;
         }
-        else if(Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+        else
         {
-            scrollRight();
+            if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+            {
+                scrollLeft();
+            }
+            else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+            {
+                scrollRight();
+            }
         }
 	}
     private List<UIScroller> getScollers(GameObject obj)
@@ -55,6 +63,8 @@ public class LevelSelectController : MonoBehaviour {
             levels[levelIndex].revealUI(-1);
             leftArrow.startColorChange();
             menuController.menuEffects.clip = soundOnMoveOK;
+            inputDisabledTimer = delayAfterInput;
+
         }
         else
         {
@@ -70,6 +80,7 @@ public class LevelSelectController : MonoBehaviour {
             levels[levelIndex].revealUI(1);
             rightArrow.startColorChange();
             menuController.menuEffects.clip = soundOnMoveOK;
+            inputDisabledTimer = delayAfterInput;
         }
         else
         {
