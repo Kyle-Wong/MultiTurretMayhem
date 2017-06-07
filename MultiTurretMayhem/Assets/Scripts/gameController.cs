@@ -327,7 +327,7 @@ public class gameController : MonoBehaviour {
                             GameObject.Find("ContinueButton").SetActive(false);
                             GameObject.Find("MainMenuButton").GetComponent<Button>().OnSelect(new BaseEventData(EventSystem.current));  //force highlight button
                             GameObject.Find("MainMenuButton").GetComponent<RectTransform>().anchorMin = new Vector2(0.3f,0);
-                            GameObject.Find("MainMenuButton").GetComponent<RectTransform>().anchorMax = new Vector2(0.7f, 1);
+                            GameObject.Find("MainMenuButton").GetComponent<RectTransform>().anchorMax = new Vector2(0.7f, 0.5f);
 
 
 

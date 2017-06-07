@@ -17,6 +17,7 @@ public class GameIntroSequence : MonoBehaviour {
     public bool allowInput = false;
     public AudioClip introMusic;
     public AudioClip boosterSound;
+    public AudioClip confirmSound;
     public AudioSource musicSource;
 
     void Start () {
@@ -60,6 +61,8 @@ public class GameIntroSequence : MonoBehaviour {
     private IEnumerator outro()
     {
         allowInput = false;
+        GetComponent<AudioSource>().clip = confirmSound;
+        GetComponent<AudioSource>().Play();
         for (byte color = 255; color > 0; color -= 5)
         {
             prompt.gameObject.gameObject.GetComponent<Text>().color = new Color32(0, 255, 255, color);
