@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 58258031449839172}
   - component: {fileID: 114199158409460872}
   - component: {fileID: 114724855602357406}
+  - component: {fileID: 82059372841344046}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Untagged
@@ -119,6 +120,86 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!82 &82059372841344046
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1373884922931050}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: c62867fe1d713ca4388837d38a74cc82, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114199158409460872
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -145,6 +226,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playOnStartUp: 1
   rotSpeed: 200
+  deltaRotSpeed: 0
+  randomDirection: 0
 --- !u!114 &114483148202084612
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -158,6 +241,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playOnStartUp: 1
   rotSpeed: -200
+  deltaRotSpeed: 0
+  randomDirection: 0
 --- !u!114 &114724855602357406
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -484,7 +484,8 @@ public class gameController : MonoBehaviour {
             bombs--;
             GameObject bomb = (GameObject)Instantiate(Resources.Load("Bomb"));
             bomb.transform.position = Vector3.zero;
-            HelperFunctions.playSound(ref shipAudio, bombSound);
+            //HelperFunctions.playSound(ref shipAudio, bombSound);
+            //bomb prefab plays this now
         }
         
     }
