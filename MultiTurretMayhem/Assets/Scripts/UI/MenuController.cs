@@ -74,7 +74,7 @@ public class MenuController : MonoBehaviour {
                 break;
             case (MenuState.credits):
                 if (Input.GetKeyDown(KeyCode.Escape))
-                    setMenuState((int)MenuState.main);
+                    backPress();
                 break;
         }
 	}
