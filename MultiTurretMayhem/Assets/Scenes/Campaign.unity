@@ -2055,8 +2055,9 @@ MonoBehaviour:
   shipDangerAudio: {fileID: 1335184122}
   shipHit: {fileID: 8300000, guid: d62a20e7375f734409afcfe763c32c4a, type: 3}
   shipDanger: {fileID: 8300000, guid: f7e2940fd5350cd408d471f23c5fc866, type: 3}
-  shipDeath: {fileID: 8300000, guid: 1c41e9752f9c7714a9093dfcd8347de7, type: 3}
+  shipDeath: {fileID: 8300000, guid: 4f9b64cc5c25e854e97c24d3e1379f78, type: 3}
   bombSound: {fileID: 8300000, guid: c62867fe1d713ca4388837d38a74cc82, type: 3}
+  FTLBombSound: {fileID: 8300000, guid: 191eed7880e50484a84117ce52d0825b, type: 3}
   dropItems: []
   dropTimes: {x: 0, y: 0}
   dropTimer: 0
