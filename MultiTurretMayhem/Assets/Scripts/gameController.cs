@@ -68,6 +68,8 @@ public class gameController : MonoBehaviour {
     public AudioClip shipDeath;
     public AudioClip bombSound;
     public AudioClip FTLBombSound;
+    public AudioClip multiplierUp;
+    public AudioClip multiplierDown;
     private List<HighScore> highScores;
     private GameObject[] targetList;
     private bool tutorialRunning = false;
@@ -849,6 +851,8 @@ public class gameController : MonoBehaviour {
         {
             if (multiplier != 1)    //do not display arrows if multiplier is already at 1.0x and player misses
             {
+                GetComponent<AudioSource>().pitch = 1f;
+                GetComponent<AudioSource>().PlayOneShot(multiplierDown, 1f);
                 int temp = (int)(multiplier * 2 * missMultiplier);
                 multiplier = (float)temp / 2;
                 multiplier = (multiplier < 1 ? 1 : multiplier);
@@ -864,6 +868,9 @@ public class gameController : MonoBehaviour {
         }
         else if (hits > 1)
         {
+            if (GetComponent<AudioSource>().pitch < 1.2f)
+                GetComponent<AudioSource>().pitch = GetComponent<AudioSource>().pitch + (multiplier * .025f);
+            GetComponent<AudioSource>().PlayOneShot(multiplierUp, 1f);
             multiplier += (hits - 1) * 0.5f;
             foreach (GameObject g in HelperFunctions.getChildren(GameObject.Find("MultiplierIndicator").transform))
             {
