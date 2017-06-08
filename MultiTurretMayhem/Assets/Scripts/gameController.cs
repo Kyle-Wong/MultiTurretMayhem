@@ -67,6 +67,7 @@ public class gameController : MonoBehaviour {
     public AudioClip shipDanger;
     public AudioClip shipDeath;
     public AudioClip bombSound;
+    public AudioClip FTLBombSound;
     private List<HighScore> highScores;
     private GameObject[] targetList;
     private bool tutorialRunning = false;
@@ -227,6 +228,8 @@ public class gameController : MonoBehaviour {
                 }
                 if (playerIsDead)
                 {
+                    HelperFunctions.playSound(ref shipAudio, shipDeath);
+
                     lowHealthText.enabled = false;
                     shipDangerAudio.enabled = false;
                     gameIsOver = true;
@@ -486,6 +489,7 @@ public class gameController : MonoBehaviour {
     public void dropFTLBomb()
     {
         GameObject FTLBomb = (GameObject)Instantiate(Resources.Load("FTLBomb"));
+        HelperFunctions.playSound(ref shipAudio, FTLBombSound);
         FTLBomb.transform.position = Vector3.zero;
     }
     public void runPreGame()
