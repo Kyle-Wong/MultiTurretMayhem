@@ -6380,7 +6380,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicList:
   - {fileID: 8300000, guid: 8c6f2aa0ea6148740a26b95cf1bf423d, type: 3}
-  - {fileID: 8300000, guid: 483e4001a4986874a994b8cfa041b3e9, type: 3}
+  - {fileID: 8300000, guid: 066c8850d2bdeb746920e62e96230d30, type: 3}
   - {fileID: 8300000, guid: 1e5ecce855c82664e8a878c6791991f6, type: 3}
 --- !u!114 &1926389856
 MonoBehaviour:
