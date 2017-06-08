@@ -68,6 +68,12 @@ public class MenuController : MonoBehaviour {
             case (MenuState.intro):
                 break;
             case (MenuState.main):
+                if (firstPass)
+                {
+                    musicSource.volume = 0.9854024f;
+                    HelperFunctions.playSound(ref musicSource, menuMusic);
+                    firstPass = false;
+                }
                 break;
             case (MenuState.levelSelect):
                 
@@ -90,12 +96,6 @@ public class MenuController : MonoBehaviour {
                 introCanvas.GetComponent<GameIntroSequence>().playIntro();
                 break;
             case (MenuState.main):
-                if (firstPass)
-                {
-                    musicSource.volume = .75f;
-                    HelperFunctions.playSound(ref musicSource, menuMusic);
-                    firstPass = false;
-                }
                 clickedLevel = false;
                 creditsCanvas.SetActive(false);
                 levelSelectCanvas.SetActive(false);
