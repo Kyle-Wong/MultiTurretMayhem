@@ -3767,6 +3767,7 @@ MonoBehaviour:
   shipDanger: {fileID: 8300000, guid: f7e2940fd5350cd408d471f23c5fc866, type: 3}
   shipDeath: {fileID: 8300000, guid: 1c41e9752f9c7714a9093dfcd8347de7, type: 3}
   bombSound: {fileID: 8300000, guid: c62867fe1d713ca4388837d38a74cc82, type: 3}
+  FTLBombSound: {fileID: 0}
   dropItems:
   - {fileID: 1087308557876510, guid: 4a17361fd557b90478b1896d8001bbf1, type: 2}
   - {fileID: 1299124937497782, guid: 3d88417f08c8d694d97fca8a11b7d982, type: 2}
@@ -6407,7 +6408,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8c6f2aa0ea6148740a26b95cf1bf423d, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.6
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 1
   Mute: 0
