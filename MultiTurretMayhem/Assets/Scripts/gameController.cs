@@ -868,6 +868,7 @@ public class gameController : MonoBehaviour {
         }
         else if (hits > 1)
         {
+            if (GetComponent<AudioSource>().pitch < 1.2f)
                 GetComponent<AudioSource>().pitch = GetComponent<AudioSource>().pitch + (multiplier * .025f);
             GetComponent<AudioSource>().PlayOneShot(multiplierUp, 1f);
             multiplier += (hits - 1) * 0.5f;
