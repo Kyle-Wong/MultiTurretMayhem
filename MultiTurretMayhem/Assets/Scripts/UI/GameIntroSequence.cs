@@ -32,7 +32,10 @@ public class GameIntroSequence : MonoBehaviour {
         {
             if (Input.anyKeyDown)
             {
-                StartCoroutine(outro());
+                if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Mouse1) || Input.GetKeyDown(KeyCode.Mouse2)) 
+                { } //can't use mouse clicks to get in
+                else
+                    StartCoroutine(outro());
             }
         }
 	}
