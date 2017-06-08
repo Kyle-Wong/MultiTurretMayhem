@@ -449,7 +449,8 @@ public class gameController : MonoBehaviour {
         }
         shield.startColor.a = Mathf.Lerp(0f, 1f, health * 1.0f / maxHealth);
         shield.startColorChange();
-        if(health*1f/maxHealth < lowHealthThreshold)
+        HelperFunctions.playSound(ref shipAudio, shipHit);
+        if (health*1f/maxHealth < lowHealthThreshold)
         {
             if (!lowHealthText.enabled)
             {
@@ -458,10 +459,7 @@ public class gameController : MonoBehaviour {
                 HelperFunctions.playSound(ref shipDangerAudio, shipDanger);
             }
         }
-        else if (health * 1f / maxHealth >= lowHealthThreshold)
-        {
-            HelperFunctions.playSound(ref shipAudio, shipHit);
-        }
+        
         if(health <= 0)
         {
             playerIsDead = true;
